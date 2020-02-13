@@ -1,0 +1,32 @@
+.header-nav {
+    .side-nav .logo-wrapper,
+    .side-nav .logo-wrapper a {
+        height: 140px;
+    }
+
+    .side-nav .logo-wrapper img {
+        padding: 10px 0px 3px 20px !important;
+        width: auto;
+        max-height: 100%;
+    }
+
+    .sn-bg-4 {
+        background-image: url("/img/header/fish-ocean-vert.jpg");
+    }
+
+    .side-nav .social a {
+        font-size: 1.3rem !important;
+    }
+
+    .side-nav .collapsible a {
+        color: #fff;
+        font-weight: 300;
+        font-size: 1rem;
+        height: 50px;
+        line-height: 50px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+}

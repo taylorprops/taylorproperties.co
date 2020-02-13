@@ -1,0 +1,170 @@
+.page-careers {
+    .container-fluid.header {
+        background-image: url('/images/careers2.jpg')
+    }
+
+    #pricing {
+        margin: 2em auto;
+    }
+
+    .pricing .fixed-top {
+        position: inherit;
+    }
+
+    .col-md-12.pricing {
+        margin-bottom: 2em;
+        text-align: center;
+    }
+
+    article {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        /*height:1000px; */
+        position: relative;
+    }
+
+    article ul {
+        display: flex;
+        top: 0px;
+        z-index: 10;
+        padding-bottom: 14px;
+        padding-left: 0 !important;
+    }
+
+    article li {
+        list-style: none;
+        flex: 1;
+    }
+
+    article li:last-child {
+        border-right: 1px solid #DDD;
+    }
+
+    article button {
+        width: 100%;
+        border: 1px solid #DDD;
+        border-right: 0;
+        border-top: 0;
+        padding: 10px;
+        background: #FFF;
+        font-size: 14px;
+        font-weight: bold;
+        height: 60px;
+        color: #999
+    }
+
+    article li.active button {
+        background: #F5F5F5;
+        color: #000;
+	}
+
+	.income-table th, .income-table td {
+		padding: 10px;
+		font-size: 1.2rem;
+	}
+
+    .pricing-div table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .pricing-div th {
+        background: #F5F5F5;
+        display: none;
+    }
+
+    .pricing-div td,
+    .pricing-div th {
+        height: 53px
+    }
+
+    .pricing-div td,
+    .pricing-div th {
+        border: 1px solid #DDD;
+        padding: 10px;
+        empty-cells: show;
+    }
+
+    .pricing-div td,
+    .pricing-div th {
+        text-align: left;
+    }
+
+    .pricing-div td+td,
+    .pricing-div th+th {
+        text-align: center;
+        display: none;
+    }
+
+    .pricing-div td.default {
+        display: table-cell;
+    }
+
+    .bg-blue {
+        border-top: 3px solid #074266;
+    }
+
+    .bg-orange {
+        border-top: 3px solid #ff8c42;
+    }
+
+    .sep {
+        background: #F5F5F5;
+        font-weight: bold;
+    }
+
+    .txt-l {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .txt-top {
+        position: relative;
+        top: -9px;
+        left: -2px;
+    }
+
+    .tick {
+        font-size: 18px;
+        color: #074266;
+    }
+
+    .hide {
+        border: 0;
+        background: none;
+    }
+
+    .disclaimer {
+        margin-top: 4em;
+    }
+
+    .row.testimonials {
+        margin: 2em auto;
+        background-color: #074266;
+    }
+
+    @media (min-width: 640px) {
+        article ul {
+            display: none;
+        }
+
+        td,
+        th {
+            display: table-cell !important;
+        }
+
+        td,
+        th {
+            width: 330px;
+
+        }
+
+        td+td,
+        th+th {
+            width: auto;
+        }
+    }
+
+}

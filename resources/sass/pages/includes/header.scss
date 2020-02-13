@@ -1,0 +1,42 @@
+.main-nav {
+	height: 75px;
+
+	.navbar-brand img {
+		max-width: 150px;
+	}
+
+	.scrolling-navbar {
+		padding-top: 7px;
+		padding-bottom: 7px;
+	}
+
+	.scrolling-navbar.top-nav-collapse {
+		padding-top: 3px;
+		padding-bottom: 3px;
+    }
+
+    a.nav-link:hover {
+        color: #ccc !important;
+    }
+    #nav_logged {
+        float: right;
+    }
+
+    @media (max-width: 992px) {
+        .navbar-brand img {
+            max-width: 100px;
+        }
+        #collapsed_nav {
+            display: block;
+        }
+        #navbarSupportedContent-4 {
+            background: $primary-color;
+        }
+        #nav_logged {
+            position: absolute;
+            right: 35px;
+            top: 80px;
+        }
+    }
+
+}

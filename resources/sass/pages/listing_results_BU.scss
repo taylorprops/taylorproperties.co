@@ -1,0 +1,340 @@
+.results-body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden !important;
+}
+
+.page-results {
+    .map_container {
+        height: calc(100vh - 75px);
+        width: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    @media (max-width: 767px) {
+        .map_container {
+            height: 40VH;
+            width: 100%;
+        }
+    }
+
+    #results_map {
+        height: 95%;
+        width: 100%;
+        z-index: 1;
+    }
+
+    /*
+    .leaflet-fade-anim .leaflet-popup {
+        //bottom: -15px !important;
+    }
+
+    .leaflet-popup-tip {
+        //display: none !important;
+    }
+    */
+    .leaflet-tooltip {
+        padding: 2px !important;
+        color: #fff;
+        font-size: 0.8rem !important;
+    }
+
+    .tooltip-rental {
+        background: #FF7E6B;
+    }
+
+    .tooltip-sale {
+        background: #3273FF;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .popup-container {
+        border: 4px solid $primary-color;
+        border-radius: 5px;
+        background: #fff;
+        width: 150px;
+
+        .popup-data {
+            padding: 5px;
+            font-size: .6rem;
+        }
+
+        img.popupImage {
+            width: 100%;
+            height:80px;
+            object-fit: cover;
+        }
+    }
+
+    // Search bar
+    .search-options-container {
+        padding: 0 0 0 15px !important;
+
+        .navbar-nav .dropdown-menu {
+            left: 0 !important;
+        }
+
+        input.form-control.mr-sm-2 {
+            margin-top: 10px !important;
+            padding: 0;
+            font-size: 0.8rem !important;
+            width: 200px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+        }
+
+        .btn-primary-outline {
+            background-color: transparent;
+            border: none;
+        }
+
+        .md-form .prefix~input,
+        .md-form .prefix~textarea {
+            margin-left: 1.8rem;
+        }
+
+        .md-form .prefix {
+            font-size: 1.2rem;
+        }
+
+        .search-results-container {
+            position: relative;
+        }
+
+        .search-results-div {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: auto;
+            max-height: 75VH;
+            width: 500px;
+            overflow: auto;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 3px;
+            text-align: left;
+            color: $primary-color;
+            z-index: 100;
+
+            .dropdown-menu {
+                border: none !important;
+                position: relative !important;
+            }
+        }
+
+        .search-div {
+            width: 100%;
+        }
+
+        // fix dropdown
+        .dropdown-menu.show {
+            z-index: 1050;
+        }
+
+        .listing-type-dropdown-menu {
+            min-width: 15rem;
+        }
+
+        .price-dropdown-menu {
+            min-width: 17rem;
+        }
+
+        .baths-dropdown-menu,
+        .beds-dropdown-menu {
+            min-width: 5rem;
+            max-width: 5rem;
+        }
+
+        .other-dropdown-menu {
+            min-width: 20rem;
+
+            .md-form label {
+                top: -10px !important;
+            }
+
+            .select-wrapper+label {
+                top: 0.6rem !important;
+                font-size: 0.8rem !important;
+            }
+        }
+
+        .list-group-item {
+            padding: 0.3rem 0.7rem !important;
+            border: none !important;
+        }
+
+        .list-group-item ul li {
+            padding: 0.2rem 1rem;
+        }
+
+        .price-options {
+            display: none;
+        }
+
+        .sortby-dropdown {
+            margin-right: 65px;
+        }
+
+        @media (max-width: 767px) {
+            .listing-type-dropdown-menu {
+                min-width: 1rem;
+                width: 95%;
+            }
+
+            .price-dropdown-menu {
+                min-width: 1rem;
+                width: 95%;
+            }
+        }
+
+    }
+
+    .listing-side-results {
+        position: fixed;
+        height: calc(100vh - 125px);
+        overflow: auto;
+        margin-bottom: 10px !important;
+
+        .mask:hover {
+            cursor: pointer !important;
+        }
+
+        .card {
+            min-height: 200px;
+        }
+
+        h5 {
+            margin-bottom: 0;
+        }
+
+        .listing-side-image {
+            width: 100%;
+            height: 15vw;
+            min-height: 250px;
+            object-fit: cover;
+        }
+
+        .collection-card .stripe-address {
+            bottom: 0;
+            padding: 0.5rem;
+            text-align: left;
+
+            a p {
+                font-size: 0.8rem !important;
+                letter-spacing: 0.05rem;
+            }
+        }
+
+        .collection-card .stripe-options {
+            top: 0;
+            padding: 0.5rem;
+
+            .btn-floating {
+                margin: 0 !important;
+            }
+        }
+
+        .listing-selected {
+            border: 6px solid $primary-color;
+        }
+
+        .pagination-row {
+            height: 45px;
+        }
+
+        .pagination .page-item .page-link,
+        .pagination-count {
+            font-size: 0.7rem !important;
+        }
+
+        @media (max-width: 767px) {
+            .pagination-row {
+                height: auto;
+                text-align: center;
+            }
+        }
+    }
+
+    .details-div {
+        display: none;
+        position: fixed;
+        top: 0px;
+        padding-bottom: 50px;
+        height: 100VH;
+        width: 80VW;
+        margin: 0px 10VW;
+        background: #ffffff;
+        z-index: 1045;
+        overflow: hidden;
+    }
+
+    #listing_images_div {
+        height: 100VH;
+        overflow: auto;
+    }
+
+    .listing-image-main {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .listing-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .details-section {
+        padding: 5px;
+        margin-bottom: 5px;
+    }
+
+}
+
+.listings-gallery {
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 90%;
+    width: 90%;
+    background: rgba(0, 0, 0, .4);
+    z-index: 2000;
+}
+#listing_map {
+    height: 300px;
+    width: 100%;
+}
+
+#close_listing_details {
+    position: fixed;
+    top: 5px;
+    right: 40px;
+}
+
+#listing_details_div {
+    height: 100VH;
+    overflow: auto;
+
+    .section-header {
+        background: $primary-color;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #fff;
+        padding: 10px;
+    }
+
+}
