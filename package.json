@@ -58,7 +58,7 @@
     "swiper": "^4.5.0",
     "whatwg-fetch": "^3.0.0"
   },
-  "name": "taylorproperties-finaldev",
+  "name": "taylorproperties-finaldevv2",
   "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
   "version": "1.0.0",
   "main": "webpack.mix.js",
@@ -67,12 +67,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taylorprops/taylorproperties-finaldev.git"
+    "url": "git+https://github.com/taylorprops/taylorproperties-finaldevv2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/taylorprops/taylorproperties-finaldev/issues"
+    "url": "https://github.com/taylorprops/taylorproperties-finaldevv2/issues"
   },
-  "homepage": "https://github.com/taylorprops/taylorproperties-finaldev#readme"
+  "homepage": "https://github.com/taylorprops/taylorproperties-finaldevv2#readme"
 }
