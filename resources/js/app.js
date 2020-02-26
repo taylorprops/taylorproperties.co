@@ -4,7 +4,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+// test
 require('./bootstrap');
 require('./mdbootstrap/_intro-mdb-pro.js');
 require('./mdbootstrap/vendor/jquery.easing.js');
