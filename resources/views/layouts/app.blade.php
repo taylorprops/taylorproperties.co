@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-TxKWSXbsweFt0o2WqfkfJRRNVaPdzXJ/YLqgStggBVRREXkwU7OKz+xXtqOU4u8+" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('addons/slider/css/lightbox.css') }}">
         <link rel="stylesheet" href="{{ asset('addons/cluster/MarkerCluster.css') }}">
         <link rel="stylesheet" href="{{ asset('addons/cluster/MarkerCluster.Default.css') }}">
@@ -24,16 +24,19 @@
 
         @yield('css')
 
-        <script>
-        var contact_route = "{{ route('contact.submit') }}";
-        </script>
     </head>
 
     <body <?php if(stristr($_SERVER['REQUEST_URI'], 'listing_results')) { ?>style="overflow: hidden !important"
         <?php } ?>>
 
-        @include('includes.navbar-gp')
+        <?php if(stristr($_SERVER['REQUEST_URI'], 'listing_results')) { ?>
+            @include('includes.navbar-gp-search')
+        <?php } else { ?>
+            @include('includes.navbar-gp')
+        <?php } ?>
+
         @yield('content')
+
         <?php if(!stristr($_SERVER['REQUEST_URI'], 'listing_results')) { ?>
         @include('includes.footer')
         <?php } ?>

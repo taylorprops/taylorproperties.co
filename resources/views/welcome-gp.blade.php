@@ -11,15 +11,13 @@
                 <!--Grid row-->
                 <div class="row">
                     <!--Grid column-->
-                    
+
                         <div class="mask index-mask d-flex align-items-center">
 
                             <div class="search-container mx-auto">
                                 <!-- Material form contact -->
                                 <div class="card white-text">
-                                    <h5 class="card-header primary-color white-text text-center py-1 py-md-2">
-                                        <strong>Home Search</strong>
-                                    </h5>
+                                    <div class="h2-responsive card-header primary-color white-text text-center py-1 py-md-2"><i class="fal fa-home-alt mr-3"></i> Home Search</div>
                                     <!--Card content-->
                                     <div class="card-body px-lg-5 pt-0">
                                         <div class="search-div d-flex justify-content-center align-items-center">
@@ -39,7 +37,7 @@
                             </div>
 
                         </div>
-        
+
                     <!--Grid column-->
                 </div>
                 <!--Grid row-->
@@ -61,7 +59,7 @@
                         Taylor&nbsp;Properties. Love&nbsp;your&nbsp;home.</h6>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <!-- Full Page Intro -->
         <div class="py-5" style="background-color: #eff1f3;">

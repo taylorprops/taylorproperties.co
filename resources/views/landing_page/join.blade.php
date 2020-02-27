@@ -50,7 +50,7 @@ nav {
 			<div class="row pt-lg-5 mt-lg-5">
 				<!--Grid column-->
 				<div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-					<h1 class="display-4 font-weight-bold" style="color: #ffffff;">You&nbsp;Earned&nbsp;It. You&nbsp;Keep&nbsp;It.</h1>
+					<h1 class="display-4 font-weight-bold" style="color: #ffffff;">You Earned It. You Keep It.</h1>
 					<hr class="hr-light">
 					<h6 class="mb-3" style="color: #ffffff;">Fill out the form and we will contact you to answer any questions and guide you through joining Taylor Properties. Please feel free to call us at <a href="tel:8005900925" style="color: #e7bd70">800-590-0925</a> if you prefer to speak with someone immediately.</h6>
 					<a class="btn btn-outline-white" href="/100-commission-real-estate-broker">Learn more</a>

@@ -63,3 +63,17 @@
 </footer>
 <!-- Footer -->
 <div class="black-out"></div>
+
+<div class="modal fade" id="email_agent_modal" tabindex="-1" role="dialog" aria-labelledby="email_agent_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-primary" id="email_agent_modal_label"></h4>
+                <button type="button" class="btn btn-secondary btn-sm float-right" data-dismiss="modal"><i class="fal fa-times fa-2x"></i></button>
+            </div>
+            <div class="modal-body">
+                @include('includes.contactform_to_agent')
+            </div>
+        </div>
+    </div>
+</div>

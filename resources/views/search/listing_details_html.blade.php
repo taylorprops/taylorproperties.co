@@ -41,7 +41,7 @@
 
 </div>
 
-<div class="details-section-container">
+<div class="details-section-container px-3">
 
     <div class="details-section pl-4">
         <div class="property-type d-inline">{{ $listings -> PropertyType }}</div>
@@ -74,15 +74,25 @@
     </div>
 
     <hr>
-    <div class="details-section-container d-flex justify-content-around">
-        <a href="javascript: void(0);" id="schedule_showing" class="btn btn-default z-depth-3"><i class="fal fa-clock fa-lg"></i>
-            Schedule Showing</a>
-        <a href="javascript: void(0);" id="info_request" class="btn btn-primary z-depth-3"><i class="fal fa-info-circle fa-lg"></i>
-            Request Information</a>
+    <div class="details-section-container px-2">
+        <div class="container mb-0">
+            <div class="row p-0">
+                <div class="col-sm-6">
+                    <a href="javascript: void(0);" id="schedule_showing" class="btn btn-block btn-default mx-2 my-2 z-depth-3"><i class="fal fa-clock fa-lg"></i>
+                        Schedule Showing</a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="javascript: void(0);" id="info_request" class="btn btn-block btn-primary mx-2 my-2 z-depth-3"><i class="fal fa-info-circle fa-lg"></i>
+                        Request Information</a>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <hr>
 
-    <div class="details-section p-3">
+    <div class="details-section">
 
         <div class="section-header">Property Details</div>
         <table width="100%">

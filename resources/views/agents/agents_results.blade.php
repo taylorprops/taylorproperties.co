@@ -22,21 +22,21 @@
             <!-- Card image -->
             <div class="view overlay">
                 <img class="card-img-top" src="{{ $photo_url }}" alt="{{ $agent -> fullname }}">
-                <a class="show-agent-details" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
+                <a class="show-agent-details" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
                     <div class="mask rgba-white-slight"></div>
                 </a>
             </div>
             <!-- Card content -->
             <div class="card-body text-center text-primary">
                 <!-- Title -->
-                <a class="show-agent-details text-primary" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
+                <a class="show-agent-details text-primary" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}"  data-email="{{ $agent -> email }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
                     <div class="card-title h4 mb-0">{{ $agent -> fullname }}</div>
                 </a>
-                <a class="show-agent-details" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
+                <a class="show-agent-details" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}">
                     <div class="h5 card-title text-default">{!! $agent -> designations !!}</div>
                 </a>
                 <div class="card-text">{{ $agent -> cell }}</div>
-                <a href="javascript:void(0);" class="btn btn-sm btn-primary message-agent" data-id="{{ $agent -> agent_id }}" data-name="{{ $agent -> fullname }}" data-des="{{ $agent -> designations }}"><i class="fas fa-envelope pr-2"></i> Message Me</a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-primary message-agent" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-name="{{ $agent -> fullname }}" data-des="{{ $agent -> designations }}"><i class="fas fa-envelope pr-2"></i> Message Me</a>
                 <a href="/agents/{{ $agent -> agent_id }}/{{ $agent -> fullname }}" class="btn btn-primary btn-sm show-agent-details-button button{{ $agent -> agent_id }}" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-des="{{ $agent -> designations }}">View Agent Details</a>
             </div>
         </div>

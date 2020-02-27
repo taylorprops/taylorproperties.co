@@ -45,17 +45,17 @@
 
             </ul>
             <div class="nav-login" id="nav_logged">
-                    @if(Auth::check())
-                    <div id="nav_logged_in">
-                        <a href="/dashboard" class="mb-n2 text-white"><i class="fal fa-user-circle mr-2"></i> My Account</a><br>
-                        <a href="{{ url('/logout') }}" class="yellow-text"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a>
-                    </div>
-                    @else
-                    <div id="nav_not_logged_in">
-                        <a href="javascript: void(0)" class="open-login text-white">Log In | My Account</a>
-                    </div>
-                    @endif
+                @if(Auth::check())
+                <div id="nav_logged_in">
+                    <a href="/dashboard" class="mb-n2 text-white"><i class="fal fa-user-circle mr-2"></i> My Account</a><br>
+                    <a href="{{ url('/logout') }}" class="yellow-text"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a>
                 </div>
+                @else
+                <div id="nav_not_logged_in">
+                    <a href="javascript: void(0)" class="open-login text-white">Log In | My Account</a>
+                </div>
+                @endif
+            </div>
         </div>
 
     </nav>

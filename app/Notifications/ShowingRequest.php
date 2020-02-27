@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Config;
 
 class ShowingRequest extends Notification {
     use Queueable;
@@ -37,6 +38,7 @@ class ShowingRequest extends Notification {
     public function toMail($notifiable) {
         return (new MailMessage)
             -> from('clientservices@taylorprops.com', 'Taylor Properties - Showing Requests')
+            -> cc(explode(',', Config::get('email_routing.showing_request_ccs.emails')))
             -> subject('Showing Request from www.taylorproperties.co')
             -> markdown('mail.listings.showing_request', ['showing' => $this -> showing]);
     }

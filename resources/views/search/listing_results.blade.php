@@ -476,8 +476,8 @@
                 </div>
                 <form id="showing_request_form" class="needs-validation container mb-0" novalidate>
                     <div class="modal-body mx-3">
-                        <div class="form-row">
-                            <div class="col">
+                        <div class="row">
+                            <div class="col-lg-4">
                                 <div class="md-form my-2">
                                     <i class="fal fa-user prefix grey-text fa-sm"></i>
                                     <input type="text" name="showing_name" id="showing_name" class="form-control validate" required>
@@ -485,7 +485,7 @@
                                     <div class="invalid-feedback">Name is required</div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-4">
                                 <div class="md-form my-2">
                                     <i class="fal fa-envelope prefix grey-text fa-sm"></i>
                                     <input type="email" name="showing_email" id="showing_email" class="form-control validate" required>
@@ -493,7 +493,7 @@
                                     <div class="invalid-feedback">A valid email is required</div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-4">
                                 <div class="md-form my-2">
                                     <i class="fal fa-phone prefix grey-text fa-sm"></i>
                                     <input type="tel" name="showing_phone" id="showing_phone" class="form-control validate phone" required>
@@ -502,8 +502,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col">
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="md-form my-2">
                                     <i class="fal fa-calendar-alt prefix grey-text fa-sm"></i>
                                     <input type="text" name="showing_date" id="showing_date" class="form-control validate datepicker" required>
@@ -511,7 +511,7 @@
                                     <div class="invalid-feedback">Showing date is required</div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6">
                                 <div class="md-form my-2">
                                     <i class="fal fa-clock prefix grey-text fa-sm"></i>
                                     <input type="text" name="showing_time" id="showing_time" class="form-control validate time" required>
@@ -520,15 +520,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col">
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="md-form my-2">
                                     <i class="fal fa-calendar-alt prefix grey-text fa-sm"></i>
                                     <input type="text" name="showing_date_alt" id="showing_date_alt" class="form-control datepicker">
                                     <label for="showing_date_alt">Alternate Showing Date</label>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6">
                                 <div class="md-form my-2">
                                     <i class="fal fa-clock prefix grey-text fa-sm"></i>
                                     <input type="text" name="showing_time_alt" id="showing_time_alt" class="form-control time">
@@ -536,10 +536,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="md-form my-2">
-                            <i class="fal fa-comment-alt prefix grey-text fa-sm"></i>
-                            <textarea name="comments" id="comments" class="md-textarea form-control" rows="1"></textarea>
-                            <label for="comments">Comments</label>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="md-form my-2">
+                                    <i class="fal fa-comment-alt prefix grey-text fa-sm"></i>
+                                    <textarea name="comments" id="comments" class="md-textarea form-control" rows="1"></textarea>
+                                    <label for="comments">Comments</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -595,8 +599,8 @@
                 </div>
                 <form id="info_request_form" class="needs-validation container mb-0" novalidate>
                     <div class="modal-body mx-3">
-                        <div class="form-row">
-                            <div class="col">
+                        <div class="row">
+                            <div class="col-lg-4">
                                 <div class="md-form my-2">
                                     <i class="fal fa-user prefix grey-text fa-sm"></i>
                                     <input type="text" id="info_request_name" class="form-control validate" required>
@@ -604,7 +608,7 @@
                                     <div class="invalid-feedback">Name is required</div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-4"">
                                 <div class="md-form my-2">
                                     <i class="fal fa-envelope prefix grey-text fa-sm"></i>
                                     <input type="email" id="info_request_email" class="form-control validate" required>
@@ -612,7 +616,7 @@
                                     <div class="invalid-feedback">A valid email is required</div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-4"">
                                 <div class="md-form my-2">
                                     <i class="fal fa-phone prefix grey-text fa-sm"></i>
                                     <input type="tel" id="info_request_phone" class="form-control validate phone" required>
@@ -621,10 +625,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="md-form my-2">
-                            <i class="fal fa-comment-alt prefix grey-text fa-sm"></i>
-                            <textarea id="info_request_comments" class="md-textarea form-control" rows="4"></textarea>
-                            <label for="info_request_comments">Comments</label>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="md-form my-2">
+                                    <i class="fal fa-comment-alt prefix grey-text fa-sm"></i>
+                                    <textarea id="info_request_comments" class="md-textarea form-control" rows="4"></textarea>
+                                    <label for="info_request_comments">Comments</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -1603,7 +1611,7 @@
                         $('#info_request_comments').val('Hello,\nI am interested in the property located at ' + $('#address').val() + ' and would like more information.\nThank you').next('label').addClass('active');
                     }, 500);
                     $('#modalInfoRequest').modal();
-                    $('#info_request_form').off().on('submit', function(e) {
+                    $('#info_request_form').off('submit').on('submit', function(e) {
                         e.preventDefault();
                         info_request();
                     });

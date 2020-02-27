@@ -1,7 +1,23 @@
 $(document).ready(function () {
 
-	$('.mdb-select').materialSelect();
+    $('.mdb-select').materialSelect();
 
+    $('.message-agent').off('click').on('click', function() {
+        message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
+    });
+
+    function message_agent(id, name, email) {
+        $('#email_agent_modal').modal();
+        $('#email_agent_modal_label').text('Email '+name);
+        $('#agent_id').val(id);
+        $('#agent_email').val(email);
+    }
+    function message_agent(id, name, email) {
+        $('#email_agent_modal').modal();
+        $('#email_agent_modal_label').text('Email '+name);
+        $('#agent_id').val(id);
+        $('#agent_email').val(email);
+    }
 	/* Format Phone */
 	$('.phone').bind('keypress change blur', function () {
 		format_phone(this);
@@ -189,7 +205,7 @@ $(document).ready(function () {
 					});
 				} else {
 					$('#modalRegisterForm').modal('hide');
-					$('#nav_logged_in').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2  float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-danger float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
+					$('#nav_logged_in').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
 					if ($('#active_service').val() == 'save_search') {
 						add_alias();
 					} else if ($('#active_service').val() == 'save_favorite') {
@@ -225,7 +241,7 @@ $(document).ready(function () {
 						$('#signin_error').show();
 					} else {
 						$('#modalSignInForm').modal('hide');
-						$('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2  float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-danger float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
+						$('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
 						if ($('#active_service').val() == 'save_search') {
 							add_alias();
 						} else if ($('#active_service').val() == 'save_favorite') {
@@ -304,14 +320,14 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: contact_route,
-            data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val(), message: $('#message').val(), _token: $('[name="_token"]').val(), agent_id: $('#agent_id').val(), type: $('#type').val() },
+            url: '/contact-submit',
+            data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val(), message: $('#message').val(), _token: $('[name="_token"]').val(), agent_id: $('#agent_id').val(), agent_email: $('#agent_email').val(), type: $('#type').val() },
             success: function (response) {
                 toastr['success']('Your message was successfully sent!');
                 $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
                 $('#contact_form').find('input, textarea').val('');
                 $('label').removeClass('active');
-                $('#email_agent_modal').modal('toggle');
+                $('#email_agent_modal').modal('hide');
             }
         });
     });

@@ -32,19 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="email_agent_modal" tabindex="-1" role="dialog" aria-labelledby="email_agent_modal_label" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title text-primary" id="email_agent_modal_label"></h4>
-                    <button type="button" class="btn btn-secondary btn-sm float-right" data-dismiss="modal"><i class="fal fa-times fa-2x"></i></button>
-                </div>
-                <div class="modal-body">
-                    @include('includes.contactform_to_agent')
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 @endsection
 @section('js')
@@ -66,11 +54,11 @@ function get_agents(page) {
                 get_agents(page);
             });
             $('.message-agent').off('click').on('click', function() {
-                message_agent($(this).data('id'), $(this).data('name'));
+                message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
             });
             $('.show-agent-details, .show-agent-details-button').click(function(e) {
                 e.preventDefault();
-                show_details($(this).data('id'), $(this).data('name'), $(this).data('des'));
+                show_details($(this).data('id'), $(this).data('email'),  $(this).data('name'), $(this).data('des'));
                 var url = $(this).prop('href');
                 ChangeUrl('page', url);
                 $('.button'+$(this).data('id')).html('Loading <i class="fas fa-spinner fa-spin text-primary"></i>');
@@ -96,12 +84,13 @@ $('#agent_search').keyup(function() {
     search_agents(1, $('#agent_search').val());
 });
 
-function message_agent(id, name) {
+function message_agent(id, name, email) {
     $('#email_agent_modal').modal();
     $('#email_agent_modal_label').text('Email '+name);
     $('#agent_id').val(id);
-} // function message_agent
-function show_details(id, name, des) {
+    $('#agent_email').val(email);
+}
+function show_details(id, email, name, des) {
     $('#agent_details_modal').modal();
     if(des != '') {
         name = name+' <span class="h4 text-primary-dark">'+des+'</span>';
@@ -119,7 +108,7 @@ function show_details(id, name, des) {
             $('#agent_details').html(response);
             $('.button'+id).html('View More');
             $('.message-agent').off('click').on('click', function() {
-                message_agent($(this).data('id'), $(this).data('name'));
+                message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
             });
         }
     });
@@ -163,11 +152,11 @@ function search_agents(page, val) {
 
             $('.show-agent-details, .show-agent-details-button').click(function(e) {
                 e.preventDefault();
-                show_details($(this).data('id'), $(this).data('name'), $(this).data('des'));
+                show_details($(this).data('id'), $(this).data('email'), $(this).data('name'), $(this).data('des'));
                 $('.button'+$(this).data('id')).html('Loading <i class="fas fa-spinner fa-spin"></i>');
             });
             $('.message-agent').off('click').on('click', function() {
-                message_agent($(this).data('id'), $(this).data('name'));
+                message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
             });
         }
     }, function (error) {

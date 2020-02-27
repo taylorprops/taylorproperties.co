@@ -20,7 +20,7 @@
                                                     <i class="fas fa-phone mr-3 text-primary"></i> <a href="tel:{{$agent -> cell}}">{{$agent -> cell}}</a>
                                                 </li>
                                                 <li>
-                                                    <i class="fas fa-envelope mr-2 text-primary"></i> <a href="javascript:void(0);" class="btn btn-primary message-agent" data-id="{{ $agent -> agent_id }}" data-name="{{ $agent -> fullname }}" data-des="{{ $agent -> designations }}">Message Me</a>
+                                                    <i class="fas fa-envelope mr-2 text-primary"></i> <a href="javascript:void(0);" class="btn btn-primary message-agent" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-name="{{ $agent -> fullname }}" data-des="{{ $agent -> designations }}">Message Me</a>
                                                 </li>
                                                 <li>
                                                     @if (empty($agent -> website))

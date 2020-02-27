@@ -112,10 +112,20 @@ class PageController extends Controller {
         $contact -> type     = $request -> type;
         if($request -> agent_id) {
             $contact -> agent_id = $request -> agent_id;
+            $contact -> agent_email = $request -> agent_email;
         }
         $contact -> save();
 
-        \Notification::route('mail', Config::get('email_routing.contact_form.email')) -> notify(new ContactForm($contact));
+        // type = from_agent | to_agent | buy_sell
+        if($request -> type == 'from_agent') {
+            $to_email = Config::get('email_routing.join_form.email');
+        } else if($request -> type == 'to_agent') {
+            $to_email = $request -> agent_email;
+        } else if($request -> type == 'buy_sell') {
+            $to_email = Config::get('email_routing.contact_form.email');
+        }
+
+        \Notification::route('mail', $to_email) -> notify(new ContactForm($contact));
 
     }
 

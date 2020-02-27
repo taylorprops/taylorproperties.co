@@ -226,8 +226,10 @@ class SearchController extends Controller {
         $lon   = $request -> lon;
 
         $schools = Listings::school($state, $lat, $lon);
-
-        return (['schools' => $schools['school']]);
+        if($schools) {
+            return (['schools' => $schools['school']]);
+        }
+        return '';
     }
 
     public function search_details(Request $request) {

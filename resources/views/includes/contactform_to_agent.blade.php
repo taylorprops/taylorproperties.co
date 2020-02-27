@@ -28,6 +28,7 @@
             </div>
             <input type="hidden" id="type" value="to_agent">
             <input type="hidden" id="agent_id">
+            <input type="hidden" id="agent_email">
 		</form>
 	</div>
 </div>

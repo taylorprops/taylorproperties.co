@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             @if($cities && count($cities) > 0)
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="results-header"><i class="far fa-city mr-3"></i> Cities</div>
                 <div class="dropdown">
                     <div class="dropdown-menu dropdown-primary show">
@@ -15,7 +15,7 @@
             </div>
             @endif
             @if($counties && count($counties) > 0)
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="results-header"><i class="fas fa-globe mr-3"></i> Counties</div>
                 <div class="dropdown">
                     <div class="dropdown-menu dropdown-primary show">
@@ -27,7 +27,7 @@
             </div>
             @endif
             @if($zips && count($zips) > 0)
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="results-header"><i class="far fa-map-marker-alt mr-3"></i> Zip Codes</div>
                 <div class="dropdown">
                     <div class="dropdown-menu dropdown-primary show">
@@ -39,7 +39,7 @@
             </div>
             @endif
             @if($subdivisions && count($subdivisions) > 0)
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="results-header"><i class="far fa-home mr-3"></i> Subdivisions</div>
                 <div class="dropdown">
                     <div class="dropdown-menu dropdown-primary show">
@@ -51,7 +51,7 @@
             </div>
             @endif
             @if($listings && count($listings) > 0)
-            <div class="col-12 col-md-4">
+            <div class="col-12">
                 <div class="results-header"><i class="far fa-home mr-3"></i> Properties</div>
                 <div class="dropdown">
                     <div class="dropdown-menu dropdown-primary show">

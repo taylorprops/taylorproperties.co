@@ -25,7 +25,7 @@
     </tbody>
 </table>
 <br><br>
-@component('mail::button', ['url' => {{ config('app.url') }}+'/search/listing_results?listing_id='.$info -> listing_id])
+@component('mail::button', ['url' => config('app.url').'/search/listing_results?listing_id='.$info -> listing_id])
 View Property Details
 @endcomponent
 <br>
