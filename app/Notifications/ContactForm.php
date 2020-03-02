@@ -37,7 +37,7 @@ class ContactForm extends Notification {
      */
     public function toMail($notifiable) {
         $ccs = Config::get('email_routing.contact_form_ccs.emails');
-        if($ccs != '') {
+        if($ccs != '' && $this -> user -> type != 'to_agent') {
             return (new MailMessage)
                 -> from('clientservices@taylorprops.com', 'Taylor Properties - Contact Requests')
                 -> cc(explode(',', Config::get('email_routing.join_form_ccs.emails')))
