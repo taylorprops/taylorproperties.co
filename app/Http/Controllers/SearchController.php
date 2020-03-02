@@ -13,6 +13,8 @@ use App\Zips;
 use Auth;
 use Config;
 use Illuminate\Http\Request;
+use App\User;
+use App\Leads;
 
 class SearchController extends Controller {
 
@@ -34,18 +36,57 @@ class SearchController extends Controller {
     }
 
     public function info_request(Request $request) {
+
+        $user_id = null;
+        if (Auth::user()) {
+            $user_id = Auth::user() -> id;
+        }
+
+        // add to leads database if not in there already
+        $existing = Leads::where('l1_email', $request -> email) -> orWhere(function ($q) use ($user_id) {
+            $q -> where('l_user_id', $user_id) -> where('l_user_id', '>', 0);
+        }) -> first();
+
+        if(!$existing) {
+
+            // add to leads
+            $lead = new Leads();
+            $lead -> l_source = 'www.TaylorProperties.co';
+            $lead -> l1_email = $request -> email;
+            $lead -> l1_first = substr($request -> name, 0, strpos($request -> name, ' '));
+            $lead -> l1_last = substr($request -> name, strpos($request -> name, ' '));
+            $lead -> l1_phone = $request -> phone;
+            $lead -> l_status = 'Lead';
+            $lead -> save();
+            $lead_id = $lead -> id;
+
+            // if user is registered update lead_id in users table
+            if($user_id) {
+                User::where('id', $user_id)
+                    -> update(['lead_id' => $lead_id]);
+            }
+
+        } else {
+            $lead_id = $existing -> id;
+        }
+
         $info = new InfoRequests;
+        $user_id = null;
         if (Auth::user()) {
             $user_id       = Auth::user() -> id;
             $info -> user_id = $user_id;
         }
-        $info -> name       = $request -> name;
-        $info -> phone      = $request -> phone;
-        $info -> email      = $request -> email;
-        $info -> comments   = $request -> comments;
-        $info -> address    = $request -> address;
+        $info -> name = $request -> name;
+        $info -> phone = $request -> phone;
+        $info -> email = $request -> email;
+        $info -> user_id = $user_id ?? 0;
+        $info -> lead_id = $lead_id ?? 0;
+        $info -> comments = $request -> comments;
+        $info -> address = $request -> address;
         $info -> listing_id = $request -> listing_id;
+        $info -> listing_link = config('app.url').'/search/listing_results?listing_id='.$request -> listing_id;
         $info -> save();
+
 
         \Notification::route('mail', Config::get('email_routing.more_info_request.email')) -> notify(new MoreInfoRequest($info));
     }
@@ -58,9 +99,9 @@ class SearchController extends Controller {
 
         $favorites = [];
         if (Auth::user()) {
-            $user_id           = Auth::user() -> id;
+            $user_id = Auth::user() -> id;
             $current_favorites = UserProperty::where('user_id', $user_id) -> get() -> toArray();
-            $favorites         = [];
+            $favorites = [];
             foreach ($current_favorites as $faves) {
                 $favorites[] = $faves['listing_id'];
             }
@@ -83,10 +124,10 @@ class SearchController extends Controller {
             }
         }
 
-        $page        = $request['page'];
+        $page = $request['page'];
         $search_name = '';
         if (!empty(session('start_from_datetime'))) {
-            $search      = UserSearch::find(session('saved_search_id'));
+            $search = UserSearch::find(session('saved_search_id'));
             $search_name = $search -> alias;
             session(['search_name' => $search_name]);
             $search -> start_from_datetime = date('Y-m-d H:i:s');
@@ -130,29 +171,29 @@ class SearchController extends Controller {
     }
 
     public function remove_favorite(Request $request) {
-        $user_id         = Auth::user() -> id;
+        $user_id = Auth::user() -> id;
         $remove_favorite = UserProperty::where('listing_id', $request -> listing_id) -> where('user_id', $user_id) -> delete();
     }
 
     public function save_favorite(Request $request) {
-        $favorite             = new UserProperty;
-        $user_id              = Auth::user() -> id;
+        $favorite = new UserProperty;
+        $user_id = Auth::user() -> id;
         $favorite -> listing_id = $request -> id;
-        $favorite -> user_id    = $user_id;
+        $favorite -> user_id = $user_id;
         $favorite -> save();
     }
 
     public function save_search(Request $request) {
         $user_id = Auth::user() -> id;
-        $count   = UserSearch::where('user_id', $user_id) -> where('alias', $request -> alias) -> count();
+        $count = UserSearch::where('user_id', $user_id) -> where('alias', $request -> alias) -> count();
         if ($count > 0 && $request -> update_search == 'no') {
             $response = [
                 'status' => 'fail',
             ];
         } elseif ($request -> update_search == 'yes') {
-            $saved_search                      = UserSearch::where('alias', $request -> alias) -> where('user_id', $user_id) -> first();
-            $saved_search -> query_string        = $request -> search_url;
-            $saved_search -> alias               = $request -> alias;
+            $saved_search = UserSearch::where('alias', $request -> alias) -> where('user_id', $user_id) -> first();
+            $saved_search -> query_string = $request -> search_url;
+            $saved_search -> alias = $request -> alias;
             $saved_search -> start_from_datetime = date('Y-m-d H:i:s');
             $saved_search -> save();
             $response = [
@@ -161,9 +202,9 @@ class SearchController extends Controller {
         } else {
             $saved_search = new UserSearch;
 
-            $saved_search -> query_string        = $request -> search_url;
-            $saved_search -> user_id             = $user_id;
-            $saved_search -> alias               = $request -> alias;
+            $saved_search -> query_string = $request -> search_url;
+            $saved_search -> user_id = $user_id;
+            $saved_search -> alias = $request -> alias;
             $saved_search -> start_from_datetime = date('Y-m-d H:i:s');
             $saved_search -> save();
             session(['search_name' => $request -> alias]);
@@ -175,24 +216,55 @@ class SearchController extends Controller {
     }
 
     public function schedule_showing(Request $request) {
-        $showing = new ShowingRequests;
+
+        $user_id = null;
         if (Auth::user()) {
-            $user_id          = Auth::user() -> id;
-            $showing -> user_id = $user_id;
+            $user_id = Auth::user() -> id;
         }
-        $showing -> name         = $request -> name;
-        $showing -> phone        = $request -> phone;
-        $showing -> email        = $request -> email;
+
+        // add to leads database if not in there already
+        $existing = Leads::where('l1_email', $request -> email) -> orWhere('l_user_id', $user_id) -> first();
+
+        if(!$existing) {
+
+            // add to leads
+            $lead = new Leads();
+            $lead -> l_source = 'www.TaylorProperties.co';
+            $lead -> l1_email = $request -> email;
+            $lead -> l1_first = substr($request -> name, 0, strpos($request -> name, ' '));
+            $lead -> l1_last = substr($request -> name, strpos($request -> name, ' '));
+            $lead -> l1_phone = $request -> phone;
+            $lead -> l_status = 'Lead';
+            $lead -> save();
+            $lead_id = $lead -> id;
+
+            // if user is registered update lead_id in users table
+            if($user_id) {
+                User::where('id', $user_id)
+                    -> update(['lead_id' => $lead_id]);
+            }
+
+        } else {
+            $lead_id = $existing -> id;
+        }
+
+        $showing = new ShowingRequests;
+        $showing -> name = $request -> name;
+        $showing -> phone = $request -> phone;
+        $showing -> email = $request -> email;
+        $showing -> user_id = $user_id ?? 0;
+        $showing -> lead_id = $lead_id ?? 0;
+        $showing -> email = $request -> email;
         $showing -> showing_date = $request -> showing_date;
-        $showing_time          = $request -> showing_time;
-        $time                  = substr($showing_time, 0, 5) . ':00';
+        $showing_time = $request -> showing_time;
+        $time = substr($showing_time, 0, 5) . ':00';
         if (stristr($showing_time, 'PM')) {
             $time = date("H:i:00", strtotime("$time +12 hour"));
         }
-        $showing -> showing_time     = $time;
+        $showing -> showing_time = $time;
         $showing -> showing_date_alt = $request -> showing_date_alt;
-        $showing_time_alt          = $request -> showing_time_alt;
-        $time_alt                  = '';
+        $showing_time_alt = $request -> showing_time_alt;
+        $time_alt = '';
         if ($showing_time_alt != '') {
             $time_alt = substr($showing_time_alt, 0, 5) . ':00';
             if (stristr($showing_time_alt, 'PM')) {
@@ -200,10 +272,11 @@ class SearchController extends Controller {
             }
         }
         $showing -> showing_time_alt = $time_alt;
-        $showing -> comments         = $request -> comments;
-        $showing -> listing_id       = $request -> listing_id;
-        $showing -> address          = $request -> address;
-        $showing -> _token           = $request -> _token;
+        $showing -> comments = $request -> comments;
+        $showing -> listing_id = $request -> listing_id;
+        $showing -> listing_link = config('app.url').'/search/listing_results?listing_id='.$request -> listing_id;
+        $showing -> address = $request -> address;
+        $showing -> _token = $request -> _token;
         $showing -> save();
 
         $other_showings = ShowingRequests::select('listing_id', 'address', 'showing_date', 'showing_time')
@@ -217,13 +290,15 @@ class SearchController extends Controller {
             -> toArray();
         $showing['other_showings'] = $other_showings;
 
+
+
         \Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
     }
 
     public function school_data(Request $request) {
         $state = $request -> state;
-        $lat   = $request -> lat;
-        $lon   = $request -> lon;
+        $lat = $request -> lat;
+        $lon = $request -> lon;
 
         $schools = Listings::school($state, $lat, $lon);
         if($schools) {
@@ -235,9 +310,9 @@ class SearchController extends Controller {
     public function search_details(Request $request) {
         $favorites = [];
         if (Auth::user()) {
-            $user_id           = Auth::user() -> id;
+            $user_id = Auth::user() -> id;
             $current_favorites = UserProperty::where('user_id', $user_id) -> get() -> toArray();
-            $favorites         = [];
+            $favorites = [];
             foreach ($current_favorites as $faves) {
                 $favorites[] = $faves['listing_id'];
             }
@@ -247,7 +322,7 @@ class SearchController extends Controller {
         $listings = $listings[0];
 
         $address = $listings['FullStreetAddress'] . ' ' . $listings['City'] . ' ' . $listings['StateOrProvince'] . ' ' . $listings['PostalCode'];
-        $image   = $listings['ListPictureURL'];
+        $image = $listings['ListPictureURL'];
 
         return view('search.listing_details_html', ['listings' => $listings, 'address' => $address, 'image' => $image, 'favorites' => $favorites]);
     }
@@ -255,11 +330,7 @@ class SearchController extends Controller {
     public function search_results(Request $request) {
         $val = trim($request['val']);
 
-        $cities       = '';
-        $counties     = '';
-        $zips         = '';
-        $subdivisions = '';
-        $listings     = '';
+        $cities = $counties = $zips = $subdivisions = $listings = '';
 
         if (!preg_match('/[0-9]/', $val)) {
             $cities = Zips::where('city', 'like', '%' . $val . '%')

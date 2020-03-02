@@ -42,7 +42,6 @@ class UserRegistered extends Notification
     {
         return (new MailMessage)
             -> from('clientservices@taylorprops.com', 'Taylor Properties')
-            -> cc(explode(',', Config::get('email_routing.client_register_ccs.emails')))
             -> subject('Thank you for registering with Taylor Properties')
             -> markdown('mail.user.register', ['user' => $this -> user]);
     }

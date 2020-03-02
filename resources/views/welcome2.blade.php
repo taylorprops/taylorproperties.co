@@ -46,7 +46,7 @@
         <div class="row-fluid">
             <div class="intro-text">
                 <p class="intro-open" style="font-size: 1.2rem;">They say "home is where the heart is" and we know that finding the perfect home can be a daunting task. You need an experienced partner who knows the neighborhoods, the market and the process. At Taylor Properties, we understand that we are not only selling or buying your home. It is much more than that.</p>
-                <p class="intro-close" style="color: #074266;font-size: 1.4rem;font-family: 'Merriweather', serif;font-weight: 700;">Taylor&nbsp;Properties. Love&nbsp;your&nbsp;home.</p>
+                <p class="intro-close text-primary" style="font-size: 1.4rem;font-family: 'Merriweather', serif;font-weight: 700;">Taylor&nbsp;Properties. Love&nbsp;your&nbsp;home.</p>
             </div>
         </div>
     </div>

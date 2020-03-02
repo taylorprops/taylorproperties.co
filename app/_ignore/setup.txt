@@ -36,6 +36,8 @@ php artisan make:notification ContactForm --markdown=mail.mail.contact.contact
 php artisan make:notification ShowingRequest --markdown=mail.listings.showing_request
 php artisan make:notification MoreInfoRequest --markdown=mail.listings.more_info_request
 php artisan make:notification Share --markdown=mail.share.share
+php artisan make:notification UserRegisteredNotification --markdown=mail.listings.user_registered_notification
+
 
 
 CREATE TABLE

@@ -12,12 +12,7 @@ $(document).ready(function () {
         $('#agent_id').val(id);
         $('#agent_email').val(email);
     }
-    function message_agent(id, name, email) {
-        $('#email_agent_modal').modal();
-        $('#email_agent_modal_label').text('Email '+name);
-        $('#agent_id').val(id);
-        $('#agent_email').val(email);
-    }
+
 	/* Format Phone */
 	$('.phone').bind('keypress change blur', function () {
 		format_phone(this);
@@ -198,11 +193,15 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				if (data.status == 'error') {
-					$('#register_error').show();
-					$('#already_registered_login').unbind('click').bind('click', function () {
-						$('#modalRegisterForm').modal('hide');
-						$('#modalSignInForm').modal();
-					});
+                    if(data.message == 'user_exists') {
+                        $('#register_error').show();
+                        $('#already_registered_login').unbind('click').bind('click', function () {
+                            $('#modalRegisterForm').modal('hide');
+                            $('#modalSignInForm').modal();
+                        });
+                    } else {
+                        $('#modal_danger').modal().find('.modal-body').html('There was an unknown error while registering your account. Please try again.');
+                    }
 				} else {
 					$('#modalRegisterForm').modal('hide');
 					$('#nav_logged_in').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
@@ -258,8 +257,6 @@ $(document).ready(function () {
 			});
 		}
 	}
-
-
 
 	$('.open-register').click(function () {
 		$('#modalRegisterForm').modal();
@@ -325,7 +322,7 @@ $(document).ready(function () {
             success: function (response) {
                 toastr['success']('Your message was successfully sent!');
                 $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
-                $('#contact_form').find('input, textarea').val('');
+                $('#contact_form').find('input, textarea').not('#type').val('');
                 $('label').removeClass('active');
                 $('#email_agent_modal').modal('hide');
             }

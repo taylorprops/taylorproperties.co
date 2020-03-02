@@ -103,11 +103,11 @@
     }
 
     .bg-blue {
-        border-top: 3px solid #074266;
+        border-top: 3px solid $primary-color;
     }
 
     .bg-orange {
-        border-top: 3px solid #ff8c42;
+        border-top: 3px solid $orange;
     }
 
     .sep {
@@ -128,7 +128,7 @@
 
     .tick {
         font-size: 18px;
-        color: #074266;
+        color: $primary-color;
     }
 
     .hide {
@@ -142,7 +142,7 @@
 
     .row.testimonials {
         margin: 2em auto;
-        background-color: #074266;
+        background-color: $primary-color;
     }
 
     @media (min-width: 640px) {

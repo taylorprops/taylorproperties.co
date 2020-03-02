@@ -9,6 +9,9 @@ use App\Notifications\ContactForm;
 use App\OfficeLocation;
 use Config;
 use Illuminate\Http\Request;
+use App\Prospects;
+use App\Leads;
+use App\User;
 
 class PageController extends Controller {
     public function index() {
@@ -103,29 +106,75 @@ class PageController extends Controller {
 
     public function contactSubmit(Request $request) {
 
-        $contact = new Messages();
+        $user = new Messages();
 
-        $contact -> name     = $request -> name;
-        $contact -> email    = $request -> email;
-        $contact -> phone    = $request -> phone;
-        $contact -> message  = $request -> message;
-        $contact -> type     = $request -> type;
+        $user -> name     = $request -> name;
+        $user -> email    = $request -> email;
+        $user -> phone    = $request -> phone;
+        $user -> message  = $request -> message;
+        $user -> type     = $request -> type;
         if($request -> agent_id) {
-            $contact -> agent_id = $request -> agent_id;
-            $contact -> agent_email = $request -> agent_email;
+            $user -> agent_id = $request -> agent_id;
+            $user -> agent_email = $request -> agent_email;
         }
-        $contact -> save();
+        $user -> save();
 
         // type = from_agent | to_agent | buy_sell
         if($request -> type == 'from_agent') {
+
             $to_email = Config::get('email_routing.join_form.email');
+            $user -> subject = 'Agent Lead – Taylor Properties Website';
+
+            $existing = Prospects::where('p_email', $request -> email) -> first();
+
+            if(!$existing) {
+
+                // add to leads
+                $prospect = new Prospects();
+                $prospect -> p_source = 'www.TaylorProperties.co';
+                $prospect -> p_email = $user -> email;
+                $prospect -> p_name = $user -> name;
+                $prospect -> p_phone = $user -> phone;
+                $prospect -> p_status = 'live';
+                $prospect -> save();
+                $prospect_id = $prospect -> id;
+
+                $user -> prospect_id = $prospect_id;
+
+            }
+
         } else if($request -> type == 'to_agent') {
+
             $to_email = $request -> agent_email;
+            $user -> subject = 'Message From Client via www.taylorproperties.co';
+
         } else if($request -> type == 'buy_sell') {
+
             $to_email = Config::get('email_routing.contact_form.email');
+            $user -> subject = 'Buyer/Seller Lead – Taylor Properties Website';
+
+            $existing = Leads::where('l1_email', $request -> email) -> first();
+
+            if(!$existing) {
+
+                // add to leads
+                $lead = new Leads();
+                $lead -> l_source = 'www.TaylorProperties.co';
+                $lead -> l1_email = $user -> email;
+                $lead -> l1_first = substr($user -> name, 0, strpos($user -> name, ' '));
+                $lead -> l1_last = substr($user -> name, strpos($user -> name, ' '));
+                $lead -> l1_phone = $user -> phone;
+                $lead -> l_status = 'Lead';
+                $lead -> save();
+                $lead_id = $lead -> id;
+
+                $user -> lead_id = $lead_id;
+
+            }
+
         }
 
-        \Notification::route('mail', $to_email) -> notify(new ContactForm($contact));
+        \Notification::route('mail', $to_email) -> notify(new ContactForm($user));
 
     }
 

@@ -8,19 +8,19 @@
     <tbody>
         <tr>
             <td align="right">Name:</td>
-            <td><strong>{{ $contact -> name }}</strong></td>
+            <td><strong>{{ $user -> name }}</strong></td>
         </tr>
         <tr>
             <td align="right">Phone:</td>
-            <td><strong>{{ $contact -> phone }}</strong></td>
+            <td><strong>{{ $user -> phone }}</strong></td>
         </tr>
         <tr>
             <td align="right">Email:</td>
-            <td><strong>{{ $contact -> email }}</strong></td>
+            <td><strong>{{ $user -> email }}</strong></td>
         </tr>
         <tr>
             <td align="right" valign="top">Message:</td>
-            <td><strong>{!! nl2br($contact -> message) !!}</strong></td>
+            <td><strong>{!! nl2br($user -> message) !!}</strong></td>
         </tr>
     </tbody>
 </table>

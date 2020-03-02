@@ -66,7 +66,7 @@
                                     </h3>
                                     <hr>
                                 </div>
-                                @include('includes.contactform_from_agent')
+                                @include('includes.contactform_general')
                             </div>
                         </div>
                     </div>

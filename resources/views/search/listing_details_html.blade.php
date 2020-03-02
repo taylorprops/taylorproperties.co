@@ -245,3 +245,6 @@
 <input type="hidden" id="address_for_meta" value="{{ $address }}">
 <input type="hidden" id="image_for_meta" value="{{ $image }}">
 <input type="hidden" id="listing_id" value="{{ $listings -> ListingId }}">
+<input type="hidden" id="listing_state" value="{{ $listings -> StareOrProvince }}">
+<input type="hidden" id="listing_lat" value="{{ $listings -> Latitude }}">
+<input type="hidden" id="listing_lon" value="{{ $listings -> Longitude }}">

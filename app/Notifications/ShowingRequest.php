@@ -36,11 +36,19 @@ class ShowingRequest extends Notification {
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {
-        return (new MailMessage)
+        $ccs = Config::get('email_routing.showing_request_ccs.emails');
+        if($ccs != '') {
+            return (new MailMessage)
+                -> from('clientservices@taylorprops.com', 'Taylor Properties - Showing Requests')
+                -> cc(explode(',', Config::get('email_routing.showing_request_ccs.emails')))
+                -> subject('Showing Request from www.taylorproperties.co')
+                -> markdown('mail.listings.showing_request', ['showing' => $this -> showing]);
+        } else {
+            return (new MailMessage)
             -> from('clientservices@taylorprops.com', 'Taylor Properties - Showing Requests')
-            -> cc(explode(',', Config::get('email_routing.showing_request_ccs.emails')))
-            -> subject('Showing Request from www.taylorproperties.co')
-            -> markdown('mail.listings.showing_request', ['showing' => $this -> showing]);
+                -> subject('Showing Request from www.taylorproperties.co')
+                -> markdown('mail.listings.showing_request', ['showing' => $this -> showing]);
+        }
     }
 
     /**

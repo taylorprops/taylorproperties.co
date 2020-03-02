@@ -7,7 +7,7 @@
 <div style="font-weight: normal; font-size: 18px; width: 100%; text-align: center">
     Property Updates from Taylor Properties for you search
     <br>
-    <span style="font-size: 24px; color: #074266; font-weight: bold">{{ $email_data['search_name'] }}</span>
+    <span class="text-primary" style="font-size: 24px; font-weight: bold">{{ $email_data['search_name'] }}</span>
 </div>
 <br>
 <br>

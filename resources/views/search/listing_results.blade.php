@@ -768,6 +768,7 @@
     /* had to add this function to this file because it would not work in global.js */
     function register_user() {
 
+        $('#signup_button').html('Saving <i class="fas fa-spinner fa-spin"></i>');
         var email = $('#register_email').val();
         var password = $('#register_password').val();
         var phone = $('#register_phone').val();
@@ -792,13 +793,16 @@
                     });
                 } else {
                     $('#modalRegisterForm').modal('hide');
-                    $('#nav_logged_in').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2  float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-danger float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
+                    $('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
                     if ($('#active_service').val() == 'save_search') {
                         add_alias();
                     } else if ($('#active_service').val() == 'save_favorite') {
-                        add_favorite();
+                        setTimeout(function() {
+                            add_favorite();
+                        }, 500);
                     }
                 }
+                $('#signup_button').html('Sign Up');
             }
         });
 

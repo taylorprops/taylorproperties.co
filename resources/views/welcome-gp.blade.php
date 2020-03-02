@@ -55,7 +55,7 @@
                         we know that finding the perfect home can be a daunting task. You need an experienced partner who
                         knows the neighborhoods, the market and the process. At Taylor Properties, we understand that you are
                         not just selling or buying a house. It is much more than that!</p>
-                    <h6 class="intro-close text-center" style="color: #074266;font-size: 1.4rem;font-family: 'Merriweather', serif;font-weight: 700;">
+                    <h6 class="intro-close text-center text-primary" style="font-size: 1.4rem;font-family: 'Merriweather', serif;font-weight: 700;">
                         Taylor&nbsp;Properties. Love&nbsp;your&nbsp;home.</h6>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listings extends Model
 {
+    protected $connection = 'taylorproperties';
     protected $table = 'listings';
 
     public function scopeGetSelectColumns($query) {
@@ -66,7 +67,7 @@ class Listings extends Model
     }
 
     public function scopeGetListing($listings, $listing_id) {
-        return $listings -> getSelectDetailsColumns()-> where('ListingID', $listing_id);
+        return $listings -> getSelectDetailsColumns() -> where('ListingID', $listing_id);
     }
 
     public function scopeGetListings($listings, $state, $city, $county, $zip, $coordinates, $beds, $baths, $min_price, $max_price, $for_sale, $rentals, $detached, $apartments, $condos, $townhouse, $land, $farms, $multifamily, $duplex, $standard, $new_construction, $foreclosures, $short_sales, $auction, $subdivision, $sq_ft_min, $sq_ft_max, $year_built_min, $year_built_max, $lot_size_min, $lot_size_max, $start_from_datetime, $saved_search_id) {

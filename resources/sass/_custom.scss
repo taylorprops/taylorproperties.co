@@ -69,10 +69,14 @@ a:hover {
 .bg-primary-dark {
     background: $primary-color-dark;
 }
+.text-yellow {
+    color: #d6cf8a;
+}
 .hidden { display: none; }
 
 .modal-backdrop {
     z-index: 1045;
+    overflow: hidden;
 }
 
 .pagination .page-item .page-link {
@@ -121,6 +125,7 @@ label.active::after {
     }
 }
 
+
 hr.curly-end {
     overflow: visible;
     /* For IE */
@@ -157,7 +162,7 @@ hr.curly-end:before {
 }
 
 .blue-text {
-    color: #074266 !important;
+    color: $primary-color !important;
 }
 
 @media (max-width: 767px) {}

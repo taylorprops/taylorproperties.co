@@ -8,6 +8,7 @@
                 </button>
             </div>
             <form id="register_form" class="needs-validation container mb-0" novalidate>
+                @csrf
                 <div id="register_error">
                     <div class="alert alert-danger mt-2"" role=" alert"><i class="fal fa-exclamation-circle mr-2"></i>
                         That email address is already registered.
@@ -40,7 +41,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-primary">Sign up</button>
+                    <button id="signup_button" class="btn btn-primary">Sign up</button>
                 </div>
             </form>
             <div class="modal-footer d-flex justify-content-center">

@@ -41,12 +41,19 @@ class MoreInfoRequest extends Notification
      */
     public function toMail($notifiable)
     {
-
-        return (new MailMessage)
-            -> from('clientservices@taylorprops.com', 'Taylor Properties - Property Info Requests')
-            -> cc(explode(',', Config::get('email_routing.more_info_request_ccs.emails')))
-            -> subject('Property Information Request from www.taylorproperties.co')
-            -> markdown('mail.listings.more_info_request', ['info' => $this -> info]);
+        $ccs = Config::get('email_routing.more_info_request_ccs.emails');
+        if($ccs != '') {
+            return (new MailMessage)
+                -> from('clientservices@taylorprops.com', 'Taylor Properties - Property Info Requests')
+                -> cc(explode(',', Config::get('email_routing.more_info_request_ccs.emails')))
+                -> subject('Property Information Request from www.taylorproperties.co')
+                -> markdown('mail.listings.more_info_request', ['info' => $this -> info]);
+        } else {
+            return (new MailMessage)
+                -> from('clientservices@taylorprops.com', 'Taylor Properties - Property Info Requests')
+                -> subject('Property Information Request from www.taylorproperties.co')
+                -> markdown('mail.listings.more_info_request', ['info' => $this -> info]);
+        }
     }
 
     /**
