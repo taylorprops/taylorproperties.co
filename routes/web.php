@@ -3,6 +3,31 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserRegistered;
 use App\User;
 
+/* REDIRECTS */
+Route::redirect('/our-agents.php', '/agents', 301);
+Route::redirect('/index.php', '/', 301);
+Route::redirect('/careers.php', '/careers', 301);
+Route::redirect('/contact-us.php', '/contact-us', 301);
+Route::redirect('/careers.html', '/careers', 301);
+Route::redirect('/index.html', '/', 301);
+Route::redirect('/our-agents.html', '/agents', 301);
+Route::redirect('/mortgage-information.php', '/about/partners', 301);
+Route::redirect('/title-information.php', '/about/partners', 301);
+Route::redirect('/partners.php', '/about/partners', 301);
+Route::redirect('/index', '/', 301);
+Route::redirect('/our-agents', '/agents', 301);
+Route::redirect('/title-information.html', '/about/partners', 301);
+Route::redirect('/mortgage-information.html', '/about/partners', 301);
+Route::redirect('/legal/privacy-statement.php', '/privacy-policy', 301);
+Route::redirect('/careers', '/careers', 301);
+Route::redirect('/contact-us', '/contact-us', 301);
+Route::redirect('/mortgage-information', '/about/partners', 301);
+Route::redirect('/title-information', '/about/partners', 301);
+Route::redirect('/contact-us.html', '/contact-us', 301);
+Route::redirect('/careers.php/contact_us.php', '/contact-us', 301);
+Route::redirect('/legal/privacy-statement', '/privacy-policy', 301);
+/* END REDIRECTS */
+
 Route::get('/', 'PageController@index');
 Route::get('/privacy-policy', 'PageController@privacypolicy');
 Route::get('/about', 'PageController@about');
