@@ -106,7 +106,7 @@ function show_details(id, email, name, des) {
         },
         success: function (response) {
             $('#agent_details').html(response);
-            $('.button'+id).html('View More');
+            $('.button'+id).html('View Agent Details');
             $('.message-agent').off('click').on('click', function() {
                 message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
             });
@@ -154,6 +154,8 @@ function search_agents(page, val) {
                 e.preventDefault();
                 show_details($(this).data('id'), $(this).data('email'), $(this).data('name'), $(this).data('des'));
                 $('.button'+$(this).data('id')).html('Loading <i class="fas fa-spinner fa-spin"></i>');
+                var url = $(this).prop('href');
+                ChangeUrl('page', url);
             });
             $('.message-agent').off('click').on('click', function() {
                 message_agent($(this).data('id'), $(this).data('name'), $(this).data('email'));
