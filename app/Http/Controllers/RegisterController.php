@@ -71,6 +71,7 @@ class RegisterController extends Controller {
                 $lead -> l_status = 'Lead';
                 $lead -> save();
                 $lead_id = $lead -> id;
+
                 // email lead to office
                 $user -> lead_id = $lead_id;
                 $user -> notify(new UserRegisteredNotification($user));

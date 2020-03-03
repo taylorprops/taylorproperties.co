@@ -10,7 +10,9 @@ use App\OfficeLocation;
 use Config;
 use Illuminate\Http\Request;
 use App\Prospects;
+use App\ProspectNotes;
 use App\Leads;
+use App\LeadsNotes;
 use App\User;
 
 class PageController extends Controller {
@@ -129,7 +131,7 @@ class PageController extends Controller {
 
             if(!$existing) {
 
-                // add to leads
+                // add to prospects
                 $prospect = new Prospects();
                 $prospect -> p_source = 'www.TaylorProperties.co';
                 $prospect -> p_email = $user -> email;
@@ -140,6 +142,13 @@ class PageController extends Controller {
                 $prospect_id = $prospect -> id;
 
                 $user -> prospect_id = $prospect_id;
+
+                // add comments to notes
+                $notes = new ProspectNotes();
+                $notes -> notes = $user -> message;
+                $notes -> user = 'Client';
+                $notes -> prospect_id = $prospect_id;
+                $notes -> save();
 
             }
 
@@ -167,6 +176,13 @@ class PageController extends Controller {
                 $lead -> l_status = 'Lead';
                 $lead -> save();
                 $lead_id = $lead -> id;
+
+                // add comments to notes
+                $notes = new LeadsNotes();
+                $notes -> notes = $request -> message;
+                $notes -> user = 'Client';
+                $notes -> lead_id = $lead_id;
+                $notes -> save();
 
                 $user -> lead_id = $lead_id;
 
