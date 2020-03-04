@@ -74,7 +74,8 @@ class RegisterController extends Controller {
 
                 // email lead to office
                 $user -> lead_id = $lead_id;
-                $user -> notify(new UserRegisteredNotification($user));
+                //$user -> notify(new UserRegisteredNotification($user));
+                \Notification::route('mail', $email) -> notify(new UserRegisteredNotification($user));
 
             }
 
