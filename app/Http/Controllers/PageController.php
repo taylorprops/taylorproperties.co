@@ -73,12 +73,15 @@ class PageController extends Controller {
 
     public function searchAgents(Request $request) {
 
-        $agents = Agent::where('firstname', 'like', '%' . $request -> val . '%')
-            -> orWhere('lastname', 'like', '%' . $request -> val . '%')
-            -> orWhere('fullname', 'like', '%' . $request -> val . '%')
-            -> orWhere('cell', 'LIKE', '%' . $request -> val . '%')
-            -> orWhere('bio', 'LIKE', '%' . $request -> val . '%')
-            -> orWhere('designations', 'LIKE', '%' . $request -> val . '%')
+        $agents = Agent::where('company', 'Taylor Properties')
+            -> where(function($query) use ($request) {
+                $query -> where('firstname', 'like', '%' . $request -> val . '%')
+                    -> orWhere('lastname', 'like', '%' . $request -> val . '%')
+                    -> orWhere('fullname', 'like', '%' . $request -> val . '%')
+                    -> orWhere('cell', 'LIKE', '%' . $request -> val . '%')
+                    -> orWhere('bio', 'LIKE', '%' . $request -> val . '%')
+                    -> orWhere('designations', 'LIKE', '%' . $request -> val . '%');
+            })
             -> orderByRaw('SUBSTR(photo_url, 1, 2) DESC')
             -> orderByRaw('designations DESC')
             -> orderByRaw('bio DESC')

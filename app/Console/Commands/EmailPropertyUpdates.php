@@ -43,7 +43,10 @@ class EmailPropertyUpdates extends Command {
      */
     public function handle() {
         $user_searches = UserSearch::where('receive_email_updates', 'yes') -> get() -> toArray();
+
         foreach ($user_searches as $search) {
+
+
             $email_data    = [];
             $string        = $search['query_string'];
             $query         = substr($string, strpos($string, '?') + 1);
