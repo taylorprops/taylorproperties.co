@@ -1,8 +1,7 @@
 body {
     overflow-x: hidden !important;
     font-family: "Roboto", sans-serif;
-    padding-left: 15px;
-    padding-right: 15px;
+
 }
 .container,
 .container-full {
@@ -95,6 +94,10 @@ a:hover {
     margin: 40px auto 50px;
 }
 @media (max-width: 768px) {
+    body {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     .header-text {
         width: 95%;
     }
