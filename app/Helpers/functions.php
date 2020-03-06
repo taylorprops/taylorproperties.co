@@ -10,8 +10,7 @@ if (!function_exists('YesNo')) {
     }
 }
 if (!function_exists('get_sun_score')) {
-    function get_sun_score($href)
-    {
+    function get_sun_score($href) {
 
         $html = file_get_html($href);
         foreach ($html -> find('span[class=tooltip-icon-small]') as $item) {
@@ -34,8 +33,7 @@ if (!function_exists('get_sun_score')) {
 }
 
 if (!function_exists('sale_type')) {
-    function sale_type($type)
-    {
+    function sale_type($type) {
 
         $foreclosure_regex = "/(Bankruptcy|Foreclosure|HUD|REO)/i";
         $shortsale_regex = "/(short|third)/i";
@@ -54,8 +52,7 @@ if (!function_exists('sale_type')) {
 }
 
 if (!function_exists('heating')) {
-    function heating($heating)
-    {
+    function heating($heating) {
         if (stristr($heating, 'heat pump')) {
             $heating = 'Heat Pump';
         } else if (stristr($heating, 'central')) {
@@ -83,8 +80,7 @@ if (!function_exists('heating')) {
 }
 
 if (!function_exists('cooling')) {
-    function cooling($cooling)
-    {
+    function cooling($cooling) {
         if (stristr($cooling, 'heat pump')) {
             $cooling = 'Heat Pump';
         } else if (stristr($cooling, 'central')) {
@@ -106,8 +102,7 @@ if (!function_exists('cooling')) {
 }
 
 if (!function_exists('list_date')) {
-    function dom($list_date)
-    {
+    function dom($list_date) {
         //$list_date = date("Y-m-d", strtotime($list_date));
         $today = new DateTime(date('Y-m-d'));
         $list_date = new DateTime($list_date);

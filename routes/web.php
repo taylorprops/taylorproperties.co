@@ -26,6 +26,10 @@ Route::redirect('/title-information', '/about/partners', 301);
 Route::redirect('/contact-us.html', '/contact-us', 301);
 Route::redirect('/careers.php/contact_us.php', '/contact-us', 301);
 Route::redirect('/legal/privacy-statement', '/privacy-policy', 301);
+Route::any('/agents/agent-profile.php{any?}', function ($any = null) {
+    $agent_id = \Request::get('agent_id');
+    return Redirect::to('/agents/'.$agent_id, 301);
+}) -> where('any', '.*agent-profile.*');
 /* END REDIRECTS */
 
 Route::get('/', 'PageController@index');
