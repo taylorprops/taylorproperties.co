@@ -18,6 +18,7 @@
         "shvetsgroup/laravel-email-database-log": "^1.2",
         "spatie/laravel-backup": "^6.2",
         "spatie/laravel-tail": "^3.3",
+        "symfony/http-foundation": "4.4.7",
         "troydavisson/phrets": "^2.6",
         "unisharp/laravel-ckeditor": "^4.7",
         "watson/rememberable": "^3.0"
