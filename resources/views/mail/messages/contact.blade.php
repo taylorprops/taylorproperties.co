@@ -4,7 +4,7 @@
 @component('mail::message')
 
 <div style="font-size: 18px; font-weight: bold">Contact form submitted on taylorproperties.co</div>
-<table id="" cellpadding="6">
+<table cellpadding="6" style="max-width: 600px;" width="600">
     <tbody>
         <tr>
             <td align="right">Name:</td>
