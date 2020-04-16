@@ -15,6 +15,7 @@ use Config;
 use Illuminate\Http\Request;
 use App\User;
 use App\Leads;
+use App\LeadsProperties;
 
 class SearchController extends Controller {
 
@@ -47,6 +48,12 @@ class SearchController extends Controller {
             $q -> where('l_user_id', $user_id) -> where('l_user_id', '>', 0);
         }) -> first();
 
+        $listing = Listings::where('ListingId', $request -> listing_id) -> first();
+        $for_sale = 'Y';
+        if(stristr($listing -> PropertyType, 'lease')) {
+            $for_sale = 'N';
+        }
+
         if(!$existing) {
 
             // add to leads
@@ -57,6 +64,10 @@ class SearchController extends Controller {
             $lead -> l1_last = substr($request -> name, strpos($request -> name, ' '));
             $lead -> l1_phone = $request -> phone;
             $lead -> l_status = 'Lead';
+            $lead -> l_type = 'Buy';
+            $lead -> l_user_id = $user_id;
+            $lead -> p_type = $for_sale;
+            $lead -> p_location = $listing -> County . ' - '.$listing -> StateOrProvince;
             $lead -> save();
             $lead_id = $lead -> id;
 
@@ -69,6 +80,26 @@ class SearchController extends Controller {
         } else {
             $lead_id = $existing -> id;
         }
+
+        $property_exists = LeadsProperties::where('lead_id', $lead_id) -> where('mls', $listing -> ListingId) -> first();
+        if(!$property_exists) {
+            $add_property = new LeadsProperties();
+            $add_property -> lead_id = $lead_id;
+            $add_property -> mls = $listing -> ListingId;
+            $add_property -> street = $listing -> FullStreetAddress;
+            $add_property -> city = $listing -> City;
+            $add_property -> state = $listing -> StateOrProvince;
+            $add_property -> zip = $listing -> PostalCode;
+            $add_property -> prop_status = $listing -> MlsStatus;
+            $add_property -> price = $listing -> ListPrice;
+            $add_property -> list_date = $listing -> MLSListDate;
+            $add_property -> listing_type = $for_sale;
+            $add_property -> prop_type = $listing -> PropertyType;
+            $add_property -> save();
+        }
+
+
+
 
         $info = new InfoRequests;
         $user_id = null;
@@ -217,13 +248,20 @@ class SearchController extends Controller {
 
     public function schedule_showing(Request $request) {
 
-        $user_id = null;
+        $user_id = 999999999999999999;
         if (Auth::user()) {
             $user_id = Auth::user() -> id;
         }
 
         // add to leads database if not in there already
         $existing = Leads::where('l1_email', $request -> email) -> orWhere('l_user_id', $user_id) -> first();
+
+        $listing = Listings::where('ListingId', $request -> listing_id) -> first();
+
+        $for_sale = 'Y';
+        if(stristr($listing -> PropertyType, 'lease')) {
+            $for_sale = 'N';
+        }
 
         if(!$existing) {
 
@@ -235,6 +273,10 @@ class SearchController extends Controller {
             $lead -> l1_last = substr($request -> name, strpos($request -> name, ' '));
             $lead -> l1_phone = $request -> phone;
             $lead -> l_status = 'Lead';
+            $lead -> l_type = 'Buy';
+            $lead -> l_user_id = $user_id;
+            $lead -> p_type = $for_sale;
+            $lead -> p_location = $listing -> County . ' - '.$listing -> StateOrProvince;
             $lead -> save();
             $lead_id = $lead -> id;
 
@@ -246,6 +288,24 @@ class SearchController extends Controller {
 
         } else {
             $lead_id = $existing -> id;
+        }
+
+        $property_exists = LeadsProperties::where('lead_id', $lead_id) -> where('mls', $listing -> ListingId) -> first();
+
+        if(!$property_exists) {
+            $add_property = new LeadsProperties();
+            $add_property -> lead_id = $lead_id;
+            $add_property -> mls = $listing -> ListingId;
+            $add_property -> street = $listing -> FullStreetAddress;
+            $add_property -> city = $listing -> City;
+            $add_property -> state = $listing -> StateOrProvince;
+            $add_property -> zip = $listing -> PostalCode;
+            $add_property -> prop_status = $listing -> MlsStatus;
+            $add_property -> price = $listing -> ListPrice;
+            $add_property -> list_date = $listing -> MLSListDate;
+            $add_property -> listing_type = $for_sale;
+            $add_property -> prop_type = $listing -> PropertyType;
+            $add_property -> save();
         }
 
         $showing = new ShowingRequests;
@@ -292,7 +352,7 @@ class SearchController extends Controller {
 
 
 
-        \Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
+        //\Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
     }
 
     public function school_data(Request $request) {
