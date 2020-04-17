@@ -69,6 +69,7 @@ class RegisterController extends Controller {
                 $lead -> l1_phone = $phone;
                 $lead -> l_user_id = $user_id;
                 $lead -> l_status = 'Lead';
+                $lead -> l_type = 'Buy';
                 $lead -> save();
                 $lead_id = $lead -> id;
 
@@ -76,6 +77,8 @@ class RegisterController extends Controller {
                 $user -> lead_id = $lead_id;
                 //$user -> notify(new UserRegisteredNotification($user));
                 \Notification::route('mail', $email) -> notify(new UserRegisteredNotification($user));
+
+
 
             }
 
@@ -85,6 +88,7 @@ class RegisterController extends Controller {
                 Auth::loginUsingId($user_id);
 
                 $msg = array(
+                    'lead_id' => $lead_id,
                     'status'  => 'success',
                     'message' => 'Successfully Registered',
                 );

@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    window.axios_options = {
+        headers: { 'X-CSRF-TOKEN': _token }
+    };
+
     $('.mdb-select').materialSelect();
 
     $('.message-agent').off('click').on('click', function() {
@@ -176,23 +180,33 @@ $(document).ready(function () {
 	/* had to add this function to this file because it would not work in global.js */
 	function register_user() {
 
-		var email = $('#register_email').val();
-		var password = $('#register_password').val();
-		var phone = $('#register_phone').val();
-		var name = $('#register_name').val();
+        let formData = new FormData();
+        formData.append('email', $('#register_email').val());
+        formData.append('password', $('#register_password').val());
+        formData.append('phone', $('#register_phone').val());
+        formData.append('name', $('#register_name').val());
 
-		$.ajax({
-			type: 'post',
-			url: '/register/user',
-			data: {
-				_token: _token,
-				email: email,
-				password: password,
-				phone: phone,
-				name: name
-			},
-			success: function (data) {
-				if (data.status == 'error') {
+        axios.post('/register/user', formData, axios_options)
+        .then(function (data) {
+            data = response.data;
+            if (data.status == 'error') {
+                $('#register_error').show();
+                $('#already_registered_login').unbind('click').bind('click', function() {
+                    $('#modalRegisterForm').modal('hide');
+                    $('#modalSignInForm').modal();
+                });
+            } else {
+                $('#modalRegisterForm').modal('hide');
+                $('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
+                if ($('#active_service').val() == 'save_search') {
+                    add_alias();
+                } else if ($('#active_service').val() == 'save_favorite') {
+                    setTimeout(function() {
+                        add_favorite(data.lead_id);
+                    }, 500);
+                }
+            }
+			/* 	if (data.status == 'error') {
                     if(data.message == 'user_exists') {
                         $('#register_error').show();
                         $('#already_registered_login').unbind('click').bind('click', function () {
@@ -208,11 +222,14 @@ $(document).ready(function () {
 					if ($('#active_service').val() == 'save_search') {
 						add_alias();
 					} else if ($('#active_service').val() == 'save_favorite') {
-						add_favorite();
+						add_favorite(data.lead_id);
 					}
-				}
-			}
-		});
+				} */
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
 
 	}
 

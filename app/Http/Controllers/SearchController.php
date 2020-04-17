@@ -22,11 +22,15 @@ class SearchController extends Controller {
     public function get_user_data() {
         if (Auth::user()) {
             $user      = Auth::user();
+            $lead = Leads::where('l_user_id', $user -> id) -> first();
+            $lead_id = $lead -> id ?? null;
             $user_data = [
                 'status' => 'found',
+                'id' => $user -> id,
                 'name'   => $user -> name,
                 'email'  => $user -> email,
                 'phone'  => $user -> phone,
+                'lead_id' => $lead_id
             ];
         } else {
             $user_data = [
@@ -203,15 +207,50 @@ class SearchController extends Controller {
 
     public function remove_favorite(Request $request) {
         $user_id = Auth::user() -> id;
-        $remove_favorite = UserProperty::where('listing_id', $request -> listing_id) -> where('user_id', $user_id) -> delete();
+        $lead = Leads::where('l_user_id', $user_id) -> first();
+        $lead_id = $lead -> id;
+        $listing_id = $request -> listing_id;
+        $remove_favorite = UserProperty::where('listing_id', $listing_id) -> where('user_id', $user_id) -> delete();
+        $remove_from_lead = LeadsProperties::where('lead_id', $lead_id) -> where('mls', $listing_id) -> delete();
     }
 
     public function save_favorite(Request $request) {
-        $favorite = new UserProperty;
+
+        $listing_id = $request -> listing_id;
+        $lead_id = $request -> lead_id;
+
         $user_id = Auth::user() -> id;
-        $favorite -> listing_id = $request -> id;
+
+        $favorite = new UserProperty;
+        $favorite -> listing_id = $listing_id;
         $favorite -> user_id = $user_id;
         $favorite -> save();
+
+        // add property to lead system properties
+        $listing = Listings::where('ListingId', $listing_id) -> first();
+        $property_exists = LeadsProperties::where('lead_id', $lead_id) -> where('mls', $listing_id) -> first();
+
+        $for_sale = 'Y';
+        if(stristr($listing -> PropertyType, 'lease')) {
+            $for_sale = 'N';
+        }
+
+        if(!$property_exists) {
+
+            $add_property = new LeadsProperties();
+            $add_property -> lead_id = $lead_id;
+            $add_property -> mls = $listing_id;
+            $add_property -> street = $listing -> FullStreetAddress;
+            $add_property -> city = $listing -> City;
+            $add_property -> state = $listing -> StateOrProvince;
+            $add_property -> zip = $listing -> PostalCode;
+            $add_property -> prop_status = $listing -> MlsStatus;
+            $add_property -> price = $listing -> ListPrice;
+            $add_property -> list_date = $listing -> MLSListDate;
+            $add_property -> listing_type = $for_sale;
+            $add_property -> prop_type = $listing -> PropertyType;
+            $add_property -> save();
+        }
     }
 
     public function save_search(Request $request) {
@@ -248,13 +287,13 @@ class SearchController extends Controller {
 
     public function schedule_showing(Request $request) {
 
-        $user_id = 999999999999999999;
+        $user_id = '';
         if (Auth::user()) {
             $user_id = Auth::user() -> id;
         }
 
         // add to leads database if not in there already
-        $existing = Leads::where('l1_email', $request -> email) -> orWhere('l_user_id', $user_id) -> first();
+        $existing = Leads::where('l1_email', $request -> email) -> orWhere('l_user_id', $user_id) -> where('l_user_id', '>', 0) -> first();
 
         $listing = Listings::where('ListingId', $request -> listing_id) -> first();
 

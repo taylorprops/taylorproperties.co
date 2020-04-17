@@ -177,6 +177,7 @@ class PageController extends Controller {
                 $lead -> l1_last = substr($user -> name, strpos($user -> name, ' '));
                 $lead -> l1_phone = $user -> phone;
                 $lead -> l_status = 'Lead';
+                $lead -> l_type = 'Buy';
                 $lead -> save();
                 $lead_id = $lead -> id;
 

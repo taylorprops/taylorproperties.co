@@ -752,6 +752,10 @@
 
     var _token = '{{ csrf_token() }}';
 
+    window.axios_options = {
+        headers: { 'X-CSRF-TOKEN': _token }
+    };
+
     $('#hide_map').click(function() {
         if($(this).text() == 'Hide Map') {
             $(this).text('Show Map');
@@ -767,43 +771,37 @@
 
     /* had to add this function to this file because it would not work in global.js */
     function register_user() {
-
         $('#signup_button').html('Saving <i class="fas fa-spinner fa-spin"></i>');
-        var email = $('#register_email').val();
-        var password = $('#register_password').val();
-        var phone = $('#register_phone').val();
-        var name = $('#register_name').val();
+        let formData = new FormData();
+        formData.append('email', $('#register_email').val());
+        formData.append('password', $('#register_password').val());
+        formData.append('phone', $('#register_phone').val());
+        formData.append('name', $('#register_name').val());
 
-        $.ajax({
-            type: 'post',
-            url: '/register/user',
-            data: {
-                _token: _token,
-                email: email,
-                password: password,
-                phone: phone,
-                name: name
-            },
-            success: function(data) {
-                if (data.status == 'error') {
-                    $('#register_error').show();
-                    $('#already_registered_login').unbind('click').bind('click', function() {
-                        $('#modalRegisterForm').modal('hide');
-                        $('#modalSignInForm').modal();
-                    });
-                } else {
+        axios.post('/register/user', formData, axios_options)
+        .then(function (response) {
+            data = response.data;
+            if (data.status == 'error') {
+                $('#register_error').show();
+                $('#already_registered_login').unbind('click').bind('click', function() {
                     $('#modalRegisterForm').modal('hide');
-                    $('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
-                    if ($('#active_service').val() == 'save_search') {
-                        add_alias();
-                    } else if ($('#active_service').val() == 'save_favorite') {
-                        setTimeout(function() {
-                            add_favorite();
-                        }, 500);
-                    }
+                    $('#modalSignInForm').modal();
+                });
+            } else {
+                $('#modalRegisterForm').modal('hide');
+                $('#nav_logged').html('<div id="nav_logged_in"><a href="/dashboard" class="mb-n2 text-white float-right"><i class="fal fa-user-circle mr-2"></i> My Account</a><br><a href="/logout" class="text-yellow float-right"><small><i class="fal fa-sign-out mr-2"></i> Logout </small></a></div>');
+                if ($('#active_service').val() == 'save_search') {
+                    add_alias();
+                } else if ($('#active_service').val() == 'save_favorite') {
+                    setTimeout(function() {
+                        add_favorite(data.lead_id);
+                    }, 500);
                 }
-                $('#signup_button').html('Sign Up');
             }
+            $('#signup_button').html('Sign Up');
+        })
+        .catch(function (error) {
+            console.log(error);
         });
 
     }
@@ -933,18 +931,19 @@
         });
     }
 
-    function add_favorite() {
-        var id = $('#add_favorite_listing_id').val();
+    function add_favorite(lead_id) {
+        var listing_id = $('#add_favorite_listing_id').val();
         $.ajax({
             type: 'post',
             url: '{{ route('search.save_favorite') }}',
             data: {
-                id: id,
+                listing_id: listing_id,
+                lead_id: lead_id,
                 _token: _token
             },
             success: function(response) {
-                $('#listing_' + id).find('.favorite').hide();
-                $('#listing_' + id).find('.remove-favorite').show();
+                $('#listing_' + listing_id).find('.favorite').hide();
+                $('#listing_' + listing_id).find('.remove-favorite').show();
                 $('#details_options').find('.favorite').hide();
                 $('#details_options').find('.remove-favorite').show();
                 toastr['success']('Property Saved To Your Favorites');
@@ -964,7 +963,7 @@
             url: '{{ route('search.user_data') }}',
             success: function(response) {
                 if (response.status == 'found') {
-                    add_favorite();
+                    add_favorite(response.lead_id);
                 } else {
                     $('#modalRegisterForm').modal();
                     $('#active_service').val('save_favorite');
