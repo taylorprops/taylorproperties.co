@@ -391,7 +391,7 @@ class SearchController extends Controller {
 
 
 
-        //\Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
+        \Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
     }
 
     public function school_data(Request $request) {
