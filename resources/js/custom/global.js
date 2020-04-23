@@ -338,7 +338,6 @@ $(document).ready(function () {
 
         let form = $(this);
         let formData = new FormData(form[0]);
-        formData.append('_token', _token);
         axios.post('/contact-submit', formData, axios_options)
         .then(function (response) {
             toastr['success']('Your message was successfully sent!');
