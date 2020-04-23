@@ -1458,10 +1458,8 @@
                 });
                 var map_details = L.map('listing_map').setView([latitude, longitude], 13);
                 var token = '{{ Config::get('leaflet.leaflet.token') }}';
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + token, {
+                L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + token, {
                     attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
-                    //maxZoom: 11,
-                    id: 'mapbox.streets',
                     accessToken: token
                 }).addTo(map_details);
                 var listing_marker = L.marker([latitude, longitude]).addTo(map_details);
@@ -1529,7 +1527,7 @@
                     map_school.scrollWheelZoom.enable();
                 });
                 var token = '{{ Config::get('leaflet.leaflet.token') }}';
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + token, {
+                L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + token, {
                     attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
                     //maxZoom: 11,
                     id: 'mapbox.streets',
@@ -1631,10 +1629,8 @@
     function init_map() {
         // initialize map container
         var token = '{{ Config::get('leaflet.leaflet.token') }}';
-        var map_base = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + token, {
+        var map_base = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + token, {
             attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
-            //maxZoom: 11,
-            id: 'mapbox.streets',
             accessToken: token
         });
         map = L.map('results_map', { preferCanvas: true })
