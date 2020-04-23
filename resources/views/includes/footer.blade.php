@@ -63,7 +63,7 @@
 </footer>
 <!-- Footer -->
 <div class="black-out"></div>
-
+@if(!stristr(Request::url(), 'realtors-near-me') )
 <div class="modal fade" id="email_agent_modal" tabindex="-1" role="dialog" aria-labelledby="email_agent_modal_label" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
@@ -77,3 +77,4 @@
         </div>
     </div>
 </div>
+@endif
