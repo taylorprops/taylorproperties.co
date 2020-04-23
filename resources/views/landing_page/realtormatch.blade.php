@@ -73,7 +73,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                         <!--Card content-->
                         <div class="card-body">
                             <!-- Form -->
-                            <form id="contact_form">
+                            <form id="contact_form_realtor_match">
                                 <!-- Heading -->
                                 <img id="logo" src="https://www.taylorproperties.co/images/logos/TaylorProperties-blackblue.png" alt="Taylor Properties" style="max-width: 125px; margin: 0 auto; text-align: center;">
                                 <hr>
@@ -101,7 +101,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                                         <label for="message">Your message *</label>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
+                                        <button id="contact_form_submit_realtor_match" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
                                     </div>
                                     <input type="hidden" id="type" value="realtor_match">
                                 </form>

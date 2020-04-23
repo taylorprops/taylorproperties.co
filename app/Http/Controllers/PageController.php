@@ -110,7 +110,7 @@ class PageController extends Controller {
     }
 
     public function contactSubmit(Request $request) {
-dd($request -> _token);
+
         $user = new Messages();
 
         $user -> name     = $request -> name;
