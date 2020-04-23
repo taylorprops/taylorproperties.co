@@ -77,8 +77,6 @@ best real estate agent near me, realtors near me, real estate agents near me
                                 <!-- Heading -->
                                 <img id="logo" src="https://www.taylorproperties.co/images/logos/TaylorProperties-blackblue.png" alt="Taylor Properties" style="max-width: 125px; margin: 0 auto; text-align: center;">
                                 <hr>
-
-                                @csrf
                                 <div class="md-form">
                                     <i class="fas fa-user prefix grey-text"></i>
                                     <input type="text" id="name" name="name" class="form-control" required="required">
