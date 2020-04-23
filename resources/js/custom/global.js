@@ -72,6 +72,8 @@ $(document).ready(function () {
 
     $('[id]').each(function(){
         var ids = $('[id="'+this.id+'"]');
+        console.log($(this).prop('id'));
+
         if(ids.length>1 && ids[0]==this)
           console.warn('Multiple IDs #'+this.id);
       });
