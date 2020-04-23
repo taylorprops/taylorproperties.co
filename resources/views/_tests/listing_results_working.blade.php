@@ -933,7 +933,7 @@
                     .setView([latitude, longitude], 13);
 
                 var token = '{{ Config::get('leaflet.leaflet.token') }}';
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + token, {
+                L.tileLayer('https://api.mapbox.com/styles/v1/miketaylor0101/ck9d3bzj40n7f1imfivr00i2r.html?fresh=true&title=view&access_token=' + token, {
                     attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
                     //maxZoom: 11,
                     id: 'mapbox.streets',
@@ -1141,7 +1141,7 @@
     function init_map(){
         // initialize map container
         var token = '{{ Config::get('leaflet.leaflet.token') }}';
-        var map_base = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + token, {
+        var map_base = L.tileLayer('https://api.mapbox.com/styles/v1/miketaylor0101/ck9d3bzj40n7f1imfivr00i2r.html?fresh=true&title=view&access_token=' + token, {
             attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
             //maxZoom: 11,
             id: 'mapbox.streets',
