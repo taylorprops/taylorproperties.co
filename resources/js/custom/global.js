@@ -332,6 +332,7 @@ $(document).ready(function () {
     }
 
     $('#contact_form').submit(function (e) {
+        alert('test');
         $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
 
