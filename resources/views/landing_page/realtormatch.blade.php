@@ -73,38 +73,38 @@ best real estate agent near me, realtors near me, real estate agents near me
                         <!--Card content-->
                         <div class="card-body">
                             <!-- Form -->
-                            <form id="contact_form_realtor_match">
+                            <form id="contact_form">
                                 <!-- Heading -->
                                 <img id="logo" src="https://www.taylorproperties.co/images/logos/TaylorProperties-blackblue.png" alt="Taylor Properties" style="max-width: 125px; margin: 0 auto; text-align: center;">
                                 <hr>
-                                <form id="contact_form">
-                                    @csrf
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix grey-text"></i>
-                                        <input type="text" id="name" name="name" class="form-control" required="required">
-                                        <label for="name">Your name *</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-envelope prefix grey-text"></i>
-                                        <input type="email" id="email" name="email" class="form-control" required="required">
-                                        <label for="email">Your email *</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-phone prefix grey-text"></i>
-                                        <input type="tel" id="phone" name="phone" class="form-control phone" required="required">
-                                        <label for="phone">Your phone *</label>
-                                    </div>
-                                    <!--Textarea with icon prefix-->
-                                    <div class="md-form">
-                                        <i class="fas fa-pencil prefix grey-text"></i>
-                                        <textarea type="text" id="message" name="message" class="md-textarea form-control" rows="3" required></textarea>
-                                        <label for="message">Your message *</label>
-                                    </div>
-                                    <div class="text-center mt-3">
-                                        <button id="contact_form_submit_realtor_match" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
-                                    </div>
-                                    <input type="hidden" id="type" value="realtor_match">
-                                </form>
+
+                                @csrf
+                                <div class="md-form">
+                                    <i class="fas fa-user prefix grey-text"></i>
+                                    <input type="text" id="name" name="name" class="form-control" required="required">
+                                    <label for="name">Your name *</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="email" id="email" name="email" class="form-control" required="required">
+                                    <label for="email">Your email *</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fas fa-phone prefix grey-text"></i>
+                                    <input type="tel" id="phone" name="phone" class="form-control phone" required="required">
+                                    <label for="phone">Your phone *</label>
+                                </div>
+                                <!--Textarea with icon prefix-->
+                                <div class="md-form">
+                                    <i class="fas fa-pencil prefix grey-text"></i>
+                                    <textarea type="text" id="message" name="message" class="md-textarea form-control" rows="3" required></textarea>
+                                    <label for="message">Your message *</label>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
+                                </div>
+                                <input type="hidden" id="type" value="realtor_match">
+
                             </form>
                             <!-- Form -->
                         </div>
@@ -223,18 +223,7 @@ best real estate agent near me, realtors near me, real estate agents near me
         </section>
         <!--Section: Main features & Quick Start-->
     </div>
-    <section id="contact" style="background: #efefef;">
-        <div class="container mt-4 mb-0 pb-5">
-            <div class="row">
-                <div class="col-lg-12 text-center pt-5">
-                    {{-- @include('flash::message') --}}
-                    <h2 class="section-heading text-uppercase">Questions?</h2>
-                    <h3 class="section-subheading text-muted">We are here to help, send us a message today!</h3>
-                </div>
-            </div>
-            @include('includes.contactform_general')
-        </div>
-    </section>
+
 </main>
 <!--Main layout-->
 @endsection

@@ -331,18 +331,18 @@ $(document).ready(function () {
 		});
     }
 
-    $('#contact_form, #contact_form_realtor_match').submit(function (e) {
-        $('#contact_form_submit, #contact_form_submit_realtor_match').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
+    $('#contact_form').submit(function (e) {
+        $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
 
-        let form = $('#contact_form');
+        let form = $(this);
         let formData = new FormData(form[0]);
         formData.append('_token', _token);
         axios.post('/contact-submit', formData, axios_options)
         .then(function (response) {
             toastr['success']('Your message was successfully sent!');
-            $('#contact_form_submit, #contact_form_submit_realtor_match').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
-            $('#contact_form, #contact_form_realtor_match').find('input, textarea').not('#type').val('');
+            $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
+            $('#contact_form').find('input, textarea').not('#type').val('');
             $('label').removeClass('active');
             $('#email_agent_modal').modal('hide');
         })
