@@ -78,6 +78,9 @@ Route::get('/100-commission-real-estate-broker/training', function () {
 Route::get('/join', function () {
     return view('landing_page.join');
 }) -> name('join');
+Route::get('/realtors-near-me', function () {
+    return view('landing_page.realtormatch');
+});
 
 Route::post('/contact-submit', 'PageController@contactSubmit') -> name('contact.submit');
 
