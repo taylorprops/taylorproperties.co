@@ -4,6 +4,16 @@ $(document).ready(function () {
         headers: { 'X-CSRF-TOKEN': _token }
     };
 
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    console.log(_token);
+
+	/* login and auth */
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': _token
+		}
+    });
+
     $('.mdb-select').materialSelect();
 
     $('.message-agent').off('click').on('click', function() {
@@ -147,14 +157,7 @@ $(document).ready(function () {
 
     });
 
-	var _token = $('meta[name="csrf-token"]').attr('content');
 
-	/* login and auth */
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': _token
-		}
-    });
 
     function get_user_data_share() {
         $.ajax({
@@ -330,13 +333,12 @@ $(document).ready(function () {
     }
 
     $('#contact_form').submit(function (e) {
-        console.log('submitting form');
         $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/contact-submit',
-            data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val(), message: $('#message').val(), _token: $('[name="_token"]').val(), agent_id: $('#agent_id').val(), agent_email: $('#agent_email').val(), type: $('#type').val() },
+            data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val(), message: $('#message').val(), _token: $('[name="_token"]').content(), agent_id: $('#agent_id').val(), agent_email: $('#agent_email').val(), type: $('#type').val() },
             success: function (response) {
                 toastr['success']('Your message was successfully sent!');
                 $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
