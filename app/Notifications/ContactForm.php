@@ -37,7 +37,7 @@ class ContactForm extends Notification {
      */
     public function toMail($notifiable) {
 
-        if($this -> user -> type == 'buy_sell') {
+        if($this -> user -> type == 'buy_sell' || $this -> user -> type == 'realtor_match') {
             $ccs = Config::get('email_routing.contact_form_ccs.emails');
             if($ccs != '') {
                 return (new MailMessage)

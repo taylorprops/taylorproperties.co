@@ -160,10 +160,14 @@ class PageController extends Controller {
             $to_email = $request -> agent_email;
             $user -> subject = 'Message From Client via www.taylorproperties.co';
 
-        } else if($request -> type == 'buy_sell') {
+        } else if($request -> type == 'buy_sell' || $request -> type == 'realtor_match') {
 
             $to_email = Config::get('email_routing.contact_form.email');
-            $user -> subject = 'Buyer/Seller Lead – Taylor Properties Website';
+            if($request -> type == 'buy_sell') {
+                $user -> subject = 'Buyer/Seller Lead – Taylor Properties Website';
+            } else if($request -> type == 'realtor_match') {
+                $user -> subject = 'Buyer/Seller Lead – Realtor Match Request';
+            }
 
             $existing = Leads::where('l1_email', $request -> email) -> first();
 
