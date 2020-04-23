@@ -102,7 +102,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                                 <div class="text-center mt-3">
                                     <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
                                 </div>
-                                <input type="hidden" id="type" value="realtor_match">
+                                <input type="hidden" id="type" name="type" value="realtor_match">
 
                             </form>
                             <!-- Form -->

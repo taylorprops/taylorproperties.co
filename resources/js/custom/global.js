@@ -1,10 +1,12 @@
 $(document).ready(function () {
 
+
+
+    window._token = $('meta[name="csrf-token"]').attr('content');
+
     window.axios_options = {
         headers: { 'X-CSRF-TOKEN': _token }
     };
-
-    window._token = $('meta[name="csrf-token"]').attr('content');
 
 	/* login and auth */
 	$.ajaxSetup({
@@ -332,12 +334,13 @@ $(document).ready(function () {
     }
 
     $('#contact_form').submit(function (e) {
-        alert('test');
         $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
 
         let form = $(this);
         let formData = new FormData(form[0]);
+
+        formData.append('_token', _token);
         axios.post('/contact-submit', formData, axios_options)
         .then(function (response) {
             toastr['success']('Your message was successfully sent!');

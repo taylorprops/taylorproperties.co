@@ -26,7 +26,7 @@
 			<div class="text-center mt-3">
 				<button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
             </div>
-            <input type="hidden" id="type" value="to_agent">
+            <input type="hidden" id="type" name="type" value="to_agent">
             <input type="hidden" id="agent_id">
             <input type="hidden" id="agent_email">
 		</form>
