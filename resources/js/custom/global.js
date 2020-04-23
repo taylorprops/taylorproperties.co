@@ -70,6 +70,12 @@ $(document).ready(function () {
 		autoclose: true,
     });
 
+    $('[id]').each(function(){
+        var ids = $('[id="'+this.id+'"]');
+        if(ids.length>1 && ids[0]==this)
+          console.warn('Multiple IDs #'+this.id);
+      });
+
 
 
     $(document).on('click', '.share-link-listing', function () {
