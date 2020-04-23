@@ -335,18 +335,22 @@ $(document).ready(function () {
     $('#contact_form').submit(function (e) {
         $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/contact-submit',
-            data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val(), message: $('#message').val(), _token: $('[name="_token"]').content(), agent_id: $('#agent_id').val(), agent_email: $('#agent_email').val(), type: $('#type').val() },
-            success: function (response) {
-                toastr['success']('Your message was successfully sent!');
-                $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
-                $('#contact_form').find('input, textarea').not('#type').val('');
-                $('label').removeClass('active');
-                $('#email_agent_modal').modal('hide');
-            }
+
+        let form = $('#contact_form');
+        let formData = new FormData(form[0]);
+        formData.append('_token', _token);
+        axios.post('/contact-submit', formData, axios_options)
+        .then(function (response) {
+            toastr['success']('Your message was successfully sent!');
+            $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
+            $('#contact_form').find('input, textarea').not('#type').val('');
+            $('label').removeClass('active');
+            $('#email_agent_modal').modal('hide');
+        })
+        .catch(function (error) {
+            console.log(error);
         });
+
     });
 
 
