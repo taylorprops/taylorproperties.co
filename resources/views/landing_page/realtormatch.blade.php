@@ -15,6 +15,19 @@ best real estate agent near me, realtors near me, real estate agents near me
     .view {
         height: 100%;
     }
+    h6 {
+        line-height: 1.7;
+    }
+    nav {
+        display: none !important;
+    }
+    p {
+      font-size: 20px;
+    }
+    .btn {
+      font-size: 1rem;
+      font-weight: bold;
+    }
     @media (max-width: 740px) {
         html,
         body,
@@ -36,12 +49,6 @@ best real estate agent near me, realtors near me, real estate agents near me
         .view {
             height: 700px;
         }
-    }
-    h6 {
-        line-height: 1.7;
-    }
-    nav {
-        display: none !important;
     }
 </style>
 @endsection
@@ -100,7 +107,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                                     <label for="message">Your message *</label>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Send <i class="fal fa-share"></i></button>
+                                    <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Get Started</button>
                                 </div>
                                 <input type="hidden" id="type" name="type" value="realtor_match">
 
@@ -202,10 +209,11 @@ best real estate agent near me, realtors near me, real estate agents near me
         <hr class="my-5">
         <!--Section: Main features & Quick Start-->
         <section>
-            <h3 class="h3 text-center mb-5">HOW OUR MATCH PROGRAM WORKS</h3>
+            <h2 class="h1-responsive font-weight-bold mt-5 mb-3 text-center">HOW OUR MATCH PROGRAM WORKS</h3>
+            <p class="text-center mb-5">Our REALTOR Match Program will match you with one of Taylor Properties' 800+ in-house professionals in Maryland, Washington D.C. or Virginia, ready to help you buy, sell, or rent a home. Our real estate agents are thoroughly vetted and are chosen to help our clients based on experience.</p>
             <!--Grid row-->
-            <div class="row wow fadeIn">
-                <!--First row-->
+            <!--div class="row wow fadeIn">
+ 
                 <div class="col-12">
                     <h5 class="feature-title">All you have to do to get started is to fill out our quick form. We take care of the rest.</h5>
                     <p class="">Our REALTOR Match Program will match you with one of Taylor Properties' 800+ in-house professionals in Maryland, Washington D.C. or Virginia, ready to help you buy, sell, or rent a home. Our real estate agents are thoroughly vetted and are chosen to help our clients based on experience.</p>
@@ -213,15 +221,60 @@ best real estate agent near me, realtors near me, real estate agents near me
                     </p>
                     <p>Taylor Properties provides this service to buyers, sellers, and renters entirely for FREE. We want to make sure that everyone has access to top-notch real estate advice from a local professional so that your decisions are informed and your best interests are looked after. We will never send your information to a third party.</p>
                 </div>
-                <!--/First row-->
                 <div class="col-md-12" style="margin: 0 auto; text-align: center;">
                     <a href="#" class="btn btn-secondary" style="margin: 0 auto;">Match With An Agent</a>
                 </div>
-            </div>
+            </div-->
             <!--/Grid row-->
+            <div class="row text-center d-flex justify-content-center">
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                    <i class="fas fa-search-location fa-3x mb-4" style="color: #084972 !important;"></i>
+                    <h4 class="font-weight-bold mb-4">Tell us what you're looking for</h4>
+                    <p class="text-muted px-2 mb-lg-0">
+                      Share a few details about your home buying or selling scenario. You'll be done in a minute and we'll get started immediately.
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                    <i class="fas fa-comments-alt fa-3x mb-4" style="color: #084972 !important;"></i>
+                    <h4 class="font-weight-bold mb-4">Talk with an expert matchmaker</h4>
+                    <p class="text-muted px-2 mb-lg-0">
+                      First-time buyer? Selling a home? Moving to a new city? Investing? An experienced Taylor Properties concierge will build your profile via phone or text at your convenience.
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
+                    <i class="far fa-chart-network fa-3x mb-4" style="color: #084972 !important;"></i>
+                    <h4 class="font-weight-bold mb-4">Let us do the legwork</h4>
+                    <p class="text-muted px-2 mb-md-0">
+                      Don't sift through or interview 20 agents to see who's qualified. We'll provide a local agent that best suits your needs. If you'd like to interview multiple agents, just let us know!
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mb-md-0 mb-5">
+                    <i class="fas fa-handshake fa-3x mb-4" style="color: #084972 !important;"></i>
+                    <h4 class="font-weight-bold mb-4">You meet your match</h4>
+                    <p class="text-muted px-2 mb-md-0">
+                      We'll set up a conversation with your licensed agent so you can get your home listed or go see that new drewam home in-person. It's that easy! And the best part, it's free!
+                    </p>
+                  </div>
+            </div>
         </section>
         <!--Section: Main features & Quick Start-->
     </div>
+
+    <!-- Jumbotron -->
+    <div class="card card-image">
+      <div class="text-white text-center rgba-stylish-strong py-5 px-4" style="border-radius: 0px; background-color: #f1945c;
+    }">
+        <div class="col-md-8 py-5" style="margin: 0 auto;">
+
+          <!-- Content -->
+          <h2 class="h1-responsive font-weight-bold mb-4" style="color: #fff; text-align: center; font-size: 3rem;">We'll match you with the perfect agent. Ready to go?</h2>
+          <!--h2 class="card-title h2 my-4 py-2">Jumbotron with image overlay</h2-->
+          <a class="btn btn-white waves-effect waves-light" style="color: #e76632; font-weight: bold;" href="#">Get Started</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
 
 </main>
 <!--Main layout-->
