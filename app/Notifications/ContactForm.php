@@ -65,6 +65,11 @@ class ContactForm extends Notification {
                     -> subject($this -> user -> subject)
                     -> markdown('mail.messages.contact', ['user' => $this -> user]);
             }
+        } else if($this -> user -> type == 'to_agent') {
+            return (new MailMessage)
+                -> from('clientservices@taylorprops.com', 'Taylor Properties - Contact Requests')
+                -> subject($this -> user -> subject)
+                -> markdown('mail.messages.contact', ['user' => $this -> user]);
         }
 
         /* $ccs = Config::get('email_routing.contact_form_ccs.emails');
