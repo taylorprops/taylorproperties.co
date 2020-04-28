@@ -749,9 +749,7 @@
     setTimeout(function() {
         $('#save_search').click(save_search);
     }, 1000);
-    setTimeout(function() {
-        $('#hide_map').trigger('click');
-    }, 2000);
+
 
     var _token = '{{ csrf_token() }}';
 
