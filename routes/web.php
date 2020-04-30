@@ -153,7 +153,7 @@ Route::post('/search/info_request', 'SearchController@info_request') -> name('se
 Route::post('/share', 'ShareController@share') -> name('share');
 
 // receive SMS
-Route::get('/sms_replies', 'SearchController@sms_replies');
+Route::post('/sms_replies', 'SearchController@sms_replies');
 
 /* tests */
 Route::get('/test', 'TestController@test');
