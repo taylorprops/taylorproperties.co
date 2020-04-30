@@ -56,7 +56,12 @@ class MoreInfoRequest extends Notification {
             ['from' => $twilio_number, 'body' => $sms] );
 
         $lead_assigned = Leads::LeadAssigned($this -> info);
-        $this -> info -> lead_assigned = $lead_assigned;
+
+        if(!empty($lead_assigned)) {
+            $this -> info -> lead_assigned = $lead_assigned;
+        } else {
+            $this -> info -> lead_assigned = null;
+        }
         $ccs = Config::get('email_routing.more_info_request_ccs.emails');
 
         if ($ccs != '') {

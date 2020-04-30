@@ -11,7 +11,6 @@ class Leads extends Model {
     protected $table = 'leads';
 
     public function ScopeLeadAssigned($query, $lead) {
-        $agent = null;
         if ($lead -> lead_id > 0) {
             $lead = $this -> where('id', $lead -> lead_id) -> orWhere('l1_email', $lead -> email) -> first();
             if ($lead -> a_id > 0) {
@@ -19,9 +18,12 @@ class Leads extends Model {
                 $agent -> fullname = $lead -> a_fullname;
                 $agent -> email = $lead -> a_email;
                 $agent -> phone = $lead -> a_phone;
+                return $agent;
             }
-            return $agent;
+            return '';
         }
+
+        return '';
     }
 
     public function ScopeLeadNotificationSMS($query, $lead) {
@@ -71,6 +73,7 @@ Agent Details
 ' . $agent -> phone;
 
         }
+
         return $sms;
 
     }
