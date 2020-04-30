@@ -17,6 +17,7 @@ use App\User;
 use App\Leads;
 use App\LeadsProperties;
 use Twilio\TwiML\MessagingResponse;
+use Twilio\Rest\Client;
 
 class SearchController extends Controller {
 
@@ -473,6 +474,6 @@ class SearchController extends Controller {
             "This number does not accept incoming messages. Please call us at 800-590-0925"
         );
 
-        echo $response;
+        return $response;
     }
 }
