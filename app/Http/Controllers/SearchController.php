@@ -470,7 +470,7 @@ class SearchController extends Controller {
 
         $response = new MessagingResponse();
         $response -> message(
-            "I'm using the Twilio PHP library to respond to this SMS!"
+            "This number does not accept incoming messages. Please call us at 800-590-0925"
         );
 
         echo $response;
