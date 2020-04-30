@@ -42,7 +42,7 @@ class SearchController extends Controller {
         return response() -> json($user_data);
     }
 
-    public function info_request(Request $request) {
+    function info_request(Request $request) {
 
         $user_id = null;
         if (Auth::user()) {
