@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d3532239d24f69d39430e0e03e03fdc",
+    "content-hash": "7522520f6959a88bb31f2bdc2f0f1748",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1529,6 +1529,58 @@
                 "type"
             ],
             "time": "2020-03-21T18:07:53+00:00"
+        },
+        {
+            "name": "plivo/plivo-php",
+            "version": "v4.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plivo/plivo-php.git",
+                "reference": "1d18a479ac856fd73c938fbff0312db50fc7f174"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plivo/plivo-php/zipball/1d18a479ac856fd73c938fbff0312db50fc7f174",
+                "reference": "1d18a479ac856fd73c938fbff0312db50fc7f174",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0"
+            },
+            "require-dev": {
+                "justinrainbow/json-schema": "^5.2",
+                "phpunit/phpunit": "^8.1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/",
+                    "tests/"
+                ],
+                "exclude-from-classmap": []
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Plivo SDKs Team",
+                    "email": "sdks@plivo.com",
+                    "homepage": "https://developers.plivo.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP SDK to make voice calls & send SMS using Plivo and to generate Plivo XML",
+            "homepage": "http://github.com/plivo/plivo-php",
+            "keywords": [
+                "api",
+                "plivo",
+                "plivo xml",
+                "sms",
+                "voice calls"
+            ],
+            "time": "2020-04-13T04:42:56+00:00"
         },
         {
             "name": "psr/container",
@@ -3683,6 +3735,56 @@
                 "rets"
             ],
             "time": "2020-03-19T01:47:32+00:00"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "6.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "50f51c445684b81d1b67ecdaaaf1d59a1654bac9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/50f51c445684b81d1b67ecdaaaf1d59a1654bac9",
+                "reference": "50f51c445684b81d1b67ecdaaaf1d59a1654bac9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3",
+                "phpunit/phpunit": ">=4.5",
+                "theseer/phpdox": "^0.12.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2020-04-29T20:03:50+00:00"
         },
         {
             "name": "unisharp/laravel-ckeditor",

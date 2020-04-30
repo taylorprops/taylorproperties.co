@@ -549,6 +549,7 @@
                     <div class="modal-footer d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary" id="send_request_button">Send Request <i class="fal fa-share"></i></button>
                     </div>
+                    <input type="hidden" id="showing_lead_id">
                 </form>
             </div>
 
@@ -638,6 +639,7 @@
                     <div class="modal-footer d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary" id="send_info_request_button">Send Request</button>
                     </div>
+                    <input type="hidden" id="info_lead_id">
                 </form>
             </div>
 
@@ -832,6 +834,7 @@
             var showing_time_alt = $('#showing_time_alt').val();
             var comments = $('#comments').val();
             var listing_id = $('#listing_id').val();
+            var lead_id = $('#showing_lead_id').val();
             $.ajax({
                 type: 'post',
                 url: '{{ route('search.schedule_showing') }}',
@@ -845,6 +848,7 @@
                     showing_time_alt: showing_time_alt,
                     comments: comments,
                     listing_id: listing_id,
+                    lead_id: lead_id,
                     address: address,
                     _token: _token
                 },
@@ -865,6 +869,7 @@
         var comments = $('#info_request_comments').val();
         var listing_id = $('#listing_id').val();
         var address = $('#address').val();
+        var lead_id = $('#info_lead_id').val();
         var url = window.location.href;
         $.ajax({
             type: 'post',
@@ -876,6 +881,7 @@
                 comments: comments,
                 listing_id: listing_id,
                 address: address,
+                lead_id: lead_id,
                 url: url,
                 _token: _token
             },
@@ -908,10 +914,12 @@
                         $('#showing_name').val(response.name).addClass('valid').next('label').addClass('active');
                         $('#showing_email').val(response.email).addClass('valid').next('label').addClass('active');
                         $('#showing_phone').val(response.phone).addClass('valid').next('label').addClass('active');
+                        $('#showing_lead_id').val(response.lead_id);
                     } else if (type == 'info') {
                         $('#info_request_name').val(response.name).addClass('valid').next('label').addClass('active');
                         $('#info_request_email').val(response.email).addClass('valid').next('label').addClass('active');
                         $('#info_request_phone').val(response.phone).addClass('valid').next('label').addClass('active');
+                        $('#info_lead_id').val(response.lead_id);
                     }
                 }
             }

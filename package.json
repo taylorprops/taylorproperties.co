@@ -24,7 +24,7 @@
     "cross-env": "^5.2.1",
     "eslint": "^6.7.2",
     "eslint-plugin-react": "^7.14.2",
-    "jquery": "^3.4",
+    "jquery": "^3.5.0",
     "laravel-mix": "^4.0.15",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.7.0",

@@ -16,13 +16,14 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Leads;
 use App\LeadsProperties;
+use Twilio\TwiML\MessagingResponse;
 
 class SearchController extends Controller {
 
     public function get_user_data() {
         if (Auth::user()) {
-            $user      = Auth::user();
-            $lead = Leads::where('l_user_id', $user -> id) -> first();
+            $user = Auth::user();
+            $lead = Leads::where('l_user_id', $user -> id) -> orWhere('l_email', $user -> email) -> first();
             $lead_id = $lead -> id ?? null;
             $user_data = [
                 'status' => 'found',
@@ -461,5 +462,17 @@ class SearchController extends Controller {
         } else {
             return false;
         }
+    }
+
+    public function sms_replies(Request $request) {
+        // Set the content-type to XML to send back TwiML from the PHP Helper Library
+        header("content-type: text/xml");
+
+        $response = new MessagingResponse();
+        $response -> message(
+            "I'm using the Twilio PHP library to respond to this SMS!"
+        );
+
+        echo $response;
     }
 }
