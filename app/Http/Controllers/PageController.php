@@ -30,17 +30,10 @@ class PageController extends Controller {
                 -> limit($slides_per_row)
                 -> get();
         }
-        //return view('welcome5', ['sliders' => $sliders]);
-        return view('welcome-gp', ['sliders' => $sliders]);
 
-        /*$featuredListings = FeaturedListings::where('ListPictureURL', '!=', '')
-    -> where('PublicRemarks', '!=', '')
-    -> whereNotNull('ListPictureURL')
-    -> whereNotNull('PublicRemarks')
-    -> limit(8)
-    -> get();
+        return view('welcome-gp', compact('sliders'));
 
-    return view('welcome3') -> with('featuredListings',$featuredListings);*/
+
     }
 
     public function about() {

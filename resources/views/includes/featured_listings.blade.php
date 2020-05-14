@@ -1,5 +1,6 @@
 <div class="pt-5">
     <h2 class="text-center mb-4">Featured Listings</h1>
+
         <div id="featured-listings" class="container container-full mt-2">
             <div class="row">
                 <div class="col-12">
