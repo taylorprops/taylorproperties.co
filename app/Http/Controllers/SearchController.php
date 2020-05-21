@@ -16,13 +16,15 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Leads;
 use App\LeadsProperties;
+use Twilio\TwiML\MessagingResponse;
+use Twilio\Rest\Client;
 
 class SearchController extends Controller {
 
     public function get_user_data() {
         if (Auth::user()) {
-            $user      = Auth::user();
-            $lead = Leads::where('l_user_id', $user -> id) -> first();
+            $user = Auth::user();
+            $lead = Leads::where('l_user_id', $user -> id) -> orWhere('l_email', $user -> email) -> first();
             $lead_id = $lead -> id ?? null;
             $user_data = [
                 'status' => 'found',
@@ -40,7 +42,7 @@ class SearchController extends Controller {
         return response() -> json($user_data);
     }
 
-    public function info_request(Request $request) {
+    function info_request(Request $request) {
 
         $user_id = null;
         if (Auth::user()) {
@@ -461,5 +463,17 @@ class SearchController extends Controller {
         } else {
             return false;
         }
+    }
+
+    public function sms_replies(Request $request) {
+        // Set the content-type to XML to send back TwiML from the PHP Helper Library
+        header("content-type: text/xml");
+
+        $response = new MessagingResponse();
+        $response -> message(
+            "This number does not accept incoming messages. Please call us at 800-590-0925"
+        );
+
+        return $response;
     }
 }

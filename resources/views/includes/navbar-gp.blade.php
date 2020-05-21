@@ -17,11 +17,11 @@
             <img id="logo" src="{{ asset('images/logos/TaylorProperties-white.png') }}" alt="Taylor Properties" width="150">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse" aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <div class="collapse navbar-collapse" id="navbar_collapse">
             <ul class="navbar-nav ml-auto p-4 p-lg-2">
                 <li class="nav-item {{ (Request::is('')) ? 'active' : '' }}">
                     <a class="nav-link text-white" href="/">Home Search</a>

@@ -85,6 +85,7 @@ $('#agent_search').keyup(function() {
 });
 
 function message_agent(id, name, email) {
+
     $('#email_agent_modal').modal();
     $('#email_agent_modal_label').text('Email '+name);
     $('#agent_id').val(id);

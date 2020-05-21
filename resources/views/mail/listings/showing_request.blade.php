@@ -5,7 +5,11 @@
 <style>
     th { text-align: left; }
 </style>
-<div style="font-weight: normal; font-size: 18px; width: 100%; text-align: center">
+@if($showing -> lead_assigned)
+<div style="font-size: 18px; font-weight: bold; color: red">Lead has already been assigned to an agent. Agent details below</div>
+<br>
+@endif
+<div style="font-weight: normal; font-size: 18px; width: 100%;">
     Showing Request Sent from <span class="text-primary" style="font-size: 24px;font-weight: bold">{{ $showing['name'] }}</span>
 </div>
 <br>
@@ -83,6 +87,26 @@
 | <a href="{{ config('app.url') }}/search/listing_results?listing_id={{ $other['listing_id'] }}" target="_blank"> {!! $other['address'] !!} </a> | {{ $other['showing_date'] }} <br> {{ date("h:i A", strtotime($other['showing_time'])) }} |
 @endforeach
 @endcomponent
+@endif
+
+@if($showing -> lead_assigned)
+<div style="font-size: 18px; font-weight: bold; color: red">Lead has already been assigned to an agent</div>
+<br>
+<strong>Agent Details</strong>
+<table cellpadding="6">
+    <tr>
+        <td align="right">Name: </td>
+        <td><strong>{{ $showing -> lead_assigned -> fullname }}</strong></td>
+    </tr>
+    <tr>
+        <td align="right">Phone: </td>
+        <td><strong>{{ $showing -> lead_assigned -> phone }}</strong></td>
+    </tr>
+    <tr>
+        <td align="right">Email: </td>
+        <td><strong>{{ $showing -> lead_assigned -> email }}</strong></td>
+    </tr>
+</table>
 @endif
 <br>
 Thanks,<br>
