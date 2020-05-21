@@ -33,7 +33,7 @@
                     <div>
                         <h2>Find the Right Agent</h2>
                         <p class="">Real estate agents can provide you with helpful information on homes and neighborhoods that isn’t easily accessible to the public. Their knowledge of the home buying process, negotiating skills, and familiarity with the area you
-                            want to live in can be extremely valuable. And best of all, it doesn’t cost you anything to use an agent – they’re compensated from the commission paid by the seller of the house.</p>
+                            want to live in can be extremely valuable. And best of all, it doesn’t cost you anything to use an agent – they’re compensated from the commission paid by the seller of the house. <a href="/realtors-near-me">Learn about our REALTOR&reg; Match Program and find the best agent for your needs!</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 order1">

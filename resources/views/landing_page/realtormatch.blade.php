@@ -28,6 +28,12 @@ best real estate agent near me, realtors near me, real estate agents near me
       font-size: 1rem;
       font-weight: bold;
     }
+    #intro {
+        background-image: url('https://www.taylorproperties.co/images/taylorprops-hero.jpeg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,.5));
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: overlay;
+    }
     @media (max-width: 740px) {
         html,
         body,
@@ -53,88 +59,78 @@ best real estate agent near me, realtors near me, real estate agents near me
 </style>
 @endsection
 @section('content')
-<!-- Full Page Intro -->
-<div class="view full-page-intro" style="background-image: url('https://www.taylorproperties.co/images/taylorprops-hero.jpeg'); background-repeat: no-repeat; background-size: cover;">
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-        <!-- Content -->
-        <div class="container">
-            <!--Grid row-->
-            <div class="row wow fadeIn">
-                <!--Grid column-->
-                <div id="hero" class="col-md-6 mb-4 white-text text-center text-md-left">
-                    <h1 class="display-4 font-weight-bold">REALTOR&reg; Match Program</h1>
-                    <hr class="hr-light">
-                    <p>
-                        <strong>Thinking of buying, selling or renting a home soon? Find the perfect agent for your Real Estate needs.</strong>
-                    </p>
-                    <p>
-                        <strong>Get matched with a top REALTOR&reg; that specializes in your local area with training and experience tailored to your specific needs. Fill out the form to get started with our personalized Realtor Match Program!</strong>
-                    </p>
-                </div>
-                <!--Grid column-->
-                <!--Grid column-->
-                <div class="col-md-6 col-xl-5 mb-4">
-                    <!--Card-->
-                    <div class="card">
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!-- Form -->
-                            <form id="contact_form">
-
-                                <!-- Heading -->
-                                <img src="https://www.taylorproperties.co/images/logos/TaylorProperties-blackblue.png" alt="Taylor Properties" style="max-width: 125px; margin: 0 auto; text-align: center;">
-                                <hr>
-                                <div class="md-form">
-                                    <i class="fas fa-user prefix grey-text"></i>
-                                    <input type="text" id="name" name="name" class="form-control" required="required">
-                                    <label for="name">Your name *</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fas fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="email" name="email" class="form-control" required="required">
-                                    <label for="email">Your email *</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fas fa-phone prefix grey-text"></i>
-                                    <input type="tel" id="phone" name="phone" class="form-control phone" required="required">
-                                    <label for="phone">Your phone *</label>
-                                </div>
-                                <!--Textarea with icon prefix-->
-                                <div class="md-form">
-                                    <i class="fas fa-pencil prefix grey-text"></i>
-                                    <textarea type="text" id="message" name="message" class="md-textarea form-control" rows="3" required></textarea>
-                                    <label for="message">Your message *</label>
-                                </div>
-                                <div class="text-center mt-3">
-                                    <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Get Started</button>
-                                </div>
-                                <input type="hidden" id="type" name="type" value="realtor_match">
-
-                            </form>
-                            <!-- Form -->
-                        </div>
-                    </div>
-                    <!--/.Card-->
-                </div>
-                <!--Grid column-->
-            </div>
-            <!--Grid row-->
-        </div>
-        <!-- Content -->
-    </div>
-    <!-- Mask & flexbox options-->
-</div>
-<!-- Full Page Intro -->
 <!--Main layout-->
 <main>
+    <div id="intro" class="container-full">
+        <!--Grid row-->
+                <div class="row wow fadeIn" style="margin: 0 15px;">
+                    <!--Grid column-->
+                    <div id="hero" class="col-md-6 mb-4 white-text text-center text-md-left">
+                        <h1 class="display-4 font-weight-bold">REALTOR&reg; Match Program</h1>
+                        <hr class="hr-light">
+                        <p>
+                            <strong>Thinking of buying, selling or renting a home soon? Find the perfect agent for your Real Estate needs.</strong>
+                        </p>
+                        <p>
+                            <strong>Get matched with a top REALTOR&reg; that specializes in your local area with training and experience tailored to your specific needs. Fill out the form to get started with our personalized Realtor Match Program!</strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mb-4">
+                        <!--Card-->
+                        <div class="card">
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!-- Form -->
+                                <form id="contact_form">
+
+                                    <!-- Heading -->
+                                    <p style="text-align: center;"><img src="https://www.taylorproperties.co/images/logos/TaylorProperties-blackblue.png" alt="Taylor Properties" style="max-width: 125px; margin: 0 auto; text-align: center;"></p>
+                                    <hr>
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix grey-text"></i>
+                                        <input type="text" id="name" name="name" class="form-control" required="required">
+                                        <label for="name">Your name *</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="email" id="email" name="email" class="form-control" required="required">
+                                        <label for="email">Your email *</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-phone prefix grey-text"></i>
+                                        <input type="tel" id="phone" name="phone" class="form-control phone" required="required">
+                                        <label for="phone">Your phone *</label>
+                                    </div>
+                                    <!--Textarea with icon prefix-->
+                                    <div class="md-form">
+                                        <i class="fas fa-pencil prefix grey-text"></i>
+                                        <textarea type="text" id="message" name="message" class="md-textarea form-control" rows="3" required></textarea>
+                                        <label for="message">Your message *</label>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button id="contact_form_submit" class="btn btn-secondary waves-effect waves-light" type="submit">Get Started</button>
+                                    </div>
+                                    <input type="hidden" id="type" name="type" value="realtor_match">
+
+                                </form>
+                                <!-- Form -->
+                            </div>
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+    </div>
     <div class="container">
         <!--Section: Main info-->
         <section class="wow fadeIn">
             <!--Grid row-->
             <div class="row">
                 <!-- Section: Testimonials v.3 -->
-                <section class="team-section text-center my-5">
+                <section class="team-section text-center my-5 px-3">
                     <!-- Section heading -->
                     <h2 class="h1-responsive font-weight-bold my-5">WHAT OUR CLIENTS THINK</h2>
                     <!-- Section description -->
@@ -209,7 +205,7 @@ best real estate agent near me, realtors near me, real estate agents near me
         <hr class="my-5">
         <!--Section: Main features & Quick Start-->
         <section>
-            <h2 class="h1-responsive font-weight-bold mt-5 mb-3 text-center">HOW OUR MATCH PROGRAM WORKS</h3>
+            <h2 class="h1-responsive font-weight-bold mt-5 mb-3 text-center">HOW OUR MATCH PROGRAM WORKS</h2>
             <p class="text-center mb-5">Our REALTOR Match Program will match you with one of Taylor Properties' 800+ in-house professionals in Maryland, Washington D.C. or Virginia, ready to help you buy, sell, or rent a home. Our real estate agents are thoroughly vetted and are chosen to help our clients based on experience.</p>
             <!--Grid row-->
             <!--div class="row wow fadeIn">
@@ -262,8 +258,7 @@ best real estate agent near me, realtors near me, real estate agents near me
 
     <!-- Jumbotron -->
     <div class="card card-image">
-      <div class="text-white text-center rgba-stylish-strong py-5 px-4" style="border-radius: 0px; background-color: #f1945c;
-    }">
+      <div class="text-white text-center rgba-stylish-strong py-5 px-4" style="border-radius: 0px; background-color: #f1945c;}">
         <div class="col-md-8 py-5" style="margin: 0 auto;">
 
           <!-- Content -->

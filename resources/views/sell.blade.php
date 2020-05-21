@@ -7,7 +7,7 @@
             <div class="header-text">
                 <h1>Sell Your Home</h1>
                 <p>Selling your home will likely be one of the biggest transactions of your life. Hiring the right agent will ensure a smooth process and relieve the stress selling your home can cause. Agents can create a broader exposure for your property, help you negotiate a better deal, utilize their knowledge in specialty situations and use their experience to ensure you are fully informed at all times.</p>
-                <p>Real estate is an intensely-localized commodity. Taylor Properties is the largest independent real estate brokerage in Maryland and continues to grow with new agents joining from Maryland, DC, Virginia and Pennsylvania each day. Let one of our agents take the stress of selling your home off your shoulders.</p>
+                <p>Real estate is an intensely-localized commodity. Taylor Properties is the largest independent real estate brokerage in Maryland and continues to grow with new agents joining from Maryland, DC, Virginia and Pennsylvania each day. <a href="/realtors-near-me">Let one of our agents take the stress of selling your home off your shoulders.</a></p>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
                 <div class="col-md-6 col-lg-6 ml-auto d-flex align-items-center mt-4 mt-md-0 order2">
                     <div>
                         <h2>Marketing</h2>
-                        <p class="">Getting your home ready to sell in only half the battle. Getting your home in-front of many qualified buyers as possible is the other half. To ensure your home is viewed by as many Home Buyers as possible, Taylor Properties' listings are advertised on all Real Estate websites. No matter if a Buyer is on Zillow.com or the website of a small Brokerage, your home will be displayed for all to see.</p>
+                        <p class="">Getting your home ready to sell in only half the battle. Getting your home in-front of many qualified buyers as possible is the other half. To ensure your home is viewed by as many Home Buyers as possible, Taylor Properties' listings are advertised on all Real Estate websites. No matter if a Buyer is on Zillow or the website of a small brokerage, your home will be displayed for all to see. <a href="/realtors-near-me">Let our agents market and find buyers to get your home sold today.</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 order1">
@@ -58,7 +58,7 @@
                 <div class="col-md-6 col-lg-6 ml-auto d-flex align-items-center mt-4 mt-md-0 order2">
                     <div>
                         <h2>Get the best deal</h2>
-                        <p class="">Our in-house title and financial consultants can give you the best deal on any fees associated with the sale of your home (and the purchase of your next). Utilize our contacts to save you time, money and stress.</p>
+                        <p class="">Our <a href="/about/partners">in-house title and financial consultants</a> can give you the best deal on any fees associated with the sale of your home (and the purchase of your next). Utilize our contacts to save you time, money and stress.</p>
                     </div>
                 </div>
                 <div class="col-md-6 order1">
