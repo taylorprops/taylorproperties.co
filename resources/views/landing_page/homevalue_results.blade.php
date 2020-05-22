@@ -33,7 +33,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                         <div class="col-12 col-md-5 mx-auto">
                             <div class="d-flex align-items-center h-100">
                                 <div>
-                                    <div class="h3 text-primary">Your Home Value Results</div>
+                                    <div class="h3 text-secondary">Your Home Value Results</div>
                                     <div class="h5 text-primary">
                                         Here is the estimated value of the property you have searched for. Automated property values can sometimes be in error so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
                                     </div>
@@ -66,7 +66,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
             </div>
         </div>
     </div>
-
+<hr>
     <div class="container py-4">
 
         <!--Section: Main features & Quick Start-->
