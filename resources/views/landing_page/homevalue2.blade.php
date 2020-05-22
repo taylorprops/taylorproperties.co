@@ -316,16 +316,20 @@ $(document).ready(function() {
     });
 
     $('#home_value_form').submit(function() {
-        var rprAvmWidgetOptions = {
-            Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
-            Query: "8337 Elm Rd, Millersville, MD 21108",
-            CoBrandCode: "btstaylorproperties",
-            ShowRprLinks: false
-        }
-        $('#home_value_results').html(rprAvmWidgetOptions);
+        let url = '//www.narrpr.com/widgets/avm-widget/widget.ashx/script';
+        $.getScript( url, function() {
+            let rprAvmWidgetOptions = {
+                Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
+                Query: "8337 Elm Rd, Millersville, MD 21108",
+                CoBrandCode: "btstaylorproperties",
+                ShowRprLinks: false
+            }
+            $('#home_value_results').html(rprAvmWidgetOptions);
+        });
+
     });
 
 });
 </script>
-<script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
+
 @endsection
