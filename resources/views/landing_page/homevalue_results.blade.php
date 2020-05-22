@@ -8,121 +8,45 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 @endsection
 @section('css')
 <style type="text/css">
-    .page-container {
-        margin: 0 !important;
-    }
-    .search-container {
-        width: 600px;
-    }
 
     @media (max-width: 768px) {
         body {
             padding: 0 0 !important;
-        }
-        .search-container {
-            max-width: 95%;
-            margin-left: auto;
-            margin-right: auto;
         }
     }
 </style>
 @endsection
 @section('content')
 <div class="page-container page-home-values">
-    <div class="container-full mb-0 pt-sm-5">
-        <!-- GP HERO SECTION -->
-        <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('/images/taylorprops-hero.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-stylish-light d-flex justify-content-center align-items-center">
-                <!-- Content -->
-                <div class="container">
-                    <!--Grid row-->
-                    <div class="row">
-                        <!--Grid column-->
-
-                        <div class="mask index-mask d-flex align-items-center">
-
-                            <div class="search-container mx-auto">
-                                <!-- Material form contact -->
-                                <div class="card white-text">
-                                    <div class="h2-responsive card-header bg-primary text-center py-1 py-md-2"><i class="fad fa-house mr-2"></i> Instant Home Value Report</div>
-                                    <!--Card content-->
-                                    <div class="card-body px-lg-5 pt-0">
-                                        <div class="home-value-form-div">
-                                            <form method="post" id="home_value_form" action="home_value_results">
-
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_first_name" name="home_value_first_name" class="form-control" required>
-                                                            <label for="home_value_first_name">First name</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_last_name" name="home_value_last_name" class="form-control" required>
-                                                            <label for="home_value_last_name">Last name</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="email" id="home_value_email" name="home_value_email" class="form-control" required>
-                                                            <label for="home_value_email">E-mail</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_phone" name="home_value_phone" class="form-control phone" required>
-                                                            <label for="home_value_phone">Phone number</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-sm-10">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_street_search" name="home_value_street_search" class="form-control" placeholder="" required>
-                                                            <label for="home_value_street">Property Street Address</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_unit" name="home_value_unit" class="form-control">
-                                                            <label for="home_value_unit">Unit</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" id="home_value_street_number" name="home_value_street_number" value="">
-                                                <input type="hidden" id="home_value_street_name" name="home_value_street_name" value="">
-                                                <input type="hidden" id="home_value_state" name="home_value_state" value="">
-                                                <input type="hidden" id="home_value_city" name="home_value_city" value="">
-                                                <input type="hidden" id="home_value_zip" name="home_value_zip" value="">
-                                                <div class="form-row">
-                                                    <div class="col text-center">
-                                                        <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!--Grid column-->
+{{ dd($_POST) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="mt-2 mt-sm-5 text-center">
+                    <div class="h3 text-primary">Your Home Value Results</div>
+                    <div id="found" class="w-100 d-flex justify-content-center mt-3">
+                        <script>
+                        var rprAvmWidgetOptions = {
+                            Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
+                            Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
+                            CoBrandCode: "btstaylorproperties",
+                            ShowRprLinks: false
+                        }
+                        </script>
+                        <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
                     </div>
-                    <!--Grid row-->
+
+                    <div id="not_found">
+                        <div class="w-100 d-flex justify-content-center mt-3">
+                            <div class="h4 text-secondary">We were not able to locate a property with the address provided.<br>
+                            Please try again.<br><br>
+                            <a href="/what-is-my-home-worth" class="btn btn-primary">Try Again</a>
+                        </div>
+                    </div>
                 </div>
-                <!-- Content -->
             </div>
-            <!-- Mask & flexbox options-->
         </div>
     </div>
-
-
 
     <div class="container py-4">
 
@@ -250,7 +174,6 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 
     </div>
 
-
 </div>
 
 @endsection
@@ -259,61 +182,14 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $('label[for="home_value_street"]').bind('click focus', function() {
-        $(this).addClass('active').prev('input').focus();
-    });
-
-    let address_search_street = document.getElementById('home_value_street_search');
-    let places = new google.maps.places.Autocomplete(address_search_street);
-    google.maps.event.addListener(places, 'place_changed', function () {
-
-        let address_details = places.getPlace();
-        let street_number = street_name = city = state = zip = '';
-        address_details.address_components.forEach(function (address) {
-            if (address.types.includes('street_number')) {
-                street_number = address.long_name;
-                $('#home_value_street_number').val(street_number);
-            } else if (address.types.includes('route')) {
-                street_name = address.long_name;
-                $('#home_value_street_name').val(street_name);
-            } else if (address.types.includes('locality')) {
-                city = address.long_name;
-                $('#home_value_city').val(city);
-            } else if (address.types.includes('administrative_area_level_1')) {
-                state = address.short_name;
-                $('#home_value_state').val(state);
-            } else if (address.types.includes('postal_code')) {
-                zip = address.long_name;
-                $('#home_value_zip').val(zip);
-            }
-        });
-
-    });
-
-    $('#submit_home_value_form').click(function(e) {
-        e.preventDefault();
-        let formData = new FormData();
-        formData.append('full_address', $('#home_value_street_search').val());
-        formData.append('unit', $('#home_value_unit').val());
-        formData.append('street_number', $('#home_value_street_number').val());
-        formData.append('street_name', $('#home_value_street_name').val());
-        formData.append('city', $('#home_value_city').val());
-        formData.append('state', $('#home_value_state').val());
-        formData.append('zip', $('#home_value_zip').val());
-        formData.append('first_name', $('#home_value_first_name').val());
-        formData.append('last_name', $('#home_value_last_name').val());
-        formData.append('phone', $('#home_value_phone').val());
-        formData.append('email', $('#home_value_email').val());
-
-        axios.post('/save_home_value_request', formData, axios_options)
-            .then(function (response) {
-                document.getElementById('home_value_form').submit();
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-
+    $('#found, #not_found').hide();
+    setTimeout(function() {
+        if($('#rprAvmWidget_1').html() == '') {
+            $('#not_found').show();
+        } else {
+            $('#found').show();
+        }
+    }, 1000);
 
 });
 </script>

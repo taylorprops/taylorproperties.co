@@ -84,7 +84,11 @@ Route::get('/realtors-near-me', function () {
 Route::get('/what-is-my-home-worth', function () {
     return view('landing_page.homevalue2');
 });
+Route::post('/home_value_results', function () {
+    return view('landing_page.homevalue_results');
+}) -> name('home_value_results');
 
+Route::post('/save_home_value_request', 'PageController@save_home_value_request');
 
 Route::post('/contact-submit', 'PageController@contactSubmit') -> name('contact.submit');
 

@@ -195,6 +195,22 @@ class PageController extends Controller {
 
     }
 
+    public function save_home_value_request(Request $request) {
+        dd($request -> all());
+        $street_number = $request -> street_number;
+        $street_name = $request -> street_name;
+        $city = $request -> city;
+        $state = $request -> state;
+        $zip = $request -> zip;
+
+        $first = $request -> first;
+        $last = $request -> last;
+        $phone = $request -> phone;
+        $email = $request -> email;
+
+        //https://www.narrpr.com/find.aspx?Query=8337%20Elm%20Rd%2C%20Millersville%2C%20MD%2021108&AppPropertyMode=Residential&Action=PropertyDetails&DetailsTab=Summary
+    }
+
     /* GARYS DESIGNS */
     /*public function gphomepage() {
         $sliders        = array();
