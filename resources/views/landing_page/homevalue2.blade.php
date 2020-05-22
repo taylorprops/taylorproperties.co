@@ -106,6 +106,22 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 
 
                                             </form>
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="home_value_results"><script>
+                                                            var rprAvmWidgetOptions = {
+                                                                Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
+                                                                Query: "8337 Elm Rd, Millersville, MD 21108",
+                                                                CoBrandCode: "btstaylorproperties",
+                                                                ShowRprLinks: false
+                                                            }
+                                                            </script>
+                                                            <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -305,6 +321,10 @@ $(document).ready(function() {
         $('#home_value_street').val(city);
         $('#home_value_street').val(state);
         $('#home_value_street').val(zip);
+    });
+
+    $('#home_value_form').submit(function() {
+        //$('#home_value_results').html(results);
     });
 
 });
