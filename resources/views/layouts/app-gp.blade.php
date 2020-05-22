@@ -16,6 +16,7 @@
         <meta name="Description" content="@yield('meta-description','Taylor Properties offers residential and commercial Real Estate services throughout Maryland, DC and Virginia. As one of the fastest growing Brokerages we have agents to cover any of you home buying needs from foreclosures to water front.')">
         <meta name="Keywords" content="@yield('meta-keywords','taylor properties, Real Estate Agents maryland, real estate company maryland, real estate agents maryland')">
 
+        <meta name="google-site-verification" content="AIzaSyBMQvl2QmVODDgH02UQJu4-7dYfvtYDZDs">
 
         @yield('schema', View::make('includes.schema'))
 
