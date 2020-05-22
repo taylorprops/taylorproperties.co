@@ -44,7 +44,7 @@
         <?php } else { ?>
             @include('includes.navbar-gp')
         <?php } ?>
-
+        {{ config('google.vars.google_api_key') }}
         @yield('content')
 
         <?php if(!stristr($_SERVER['REQUEST_URI'], 'listing_results')) { ?>
