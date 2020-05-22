@@ -82,7 +82,7 @@ Route::get('/realtors-near-me', function () {
     return view('landing_page.realtormatch');
 });
 Route::get('/what-is-my-home-worth', function () {
-    return view('landing_page.homevalue');
+    return view('landing_page.homevalue2');
 });
 
 

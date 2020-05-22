@@ -11,17 +11,25 @@ top listing agents in maryland, listing agent near me, listing real estate agent
     .page-container {
         margin: 0 !important;
     }
+    .search-container {
+        width: 600px;
+    }
 
     @media (max-width: 768px) {
         body {
             padding: 0 0 !important;
         }
+        .search-container {
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 </style>
 @endsection
 @section('content')
-<div class="page-container page-index">
-    <div class="container-full mb-0">
+<div class="page-container page-home-values">
+    <div class="container-full mb-0 pt-sm-5">
         <!-- GP HERO SECTION -->
         <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('/images/taylorprops-hero.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <!-- Mask & flexbox options-->
@@ -37,20 +45,67 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                             <div class="search-container mx-auto">
                                 <!-- Material form contact -->
                                 <div class="card white-text">
-                                    <div class="h2-responsive card-header primary-color white-text text-center py-1 py-md-2">How Much Is My Home Worth?</div>
+                                    <div class="h2-responsive card-header bg-primary text-center py-1 py-md-2">Instant Home Value Report</div>
                                     <!--Card content-->
                                     <div class="card-body px-lg-5 pt-0">
-                                        <div class="search-div d-flex justify-content-center align-items-center">
-                                            <div class="search-input-container">
-                                                <div class="md-form mt-2 mt-md-3">
-                                                    <i class="fal fa-search prefix text-primary"></i>
-                                                    <input type="text" id="index_search" class="form-control">
-                                                    <label for="index_search"><span id="search_label_big">Enter your street address</span><span id="search_label_small">Search</span></label>
+                                        <div class="home-value-form-div">
+                                            <form id="home_value_form">
+
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="md-form">
+                                                            <input type="text" id="home_value_first_name" class="form-control" required>
+                                                            <label for="home_value_first_name">First name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="md-form">
+                                                            <input type="text" id="home_value_last_name" class="form-control" required>
+                                                            <label for="home_value_last_name">Last name</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="search-results-container">
-                                                    <div class="search-results-div z-depth-3"></div>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="md-form">
+                                                            <input type="email" id="home_value_email" class="form-control" required>
+                                                            <label for="home_value_email">E-mail</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="md-form">
+                                                            <input type="text" id="home_value_phone" class="form-control phone" required>
+                                                            <label for="home_value_phone">Phone number</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="form-row">
+                                                    <div class="col-sm-10">
+                                                        <div class="md-form">
+                                                            <input type="text" id="home_value_street_search" class="form-control" placeholder="" required>
+                                                            <label for="home_value_street">Property Street Address</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="md-form">
+                                                            <input type="text" id="home_value_unit" class="form-control" required>
+                                                            <label for="home_value_unit">Unit</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" id="home_value_street_number">
+                                                <input type="hidden" id="home_value_street_name">
+                                                <input type="hidden" id="home_value_state">
+                                                <input type="hidden" id="home_value_city">
+                                                <input type="hidden" id="home_value_zip">
+                                                <div class="form-row">
+                                                    <div class="col text-center">
+                                                        <button class="btn btn-primary waves-effect" type="submit">Get Value</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -217,4 +272,41 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 
 </div>
 
+@endsection
+
+@section('js')
+<script type="text/javascript">
+$(document).ready(function() {
+
+    let address_search_street = document.getElementById('home_value_street_search');
+
+        // google address search
+    let places = new google.maps.places.Autocomplete(address_search_street);
+    google.maps.event.addListener(places, 'place_changed', function () {
+
+        let address_details = places.getPlace();
+        let street_number = street_name = city = county = state = zip = '';
+
+        address_details.address_components.forEach(function (address) {
+            if (address.types.includes('street_number')) {
+                street_number = address.long_name;
+            } else if (address.types.includes('route')) {
+                street_name = address.long_name;
+            } else if (address.types.includes('locality')) {
+                city = address.long_name;
+            } else if (address.types.includes('administrative_area_level_1')) {
+                state = address.short_name;
+            } else if (address.types.includes('postal_code')) {
+                zip = address.long_name;
+            }
+        });
+        $('#home_value_street').val(street_number);
+        $('#home_value_street').val(street_name);
+        $('#home_value_street').val(city);
+        $('#home_value_street').val(state);
+        $('#home_value_street').val(zip);
+    });
+
+});
+</script>
 @endsection

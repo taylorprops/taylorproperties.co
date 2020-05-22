@@ -59,6 +59,7 @@
         <script src="{{ asset('addons/slider/js/lightbox.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
         <script src="https://cdn.tiny.cloud/1/t3u7alod16y8nsqt07h4m5kwfw8ob9sxbvy2rlmrqo94zrui/tinymce/5/tinymce.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('google.vars.google_api_key') }}&libraries=places&outputFormat=json"></script>
 
 
         @yield('map_js')
