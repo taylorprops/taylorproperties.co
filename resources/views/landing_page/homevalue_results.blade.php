@@ -18,7 +18,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 @endsection
 @section('content')
 <div class="page-container page-home-values">
-{{ dd($_POST) }}
+
     <div class="container">
         <div class="row">
             <div class="col-12">
