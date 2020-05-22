@@ -9,6 +9,10 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 @section('css')
 <style type="text/css">
 
+    .rpr-avm-widget {
+        width: 450px !important;
+    }
+
     @media (max-width: 768px) {
         body {
             padding: 0 0 !important;
@@ -22,25 +26,40 @@ top listing agents in maryland, listing agent near me, listing real estate agent
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="mt-2 mt-sm-5 text-center">
-                    <div class="h3 text-primary">Your Home Value Results</div>
-                    <div id="found" class="w-100 d-flex justify-content-center mt-3">
-                        <script>
-                        var rprAvmWidgetOptions = {
-                            Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
-                            Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
-                            CoBrandCode: "btstaylorproperties",
-                            ShowRprLinks: false
-                        }
-                        </script>
-                        <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
-                    </div>
+                <div class="mt-2 mt-sm-5 mb-2 mb-sm-5 text-center">
 
-                    <div id="not_found">
-                        <div class="w-100 d-flex justify-content-center mt-3">
-                            <div class="h4 text-secondary">We were not able to locate a property with the address provided.<br>
-                            Please try again.<br><br>
-                            <a href="/what-is-my-home-worth" class="btn btn-primary">Try Again</a>
+
+                    <div class="row">
+                        <div class="col-12 col-md-5 mx-auto">
+                            <div class="d-flex align-items-center h-100">
+                                <div>
+                                    <div class="h3 text-primary">Your Home Value Results</div>
+                                    <div class="h5 text-primary">
+                                        Here is the estimated value of the property you have searched for. Automated property values can sometimes be in error so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 mx-auto">
+                            <div id="found" class="w-100 d-flex justify-content-center mt-3">
+                                <script>
+                                var rprAvmWidgetOptions = {
+                                    Token: "F616F19E-A2F8-4AC1-AE77-BEE8D97D8C2B",
+                                    Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
+                                    CoBrandCode: "btstaylorproperties",
+                                    ShowRprLinks: false
+                                }
+                                </script>
+                                <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
+                            </div>
+
+                            <div id="not_found">
+                                <div class="w-100 d-flex justify-content-center mt-3">
+                                    <div class="h4 text-secondary">We were not able to locate a property with the address provided.<br>
+                                    Please try again.<br><br>
+                                    <a href="/what-is-my-home-worth" class="btn btn-primary">Try Again</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
