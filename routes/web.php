@@ -82,10 +82,10 @@ Route::get('/realtors-near-me', function () {
     return view('landing_page.realtormatch');
 });
 Route::get('/what-is-my-home-worth', function () {
-    return view('landing_page.homevalue');
+    return view('landing_page.home_value');
 });
 Route::post('/home_value_results', function () {
-    return view('landing_page.homevalue_results');
+    return view('landing_page.home_value_results');
 }) -> name('home_value_results');
 
 Route::post('/save_home_value_request', 'PageController@save_home_value_request');

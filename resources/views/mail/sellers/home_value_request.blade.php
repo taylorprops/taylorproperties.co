@@ -26,6 +26,13 @@
 </table>
 <br><br>
 
+@php
+$address = urlencode($lead -> street_number.' '.$lead -> street_name.', '.($lead -> unit != '' ? $lead -> unit.', ' : '').$lead -> l_state.' '.$lead -> l_zip);
+@endphp
+@component('mail::button', ['url' => 'https://www.narrpr.com/find.aspx?Query='.$address.'&AppPropertyMode=Residential&Action=Reports&ReportType=ResidentialPropertyReport'])
+View Property Reports
+@endcomponent
+
 @component('mail::button', ['url' => 'https://annearundelproperties.net/new/leads/leads.php?show='.$lead -> id])
 View Lead Details
 @endcomponent

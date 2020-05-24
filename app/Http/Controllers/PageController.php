@@ -240,6 +240,9 @@ class PageController extends Controller {
         }
         $lead -> id = $lead_id;
         $lead -> full_address = $full_address;
+        $lead -> street_number = $street_number;
+        $lead -> street_name = $street_name;
+        $lead -> unit = $unit;
 
         $to_email = Config::get('email_routing.home_value_request.email');
         \Notification::route('mail', $to_email) -> notify(new HomeValueRequest($lead));

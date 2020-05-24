@@ -82,23 +82,23 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                                 <div class="form-row">
                                                     <div class="col-sm-10">
                                                         <div class="md-form">
-                                                            <input type="text" id="home_value_street_search" name="home_value_street_search" class="form-control" placeholder="" required>
+                                                            <input type="text" id="home_value_street_search" name="home_value_street_search" class="form-control clear" placeholder="" required>
                                                             <label for="home_value_street">Property Street Address</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="md-form">
-                                                            <input type="text" id="home_value_unit" name="home_value_unit" class="form-control">
+                                                            <input type="text" id="home_value_unit" name="home_value_unit" class="form-control clear">
                                                             <label for="home_value_unit">Unit</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <input type="hidden" id="home_value_street_number" name="home_value_street_number" value="">
-                                                <input type="hidden" id="home_value_street_name" name="home_value_street_name" value="">
-                                                <input type="hidden" id="home_value_state" name="home_value_state" value="">
-                                                <input type="hidden" id="home_value_city" name="home_value_city" value="">
-                                                <input type="hidden" id="home_value_county" name="home_value_county" value="">
-                                                <input type="hidden" id="home_value_zip" name="home_value_zip" value="">
+                                                <input type="hidden" id="home_value_street_number" name="home_value_street_number" class="clear">
+                                                <input type="hidden" id="home_value_street_name" name="home_value_street_name" class="clear">
+                                                <input type="hidden" id="home_value_state" name="home_value_state" class="clear">
+                                                <input type="hidden" id="home_value_city" name="home_value_city" class="clear">
+                                                <input type="hidden" id="home_value_county" name="home_value_county" class="clear">
+                                                <input type="hidden" id="home_value_zip" name="home_value_zip" class="clear">
                                                 <div class="form-row">
                                                     <div class="col text-center">
                                                         <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value</button>
@@ -264,11 +264,16 @@ $(document).ready(function() {
         $(this).addClass('active').prev('input').focus();
     });
 
+    $('#home_value_form').find('input.clear').val('');
+
     let address_search_street = document.getElementById('home_value_street_search');
     let places = new google.maps.places.Autocomplete(address_search_street);
     google.maps.event.addListener(places, 'place_changed', function () {
 
+
+
         let address_details = places.getPlace();
+
         let street_number = street_name = city = county = state = zip = '';
         address_details.address_components.forEach(function (address) {
             if (address.types.includes('street_number')) {
@@ -296,29 +301,34 @@ $(document).ready(function() {
     });
 
 
-    $('#submit_home_value_form').click(function(e) {
+    $('#home_value_form').submit(function(e) {
         e.preventDefault();
-        let formData = new FormData();
-        formData.append('full_address', $('#home_value_street_search').val());
-        formData.append('unit', $('#home_value_unit').val());
-        formData.append('street_number', $('#home_value_street_number').val());
-        formData.append('street_name', $('#home_value_street_name').val());
-        formData.append('city', $('#home_value_city').val());
-        formData.append('county', $('#home_value_county').val());
-        formData.append('state', $('#home_value_state').val());
-        formData.append('zip', $('#home_value_zip').val());
-        formData.append('first_name', $('#home_value_first_name').val());
-        formData.append('last_name', $('#home_value_last_name').val());
-        formData.append('phone', $('#home_value_phone').val());
-        formData.append('email', $('#home_value_email').val());
+        if($('#home_value_street_number').val() != '' ) {
+            let formData = new FormData();
+            formData.append('full_address', $('#home_value_street_search').val());
+            formData.append('unit', $('#home_value_unit').val());
+            formData.append('street_number', $('#home_value_street_number').val());
+            formData.append('street_name', $('#home_value_street_name').val());
+            formData.append('city', $('#home_value_city').val());
+            formData.append('county', $('#home_value_county').val());
+            formData.append('state', $('#home_value_state').val());
+            formData.append('zip', $('#home_value_zip').val());
+            formData.append('first_name', $('#home_value_first_name').val());
+            formData.append('last_name', $('#home_value_last_name').val());
+            formData.append('phone', $('#home_value_phone').val());
+            formData.append('email', $('#home_value_email').val());
 
-        axios.post('/save_home_value_request', formData, axios_options)
-            .then(function (response) {
-                document.getElementById('home_value_form').submit();
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            axios.post('/save_home_value_request', formData, axios_options)
+                .then(function (response) {
+                    document.getElementById('home_value_form').submit();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            e.preventDefault();
+            toastr['error']('Please select an address from the results');
+        }
     });
 
 

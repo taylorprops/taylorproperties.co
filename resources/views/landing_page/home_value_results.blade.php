@@ -19,6 +19,9 @@ top listing agents in maryland, listing agent near me, listing real estate agent
         width: 50% !important;
         text-align: center !important;
     }
+    .search-again {
+        max-width: 600px;
+    }
 
     @media (max-width: 768px) {
         body {
@@ -35,36 +38,44 @@ top listing agents in maryland, listing agent near me, listing real estate agent
             <div class="col-12">
                 <div class="mt-2 mt-sm-5 mb-2 mb-sm-5 text-center">
 
-                    <div class="h1 text-primary mb-3">Estimated Home Value Report</div>
-                    <div class="row">
-                        <div class="col-12 col-lg-6 col-xl-5 mx-auto">
-                            <div class="d-flex align-items-center h-100">
-                                <div>
-                                    <div class="h3 text-secondary">Your Home Value Results</div>
-                                    <div class="h5 text-primary">
-                                        Here is the estimated value of the property you have searched for. Automated property values can sometimes be in error so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
+                    <div class="h1 text-primary mb-3"><i class="fad fa-calculator mr-2 mb-2 mb-lg-5"></i> Estimated Home Value Report</div>
+                    <div class="p-4 rounded z-depth-1">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 col-xl-5 mx-auto">
+                                <div class="d-flex align-items-center h-100">
+
+                                    <div>
+                                        <div class="h3 mb-3 text-secondary font-weight-normal">Your Home Value Results</div>
+
+                                        <div class="h5 text-primary">{{ $_POST['home_value_street_number'].' '.$_POST['home_value_street_name'] . ($_POST['home_value_unit'] != '' ? ' Unit '.$_POST['home_value_unit'] : '').' '.$_POST['home_value_city'].', '.$_POST['home_value_state'].' '.$_POST['home_value_zip'] }}</div>
+
+                                        <div class="">
+                                            Here is the estimated value of the property you have searched for. Automated property values can sometimes be in error so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-6 col-xl-5 mx-auto">
-                            <div id="found" class="w-100 d-flex justify-content-center mt-3">
-                                <script>
-                                var rprAvmWidgetOptions = {
-                                    Token: "{{ config('narrpr.vars.narrpr_key') }}",
-                                    Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
-                                    CoBrandCode: "btstaylorproperties",
-                                    ShowRprLinks: false
-                                }
-                                </script>
-                                <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
-                            </div>
-
-                            <div id="not_found">
-                                <div class="w-100 d-flex justify-content-center mt-3">
-                                    <div class="h4 text-secondary">We were not able to locate a property with the address provided.<br>
-                                    Please try again.<br><br>
-                                    <a href="/what-is-my-home-worth" class="btn btn-primary">Try Again</a>
+                            <div class="col-12 col-lg-6 col-xl-5 mx-auto">
+                                <div id="found">
+                                    <div class="w-100 d-flex justify-content-center mt-3">
+                                        <script>
+                                        var rprAvmWidgetOptions = {
+                                            Token: "{{ config('narrpr.vars.narrpr_key') }}",
+                                            Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
+                                            CoBrandCode: "btstaylorproperties",
+                                            ShowRprLinks: false
+                                        }
+                                        </script>
+                                        <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
+                                    </div>
+                                </div>
+                                <div id="not_found" class="h-100">
+                                    <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+                                        <div class="p-2 p-lg-5 bg-danger rounded">
+                                            <div class="h5 text-white"><i class="fal fa-exclamation-triangle mr-2"></i> We were not able to locate a property with the address provided.<br>
+                                            Please try again.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +87,35 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 
     <div class="row">
         <div class="col-12">
-            <div class="my-3 w-100 text-center">
-                <a href="/what-is-my-home-worth" class="btn btn-primary">Search Again</a>
+            <div class="search-again my-3 mx-auto p-3 border rounded">
+                <div class="h5 text-secondary">Search Again</div>
+                <form method="post" id="home_value_form" action="home_value_results">
+                    <div class="form-row">
+                        <div class="col-sm-10">
+                            <div class="md-form">
+                                <input type="text" id="home_value_street_search" name="home_value_street_search" class="form-control clear" placeholder="" required>
+                                <label for="home_value_street">Property Street Address</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="md-form">
+                                <input type="text" id="home_value_unit" name="home_value_unit" class="form-control clear">
+                                <label for="home_value_unit">Unit</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="home_value_street_number" name="home_value_street_number" class="clear">
+                    <input type="hidden" id="home_value_street_name" name="home_value_street_name" class="clear">
+                    <input type="hidden" id="home_value_state" name="home_value_state" class="clear">
+                    <input type="hidden" id="home_value_city" name="home_value_city" class="clear">
+                    <input type="hidden" id="home_value_county" name="home_value_county" class="clear">
+                    <input type="hidden" id="home_value_zip" name="home_value_zip" class="clear">
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -226,6 +264,46 @@ $(document).ready(function() {
             $('#found').show();
         }
     }, 1000);
+
+    $('label[for="home_value_street"]').bind('click focus', function() {
+        $(this).addClass('active').prev('input').focus();
+    });
+
+    $('#home_value_form').find('input.clear').val('');
+
+    let address_search_street = document.getElementById('home_value_street_search');
+    let places = new google.maps.places.Autocomplete(address_search_street);
+    google.maps.event.addListener(places, 'place_changed', function () {
+
+
+
+        let address_details = places.getPlace();
+
+        let street_number = street_name = city = county = state = zip = '';
+        address_details.address_components.forEach(function (address) {
+            if (address.types.includes('street_number')) {
+                street_number = address.long_name;
+                $('#home_value_street_number').val(street_number);
+            } else if (address.types.includes('route')) {
+                street_name = address.long_name;
+                $('#home_value_street_name').val(street_name);
+            } else if (address.types.includes('administrative_area_level_2')) {
+                county = address.long_name.replace(/'/, '');
+                county = county.replace(/\sCounty/, '');
+                $('#home_value_county').val(county);
+            } else if (address.types.includes('locality')) {
+                city = address.long_name;
+                $('#home_value_city').val(city);
+            } else if (address.types.includes('administrative_area_level_1')) {
+                state = address.short_name;
+                $('#home_value_state').val(state);
+            } else if (address.types.includes('postal_code')) {
+                zip = address.long_name;
+                $('#home_value_zip').val(zip);
+            }
+        });
+
+    });
 
 });
 </script>
