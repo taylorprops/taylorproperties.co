@@ -43,6 +43,12 @@ return [
     'join_form_ccs' => [
         'emails' => env('EMAIL_JOIN_FORM_CCS'),
     ],
+    'home_value_request' => [
+        'email' => env('HOME_VALUE_REQUEST'),
+    ],
+    'home_value_request_ccs' => [
+        'emails' => env('HOME_VALUE_REQUEST_CCS'),
+    ],
 ];
 
 ?>

@@ -6,6 +6,7 @@ use App\Agent;
 use App\FeaturedListings;
 use App\Messages;
 use App\Notifications\ContactForm;
+use App\Notifications\HomeValueRequest;
 use App\OfficeLocation;
 use Config;
 use Illuminate\Http\Request;
@@ -196,19 +197,54 @@ class PageController extends Controller {
     }
 
     public function save_home_value_request(Request $request) {
-        dd($request -> all());
+
+        $full_address = $request -> full_address;
         $street_number = $request -> street_number;
+        $unit = $request -> unit;
         $street_name = $request -> street_name;
         $city = $request -> city;
+        $county = $request -> county;
         $state = $request -> state;
         $zip = $request -> zip;
 
-        $first = $request -> first;
-        $last = $request -> last;
+        $first_name = $request -> first_name;
+        $last_name = $request -> last_name;
         $phone = $request -> phone;
         $email = $request -> email;
 
-        //https://www.narrpr.com/find.aspx?Query=8337%20Elm%20Rd%2C%20Millersville%2C%20MD%2021108&AppPropertyMode=Residential&Action=PropertyDetails&DetailsTab=Summary
+        // add to leads database if not in there already
+        $existing = Leads::where('l1_email', $email) -> first();
+
+        // add to leads
+        $lead = new Leads();
+        $lead -> l_source = 'Website - Home Value Request';
+        $lead -> l1_email = $email;
+        $lead -> l1_first = $first_name;
+        $lead -> l1_last = $last_name;
+        $lead -> l1_phone = $phone;
+        $lead -> l_status = 'Lead';
+        $lead -> l_type = 'Sell';
+        $lead -> p_type = 'Y';
+        $lead -> p_location = $county . ' - '.$state;
+        $lead -> l_street = $street_number.' '.$street_name. ($unit != '' ? ' '.$unit : '');
+        $lead -> l_city = $city;
+        $lead -> l_state = $state;
+        $lead -> l_zip = $zip;
+        if(!$existing) {
+            $lead -> save();
+            $lead_id = $lead -> id;
+            $lead -> exists = 'no';
+        } else {
+            $lead_id = $existing -> id;
+            $lead -> exists = 'yes';
+        }
+        $lead -> id = $lead_id;
+        $lead -> full_address = $full_address;
+
+        $to_email = Config::get('email_routing.home_value_request.email');
+        \Notification::route('mail', $to_email) -> notify(new HomeValueRequest($lead));
+
+
     }
 
     /* GARYS DESIGNS */
