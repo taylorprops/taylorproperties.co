@@ -45,13 +45,22 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                 <div class="d-flex align-items-center h-100">
 
                                     <div>
-                                        <div class="h3 mb-3 text-secondary font-weight-normal">Your Home Value Results</div>
+                                        <div class="h3 mb-1 text-secondary font-weight-normal">Your Home Value Results For</div>
 
-                                        <div class="h5 text-primary">{{ $_POST['home_value_street_number'].' '.$_POST['home_value_street_name'] . ($_POST['home_value_unit'] != '' ? ' Unit '.$_POST['home_value_unit'] : '').' '.$_POST['home_value_city'].', '.$_POST['home_value_state'].' '.$_POST['home_value_zip'] }}</div>
+                                        <div class="h5 text-primary mb-2 mb-lg-5">{{ $_POST['home_value_street_number'].' '.$_POST['home_value_street_name'] . ($_POST['home_value_unit'] != '' ? ' Unit '.$_POST['home_value_unit'] : '').' '.$_POST['home_value_city'].', '.$_POST['home_value_state'].' '.$_POST['home_value_zip'] }}</div>
 
-                                        <div class="">
-                                            Here is the estimated value of the property you have searched for. Automated property values can sometimes be in error so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
+                                        <div class="mt-1 mt-lg-5">
+                                            Here is the estimated value of the property you have searched for. Automated property values are not as accurate as professional estimates so we strongly recommend that you speak with a Real Estate professional for a more accurate and complete home evaluation.
                                         </div>
+
+                                        <div class="mt-2 mt-lg-4">
+                                            <div class="h5 text-secondary">Call to schedule your professional evaluation</div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="h5"><a href="tel:80059009525" class="text-primary">(800) 590-0925</a></div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>

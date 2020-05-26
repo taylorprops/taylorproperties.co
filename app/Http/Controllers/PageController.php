@@ -230,6 +230,10 @@ class PageController extends Controller {
         $lead -> l_city = $city;
         $lead -> l_state = $state;
         $lead -> l_zip = $zip;
+        $lead -> listing_street = $street_number.' '.$street_name. ($unit != '' ? ' '.$unit : '');
+        $lead -> listing_city = $city;
+        $lead -> listing_state = $state;
+        $lead -> listing_zip = $zip;
         if(!$existing) {
             $lead -> save();
             $lead_id = $lead -> id;

@@ -4,6 +4,9 @@
 @component('mail::message')
 
 <div style="font-size: 18px; font-weight: bold">Seller Home Value Request submitted on taylorproperties.co</div>
+@if($lead -> exists == 'yes')
+<div style="margin: 10px auto; padding: 8px; background: red; color: white">This is from an existing lead</div>
+@endif
 <table id="" cellpadding="6">
     <tbody>
         <tr>
