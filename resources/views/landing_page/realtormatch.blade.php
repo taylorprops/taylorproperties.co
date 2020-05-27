@@ -63,7 +63,7 @@ best real estate agent near me, realtors near me, real estate agents near me
 <main>
     <div id="intro" class="container-full">
         <!--Grid row-->
-                <div class="row wow fadeIn" style="margin: 0 15px;">
+                <div class="row wow fadeIn" style="margin: 0 15px; align-items: center;">
                     <!--Grid column-->
                     <div id="hero" class="col-md-6 mb-4 white-text text-center text-md-left">
                         <h1 class="display-4 font-weight-bold">REALTOR&reg; Match Program</h1>

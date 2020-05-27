@@ -31,7 +31,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
 <div class="page-container page-home-values">
     <div class="container-full mb-0 pt-sm-5">
         <!-- GP HERO SECTION -->
-        <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('/images/taylorprops-hero.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('/images/taylorprops-forsale.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <!-- Mask & flexbox options-->
             <div class="mask rgba-stylish-light d-flex justify-content-center align-items-center">
                 <!-- Content -->

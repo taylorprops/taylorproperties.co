@@ -22,7 +22,7 @@
                 <div class="col-md-6 col-lg-6 ml-auto d-flex align-items-center mt-4 mt-md-0">
                     <div>
                         <h2>Know your comps</h2>
-                        <p class="">"Comps" or Comparables, are homes of similar size, condition, age, and style that recently sold in a certain neighborhood. Evaluating comparable homes and their prices can help determine a fair market value for a home. </p>
+                        <p class="">"Comps" or Comparables, are homes of similar size, condition, age, and style that recently sold in a certain neighborhood. <a href="/what-is-my-home-worth">Evaluating comparable homes and their prices can help determine a fair market value for a home.</a></p>
                         <p>Our real estate agents can help recommend home improvement options to have your new listing be more competitve and attractive to potential buyers. When you are ready to list, your agent might suggest the best time to put your home
                             on the market, price, or even contractors to help with painting, staging, and other ways to get your home sold at the best price.</p>
                     </div>
