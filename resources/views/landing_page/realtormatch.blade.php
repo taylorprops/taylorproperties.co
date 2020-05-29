@@ -44,9 +44,6 @@ best real estate agent near me, realtors near me, real estate agents near me
         body {
             padding: 0 !important;
         }
-        #hero {
-            padding-top: 3em;
-        }
     }
     @media (min-width: 800px) and (max-width: 850px) {
         html,
@@ -61,12 +58,12 @@ best real estate agent near me, realtors near me, real estate agents near me
 @section('content')
 <!--Main layout-->
 <main>
-    <div id="intro" class="container-full">
+    <div id="intro" class="container-full mb-0">
         <!--Grid row-->
-                <div class="row wow fadeIn" style="margin: 0 15px; align-items: center;">
+                <div class="row wow fadeIn" style="margin: 0 15px; align-items: center; padding: 15px 0;">
                     <!--Grid column-->
                     <div id="hero" class="col-md-6 mb-4 white-text text-center text-md-left">
-                        <h1 class="display-4 font-weight-bold">REALTOR&reg; Match Program</h1>
+                        <h1 class="font-weight-bold">REALTOR&reg; Match Program</h1>
                         <hr class="hr-light">
                         <p>
                             <strong>Thinking of buying, selling or renting a home soon? Find the perfect agent for your Real Estate needs.</strong>
@@ -77,7 +74,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-md-6 col-xl-5 mb-4">
+                    <div class="col-md-6 mb-4">
                         <!--Card-->
                         <div class="card">
                             <!--Card content-->
@@ -130,11 +127,11 @@ best real estate agent near me, realtors near me, real estate agents near me
             <!--Grid row-->
             <div class="row">
                 <!-- Section: Testimonials v.3 -->
-                <section class="team-section text-center my-5 px-3">
+                <section class="team-section text-center px-3">
                     <!-- Section heading -->
                     <h2 class="h1-responsive font-weight-bold my-5">WHAT OUR CLIENTS THINK</h2>
                     <!-- Section description -->
-                    <p class="dark-grey-text w-responsive mx-auto mb-5">After working with a Realtor Match recommended real estate agent, we ask our clients for feedback on their experience so we can better serve future homebuyers and sellers by ensuring we make the best connections. Here’s what they have to say:</p>
+                    <p class="dark-grey-text w-responsive mx-auto mb-4">After working with a Realtor Match recommended real estate agent, we ask our clients for feedback on their experience so we can better serve future homebuyers and sellers by ensuring we make the best connections. Here’s what they have to say:</p>
                     <!--Grid row-->
                     <div class="row text-center">
                         <!--Grid column-->
