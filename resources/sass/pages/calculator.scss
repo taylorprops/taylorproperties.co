@@ -1,0 +1,45 @@
+.page-calculator {
+
+    label {
+        display: block;
+    }
+
+    form {
+        background-color: #e7ecef;
+        padding: 3em;
+    }
+
+    input {
+        max-width: 300px;
+    }
+
+    #myTab li:hover {
+        background-color: #fff !important;
+    }
+
+    #myTabContent {
+        width: 100%;
+        border: 2px solid $primary-color;
+        padding: 2em;
+    }
+
+    .tab-content>.active {
+        display: flex;
+    }
+
+    .nav-tabs {
+        width: 100%;
+    }
+
+    .nav-tabs .nav-link.active,
+    .nav-tabs .nav-item.show .nav-link {
+        color: #fff !important;
+        background-color: $primary-color;
+        border-color: $primary-color;
+    }
+
+    .nav-tabs .nav-link {
+        background: #e7ecef;
+    }
+
+}

@@ -1,0 +1,43 @@
+/*
+
+font-family: 'Raleway', sans-serif;
+font-family: 'Karla', sans-serif;
+
+*/
+
+.red-gradient {
+    background: rgb(180,66,66);
+    background: linear-gradient(90deg, rgba(180,66,66,1) 0%, rgba(92,31,31,1) 100%);
+}
+.bg-white {
+    background: #fff;
+}
+
+body {
+    margin-top: 100px;
+    background: #e1e9f1;
+}
+.page-container {
+    padding-left: 250px;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    color: $primary-color;
+}
+h2 {
+    font-family: 'Raleway', sans-serif;
+    color: $primary-color;
+}
+h3 {
+    font-family: 'Raleway', sans-serif;
+    color: $default-color;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .page-container {
+        padding-left: 0px;
+    }
+
+}

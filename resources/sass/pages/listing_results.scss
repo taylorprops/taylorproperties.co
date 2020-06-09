@@ -1,0 +1,457 @@
+.page-results {
+	#update_search_div {
+		display: none;
+	}
+	.map_container {
+		height: calc(100vh - 75px);
+		width: 100%;
+		overflow: hidden;
+		z-index: 0;
+	}
+	.listing-side-container {
+		position: relative;
+	}
+	.loader {
+		display: none;
+		position: absolute;
+		width: 100%;
+		height: 100VH;
+		top: 0px;
+		left: 0px;
+		z-index: 500;
+		background: rgba(0, 0, 0, .2);
+		background-image: url(/images/loading/spinner.svg);
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	#results_map {
+		position: absolute;
+	}
+	@media (max-width: 992px) {
+		.map_container {
+			position: relative;
+			height: 30VH;
+			width: 100%;
+		}
+	}
+	#results_map {
+		height: 95%;
+		width: 100%;
+		z-index: 1;
+	}
+	/*
+    .leaflet-fade-anim .leaflet-popup {
+        //bottom: -15px !important;
+    }
+    .leaflet-popup-tip {
+        //display: none !important;
+    }
+    */
+	.leaflet-tooltip {
+		padding: 2px !important;
+		color: #fff;
+		font-size: 0.8rem !important;
+	}
+	.tooltip-rental {
+		background: #FF7E6B;
+	}
+	.tooltip-sale {
+		background: #3273FF;
+	}
+	.leaflet-popup-content-wrapper,
+	.leaflet-popup-tip {
+		background: transparent;
+		box-shadow: none;
+	}
+	.popup-container {
+		border: 4px solid $primary-color;
+		border-radius: 5px;
+		background: #fff;
+		width: 150px;
+		.popup-data {
+			padding: 5px;
+			font-size: .6rem;
+		}
+		img.popupImage {
+			width: 100%;
+			height: 80px;
+			object-fit: cover;
+		}
+	}
+	#search_saved {
+		display: none;
+	}
+	// Search bar
+	.search-options-container {
+		padding: 0 0 0 15px !important;
+		.navbar-nav .dropdown-menu {
+			left: 0 !important;
+		}
+		input.form-control.mr-sm-2 {
+			margin-top: 10px !important;
+			padding: 0;
+			font-size: 0.8rem !important;
+			width: 200px;
+		}
+		.btn {
+			padding: 5px 10px;
+		}
+		.btn-primary-outline {
+			background-color: transparent;
+			border: none;
+		}
+		.md-form .prefix~input,
+		.md-form .prefix~textarea {
+			margin-left: 1.8rem;
+		}
+		.md-form .prefix {
+			font-size: 1.2rem;
+		}
+		.search-results-container {
+			position: relative;
+		}
+		.search-results-div {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: auto;
+			max-height: 75VH;
+			width: 800px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			background: #ffffff;
+			padding: 15px;
+			border-radius: 3px;
+			text-align: left;
+			color: $primary-color;
+			z-index: 100;
+			.dropdown-menu {
+				border: none !important;
+				position: relative !important;
+			}
+		}
+		.search-div {
+			width: 100%;
+		}
+		// fix dropdown
+		.dropdown-menu.show {
+			z-index: 1050;
+		}
+		.listing-type-dropdown-menu {
+			min-width: 15rem;
+		}
+		.price-dropdown-menu {
+			min-width: 17rem;
+		}
+		.baths-dropdown-menu,
+		.beds-dropdown-menu {
+			min-width: 5rem;
+			max-width: 5rem;
+		}
+		.other-dropdown-menu {
+			min-width: 20rem;
+			.md-form label {
+				top: -10px !important;
+			}
+			.select-wrapper+label {
+				top: 0.6rem !important;
+				font-size: 0.8rem !important;
+			}
+		}
+		.list-group-item {
+			padding: 0.3rem 0.7rem !important;
+			border: none !important;
+		}
+		.list-group-item ul li {
+			padding: 0.2rem 1rem;
+		}
+		.price-options {
+			display: none;
+		}
+		.sortby-dropdown {
+			margin-right: 65px;
+		}
+		@media (max-width: 767px) {
+			.listing-type-dropdown-menu {
+				min-width: 1rem;
+				width: 95%;
+			}
+			.price-dropdown-menu {
+				min-width: 1rem;
+				width: 95%;
+			}
+		}
+	}
+	.listing-side-results {
+		position: fixed;
+		height: calc(100vh - 125px);
+		overflow: auto;
+		margin-bottom: 10px !important;
+		min-width: 40%;
+		.listing-dom {
+			background: rgba($primary-color, .6);
+			color: #fff;
+			font-size: .7rem;
+			padding: 2px;
+		}
+		.mask:hover {
+			cursor: pointer !important;
+		}
+		.card {
+			min-height: 200px;
+		}
+		h5 {
+			margin-bottom: 0;
+		}
+		.listing-side-image {
+			width: 100%;
+			height: 15vw;
+			min-height: 250px;
+			object-fit: cover;
+		}
+		.collection-card .stripe-address {
+			bottom: 0;
+			padding: 0.5rem;
+			text-align: left;
+			a p {
+				font-size: 0.8rem !important;
+				letter-spacing: 0.05rem;
+			}
+		}
+		.collection-card .stripe-options {
+			top: 0;
+			padding: 0.5rem;
+			.btn-floating {
+				margin: 0 !important;
+			}
+		}
+		.listing-selected {
+			border: 6px solid $primary-color;
+		}
+		.pagination-row {
+			height: 45px;
+		}
+		.pagination .page-item .page-link,
+		.pagination-count {
+			font-size: 0.7rem !important;
+		}
+		@media (max-width: 767px) {
+			.pagination-row {
+				height: auto;
+				text-align: center;
+			}
+		}
+    }
+    @media (max-width: 1200px) {
+        .search-options-container .btn {
+            padding: 5px 5px;
+            font-size: .7rem;
+        }
+        #results_location_search {
+            width:120px;
+        }
+    }
+    @media (max-width: 992px) {
+		.listing-side-results {
+			height: 55VH;
+        }
+        .search-options-container .btn {
+            font-size: .9rem;
+        }
+        #results_location_search {
+            width:200px;
+        }
+
+	}
+	@media (max-width: 767px) {
+		.leaflet-control-attribution.leaflet-control {
+			font-size: .6rem !important;
+        }
+	}
+	.details-div {
+		display: none;
+		position: fixed;
+		top: 0px;
+		padding-bottom: 50px;
+		height: 100VH;
+		width: 1300px;
+		left: 50%;
+		margin-left: -650px;
+		background: #ffffff;
+		z-index: 1045;
+		overflow: hidden;
+	}
+	@media (max-width: 1300px) {
+		.details-div {
+			height: 100VH;
+			width: 100%;
+			left: 0;
+			margin-left: 0;
+		}
+	}
+	#listing_images_div {
+		height: 100VH;
+		overflow: auto;
+	}
+	.listing-image-main {
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+	}
+	.listing-image {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+	.details-section {
+		padding: 5px;
+		margin-bottom: 5px;
+	}
+	.listings-gallery {
+		display: none;
+		position: fixed;
+		margin: auto;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		height: 90%;
+		width: 90%;
+		background: rgba(0, 0, 0, .4);
+		z-index: 2000;
+	}
+	#listing_map {
+		height: 250px;
+		width: 100%;
+	}
+	#listing_details_div {
+		height: 100VH;
+		overflow-y: auto;
+		overflow-x: hidden;
+		.section-header {
+			background: $primary-color;
+			font-size: 1.3rem;
+			font-weight: bold;
+			color: #fff;
+			padding: 10px;
+		}
+		#school_map {
+			width: 100%;
+			height: 400px;
+		}
+		.school-popup-container {
+			padding: 5px;
+			background: #fff;
+		}
+		.map-key {
+			display: block;
+			padding: 10px;
+		}
+		.map-key ul {
+			list-style: none;
+			margin-left: 0px;
+			padding-left: 0px;
+		}
+		.map-key ul li {
+			float: left;
+			margin-right: 15px;
+		}
+		.school-circle {
+			height: 15px;
+			width: 15px;
+			border-radius: 50%;
+			display: inline-block;
+		}
+		.school-popup-container,
+		.school-popup-container a {
+			color: #fff;
+		}
+		.popup-public {
+			background: $primary-color;
+		}
+		.popup-private {
+			background: $secondary-color;
+		}
+		.popup-charter {
+			background: $default-color;
+		}
+		.school-info {
+			padding: 10px;
+		}
+		.school-info-name {
+			font-size: 1.4rem;
+		}
+		.property-type {
+			color: $primary-color;
+			font-size: 1.1rem;
+		}
+		.sale-type {
+			color: $secondary-color;
+			font-size: 1.1rem;
+		}
+		.details-header {
+			position: sticky;
+			top: 0;
+			z-index: 2000;
+		}
+		#walk_score_div {
+			line-height: 1.30;
+			overflow: hidden;
+		}
+		#walk_score_div:after {
+			content: '';
+			display: block;
+			margin-bottom: -3em;
+		}
+	}
+	@media (max-width: 1100px) {
+		.listing-image-main {
+			height: 300px;
+		}
+		.listing-image {
+			height: 200px;
+		}
+		#listing_map {
+			height: 200px;
+		}
+	}
+	@media (max-width: 960px) {
+		.listing-image {
+			height: 150px;
+		}
+		#listing_map {
+			height: 150px;
+		}
+	}
+	@media (max-width: 767px) {
+		#listing_details_div {
+			padding-bottom: 200px;
+			.section-header {
+				font-size: 1.1rem;
+			}
+		}
+	}
+	.swiper-container {
+		height: 30VH;
+		img {
+			width: 100%;
+			height: 30VH;
+			object-fit: cover;
+		}
+	}
+	.swiper-container {
+		position: relative;
+		a {
+			position: absolute;
+			top: 5px;
+			right: 25px;
+			z-index: 2000;
+			cursor: pointer;
+		}
+	}
+	.leaflet-container .leaflet-control-attribution,
+	.leaflet-container .leaflet-control-scale {
+		font-size: 8px !important
+	}
+}

@@ -1,0 +1,38 @@
+footer {
+	background-color: $tp-blue;
+	color: #ffffff;
+	text-decoration: none;
+
+	a {
+		text-decoration: none;
+		color: #fff;
+	}
+	a:hover {
+		color: $orange;
+		text-decoration: none;
+	}
+	i {
+		font-size: 3rem;
+	}
+	h5 {
+		margin-bottom: 0 !important;
+		color: #fff;
+	}
+}
+
+.footer-copyright.text-center{
+	background: #999;
+	padding: 0 !important;
+	margin-top: 1rem;
+}
+
+
+@media (max-width: 767px) {
+	.footer-logo {
+		max-width: 50%;
+	}
+
+	footer h5.font-weight-bold.text-uppercase.mt-3.mb-4 {
+		margin-bottom: 0 !important;
+	}
+}

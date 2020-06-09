@@ -1,0 +1,33 @@
+.page-buy {
+    .container-fluid.header {
+        background-image: url('/images/welcomehome.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    #contact {
+        background: #e7ecef;
+        padding: 4em 0;
+        margin-top: 3em;
+    }
+
+    .img-fluid {
+        height: 300px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .section.mt-5 .container .row {
+        margin-bottom: 50px;
+    }
+    @media (max-width: 768px) {
+        .order1 {
+            order: 1;
+        }
+
+        .order2 {
+            order: 2;
+        }
+    }
+}

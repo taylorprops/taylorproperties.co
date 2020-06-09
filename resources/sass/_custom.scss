@@ -1,0 +1,198 @@
+body {
+    overflow-x: hidden !important;
+    font-family: "Roboto", sans-serif;
+
+}
+.container,
+.container-full {
+    margin-bottom: 75px;
+}
+
+.page-container {
+    min-height: 600px;
+    margin-top: 8rem;
+    //margin: 0 20px !important;
+}
+
+.search-page-container {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+
+@media (min-width: 767px) {
+
+    .container-full,
+    .container-full-results {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .navbar {
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+    }
+
+}
+
+/*
+a {
+    color: $primary-color !important;
+}
+a:hover {
+	color: $primary-color-light !important;
+}
+*/
+
+.font-14 { font-size: 1.4rem }
+.font-13 { font-size: 1.3rem }
+.font-12 { font-size: 1.2rem }
+.font-11 { font-size: 1.1rem }
+.font-9 { font-size: .9rem }
+.font-8 { font-size: .8rem }
+.font-7 { font-size: .7rem }
+
+.text-primary-dark {
+	color: $primary-color-dark;
+}
+
+.bg-primary-light {
+    background: $primary-color-light;
+}
+.bg-primary-dark {
+    background: $primary-color-dark;
+}
+.text-yellow {
+    color: #d6cf8a;
+}
+.hidden { display: none; }
+
+.modal-backdrop {
+    z-index: 1045;
+    overflow: hidden;
+}
+
+.pagination .page-item .page-link {
+    font-size:.7rem;
+}
+.view {
+    background: #fff;
+}
+.header-text {
+    background-color: rgba(250, 250, 250, .9);
+    width: 70%;
+    min-width: 300px;
+    padding: 10px;
+    margin: 40px auto 50px;
+}
+@media (max-width: 768px) {
+    body {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .header-text {
+        width: 95%;
+    }
+}
+/* sign in and  register */
+#signin_error, #register_error, #reset_error { display: none; }
+label.active::after {
+    top: 4rem !important;
+    width: 200px !important;
+}
+// spacing between form inputs
+.modal {
+    .md-form {
+        margin-bottom: 1rem !important;
+    }
+    .md-form .validate {
+        margin-bottom: 0rem !important;
+    }
+    .invalid-feedback {
+        margin-left: 30px;
+    }
+
+    .md-form .prefix {
+        top: 0.80rem !important;
+        font-size: 1.2rem !important;
+    }
+    .md-form .prefix ~ input, .md-form .prefix ~ label, .md-form .prefix ~ textarea {
+        margin-left: 1.8rem !important;
+        width: calc(100% - 1.8rem) !important;
+    }
+}
+
+
+hr.curly-end {
+    overflow: visible;
+    /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    width: 75%;
+    margin: 0 auto;
+}
+
+hr.curly-end:before {
+    /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.black-out {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 1040;
+}
+
+.blue-text {
+    color: $primary-color !important;
+}
+
+@media (max-width: 767px) {}
+
+// fixes
+// dropdown menu goes off page
+.navbar-nav .dropdown-menu {
+    //left: -25px !important;
+}
+
+.card {
+	height: 100%;
+	display: flex;
+}
+
+.card-body {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.card.card-footer {
+	align-self: flex-end;
+	flex: 1 1 auto;
+}
+.card-footer {
+    background-color: rgba(103, 152, 202, 0.19) !important;
+}

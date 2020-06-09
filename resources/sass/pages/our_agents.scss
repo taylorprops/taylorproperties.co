@@ -1,0 +1,48 @@
+.page-our-agents {
+
+	.container-agent {
+		width: 65%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	img.card-img-top {
+		height: 275px !important;
+		object-fit: cover;
+	}
+
+	@media (max-width: 767px) {
+		img.card-img-top {
+			height: 200px;
+        }
+        .container-agent {
+            width: 95%;
+        }
+	}
+
+	.modal-lg,
+	.modal-xl {
+		max-width: 1200px !important;
+	}
+
+	.agents-row {
+		min-height: 200px;
+	}
+
+	.card-body span {
+		font-family: "Roboto", sans-serif !important;
+		font-size: 16px !important;
+		font-weight: 400 !important;
+		line-height: 24px !important;
+	}
+
+
+}
+
+.modal-backdrop+.modal-backdrop {
+	z-index: 1051 !important;
+}
+
+#email_agent_modal, .share-modal {
+	z-index: 1052 !important;
+}
