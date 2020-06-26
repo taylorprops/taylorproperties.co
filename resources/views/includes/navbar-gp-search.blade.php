@@ -53,6 +53,8 @@
                         <a class="dropdown-item" href="/about/offices">Offices</a>
                         <a class="dropdown-item" href="/about/partners">Partners</a>
                         <a class="dropdown-item" href="/contact-us">Contact</a>
+                        <a class="dropdown-item" href="/what-is-my-home-worth">Home Value Estimator</a>
+                        <a class="dropdown-item" href="/realtors-near-me">Realtor Match Program</a>
                     </div>
                 </li>
                 <!--li class="nav-item">

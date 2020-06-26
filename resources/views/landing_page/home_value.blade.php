@@ -130,7 +130,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
         <!--Section: Main features & Quick Start-->
         <section class="pt-4">
             <h6 class="intro-close text-center text-primary" style="font-size: 1.8rem;font-family: 'Merriweather', serif;font-weight: 700;">Like What You See?</h6>
-            <p class="intro-open text-center font-12">Learn more about our REALTOR Match Program! Our Match Program will match you with one of Taylor Properties' 800+ in-house real estate professionals in Maryland, Washington D.C. or Virginia, ready to help you list your home at top dollar. Our real estate agents are thoroughly vetted and are chosen to help our clients based on experience.</p>
+            <p class="intro-open text-center font-12">Learn more about our REALTOR Match Program! Our Match Program will match you with one of Taylor Properties' 800+ in-house real estate professionals in Maryland, Washington D.C., Virginia and Pennsylvania, ready to help you list and sell your home at top dollar. Our real estate agents are thoroughly vetted and chosen to help our clients based on experience.</p>
 
             <div class="row text-center d-flex justify-content-center mt-5 mb-0">
                 <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
@@ -180,7 +180,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                     <!-- Section heading -->
                     <h6 class="intro-close text-center text-primary" style="font-size: 1.8rem;font-family: 'Merriweather', serif;font-weight: 700;">What Our Clients Say</h6>
                     <!-- Section description -->
-                    <p class="intro-open text-center font-12">After working with a Realtor Match recommended real estate agent, we ask our clients for feedback on their experience so we can better serve future homebuyers and sellers by ensuring we make the best connections. Here’s what they have to say:</p>
+                    <p class="intro-open text-center font-12">After working with a Realtor Match recommended real estate agent, we ask our clients for feedback on their experience so we can better serve future sellers by ensuring we make the best connections. Here’s what they have to say:</p>
                     <!--Grid row-->
                     <div class="row text-center">
                         <!--Grid column-->
