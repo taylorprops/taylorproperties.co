@@ -22,10 +22,26 @@ top listing agents in maryland, listing agent near me, listing real estate agent
     .search-again {
         max-width: 600px;
     }
+    .home-value-header {
+        font-size: 2.6rem;
+    }
 
     @media (max-width: 768px) {
         body {
             padding: 0 0 !important;
+        }
+        .home-value-header {
+            font-size: 1.4rem;
+        }
+
+    }
+    @media (max-width: 576px) {
+        .rpr-avm-widget {
+            width: auto !important;
+            max-width: auto !important;
+        }
+        .rprw-chart-cont img {
+            max-width: 280px !important;
         }
     }
 </style>
@@ -36,9 +52,9 @@ top listing agents in maryland, listing agent near me, listing real estate agent
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="mt-2 mt-sm-5 mb-2 mb-sm-5 text-center">
+                <div class="mt-1 mt-sm-4 mb-2 mb-sm-5 text-center">
 
-                    <div class="h1 text-primary mb-3"><i class="fad fa-calculator mr-2 mb-2 mb-lg-5"></i> Estimated Home Value Report</div>
+                    <div class="home-value-header text-primary mb-3"><i class="fad fa-calculator mr-2"></i> Estimated Home Value Report</div>
                     <div class="p-4 rounded z-depth-1">
                         <div class="row">
                             <div class="col-12 col-lg-6 col-xl-5 mx-auto">
