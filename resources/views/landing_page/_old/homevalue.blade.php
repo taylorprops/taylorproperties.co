@@ -45,7 +45,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                                 <div class="md-form mt-2 mt-md-3">
                                                     <i class="fal fa-search prefix text-primary"></i>
                                                     <input type="text" id="index_search" class="form-control">
-                                                    <label for="index_search"><span id="search_label_big">Enter your street address</span><span id="search_label_small">Search</span></label>
+                                                    <label for="index_search"><span id="search_label_big">Enter your street address</span></label>
                                                 </div>
                                                 <div class="search-results-container">
                                                     <div class="search-results-div z-depth-3"></div>
@@ -78,8 +78,8 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                 </div>
                 <div class="md-form mt-2 mt-md-3">
                     <i class="fal fa-search prefix text-primary"></i>
-                    <input type="text" id="index_search" class="form-control">
-                    <label for="index_search"><span id="search_label_big">Enter your street address</span><span id="search_label_small">Search</span></label>
+                    <input type="text" id="index_search" class="form-control" placeholder="Search">
+                    <label for="index_search"><span id="search_label_big">Enter your street address</span></label>
                 </div>
                 <div class="search-results-container">
                     <div class="search-results-div z-depth-3"></div>
