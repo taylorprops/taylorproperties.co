@@ -98,9 +98,7 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 	}
-	#search_label_small {
-		display: none;
-	}
+
 	@media (max-width: 1300px) {
 		.search-container {
 			width: 65%;
@@ -131,12 +129,6 @@
 	@media (max-width: 576px) {
 		#index_search {
 			padding-left: 25px;
-		}
-		#search_label_big {
-			display: none;
-		}
-		#search_label_small {
-			display: inline-block;
 		}
 	}
 }
