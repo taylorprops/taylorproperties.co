@@ -55,6 +55,11 @@
                             <td><span class="tick">&#10004;</span></td>
 						</tr>
                         <tr>
+                            <td>In-House Lead-Gen Programs*</td>
+                            <td class="default"><span class="tick">&#10004;</span></td>
+                            <td><span class="tick">&#10004;</span></td>
+                        </tr>
+                        <tr>
                             <td>FREE Copies, Scanning and Printing*</td>
                             <td class="default"><span class="tick">&#10004;</span></td>
                             <td><span class="tick">&#10004;</span></td>
