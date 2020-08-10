@@ -1,7 +1,7 @@
 @extends('layouts.landingpage')
 
 @section('title')
-100&#37; Commission Real Estate Broker | Taylor Properties | Serving Maryland, Washington D.C., Virginia and Pennsylavania
+100&#37; Commission Real Estate Broker | Taylor Properties | Serving Maryland, Washington D.C., Virginia and Pennsylvania
 @endsection
 
 @section('meta-description')
@@ -9,13 +9,25 @@ The best 100&#37; commission real estate broker licensed in Maryland, Virgina, W
 @endsection
 
 @section('meta-keywords')
-100 commission real estate broker maryland, 100&#37; commission real estate brokerage, one hundred percent commission, 100 percent real estate broker, 100&#37; commission real estate maryland
+100 commission real estate broker maryland, 100&#37; commission real estate brokerage, one hundred percent commission, 100 percent real estate broker, 100&#37; commission real estate maryland, best real estate broker
+@endsection
+
+@section('css')
+<style type="text/css">
+
+@media (max-width: 740px) {
+#main-header {
+  display: none;
+}
+}
+
+</style>
 @endsection
 
 @section('content')
 
   <!-- Jumbotron -->
-  <div class="card card-image" style="background-image: url(/images/careers2.jpg);">
+  <div id="main-header" class="card card-image" style="background-image: url(/images/careers2.jpg);">
     <div class="text-white text-center rgba-stylish-strong py-5 px-4">
       <div class="py-5">
 
@@ -82,16 +94,15 @@ The best 100&#37; commission real estate broker licensed in Maryland, Virgina, W
       <!-- Section: Features v.1 -->
     </div>
 
-    @include('includes.agent_testimonials')
-
     <div class="page-container page-careers" style="margin-top: 0;">
       @include('includes.pricing_table')
     </div> 
 
+    @include('includes.agent_testimonials')
+
     <!--Section: Not enough-->
     <section>
       <div class="container">
-        <hr class="my-5">
         <h2 class="mt-5 h3 text-center">Real Estate Teams</h2>
         <h5 class="text-center mb-5">Our high commission plans are designed to help you build a successful team and incentivizes high volume selling.</h5>
 

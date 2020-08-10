@@ -68,12 +68,6 @@ font-family: "Playfair Display", serif;
 		</div>
 		<div class="col-sm-4">
 			<div class="imagebox">
-				<img src="{{ asset('images/staff/kyle-abrams.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Kyle Abrams<br><i>Recruiter</i></span>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="imagebox">
 				<img src="{{ asset('images/staff/catharine-criss.jpg')}}" class="category-banner img-responsive">
 				<span class="imagebox-desc">Catharine Criss<br><i>Commission Analyst</i></span>
 			</div>
@@ -86,8 +80,14 @@ font-family: "Playfair Display", serif;
 		</div>
 		<div class="col-sm-4">
 			<div class="imagebox">
+				<img src="{{ asset('images/staff/kyle-abrams.jpg')}}" class="category-banner img-responsive">
+				<span class="imagebox-desc">Kyle Abrams<br><i>Chief Talent Officer</i></span>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="imagebox">
 				<img src="{{ asset('images/staff/sylvie-vivens-2.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Sylvie Vivens<br><i>Administrative Assistant</i></span>
+				<span class="imagebox-desc">Sylvie Vivens<br><i>Talent Aquisition Administrator</i></span>
 			</div>
 		</div>
 		<div class="col-sm-4">
