@@ -166,7 +166,7 @@ class PageController extends Controller {
             CURLOPT_POSTFIELDS =>"{\"data\":{\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"RECRUITING - NEW Leads\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"Kyle Abrams\",\"created_at\":\"".date("Y-m-d")."\"}}",
             CURLOPT_HTTPHEADER => array(
                 "accept: application/json",
-                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "authorization: Bearer ",
                 "content-type: application/json",
                 "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
             ),
@@ -191,7 +191,7 @@ class PageController extends Controller {
             CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$user -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
             CURLOPT_HTTPHEADER => array(
                 "accept: application/json",
-                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "authorization: Bearer ",
                 "content-type: application/json",
                 "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
             ),
@@ -259,7 +259,7 @@ class PageController extends Controller {
             CURLOPT_POSTFIELDS =>"{\"data\":{{\"tags\":[\"Source: Taylor Properties\"],\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"BuyerSellerRental - New Leads\"],\"tag_ids\":[\"Buyer\"],\"first_name\":\"".$user_first."\",\"last_name\":\"".$user_last."\",\"assigned_to_id\":\"Catharine Criss\",\"created_at\":\"".date("Y-m-d")."\"}}",
             CURLOPT_HTTPHEADER => array(
                 "accept: application/json",
-                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "authorization: Bearer ",
                 "content-type: application/json",
                 "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
             ),
@@ -284,7 +284,7 @@ class PageController extends Controller {
             CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$request -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
             CURLOPT_HTTPHEADER => array(
                 "accept: application/json",
-                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "authorization: Bearer ",
                 "content-type: application/json",
                 "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
             ),
@@ -365,10 +365,10 @@ class PageController extends Controller {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS =>"{\"data\":{{\"tags\":[\"Source: Taylor Properties\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"BuyerSellerRental - New Leads\"],\"tag_ids\":[\"Seller\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"Catharine Criss\",\"created_at\":\"".date("Y-m-d")."\"}}",
+        CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"BuyerSellerRental - New Leads\"],\"tag_ids\":[\"Seller\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"Catharine Criss\",\"created_at\":\"".date("Y-m-d")."\"}}",
         CURLOPT_HTTPHEADER => array(
             "accept: application/json",
-            "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+            "authorization: Bearer ",
             "content-type: application/json",
             "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
         ),

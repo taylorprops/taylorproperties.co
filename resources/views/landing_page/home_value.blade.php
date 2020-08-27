@@ -320,7 +320,7 @@ $(document).ready(function() {
 
             axios.post('/save_home_value_request', formData, axios_options)
                 .then(function (response) {
-                    document.getElementById('home_value_form').submit();
+                    //document.getElementById('home_value_form').submit();
                 })
                 .catch(function (error) {
                     console.log(error);
