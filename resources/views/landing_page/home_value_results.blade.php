@@ -90,7 +90,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                             <div class="col-12 col-lg-6 col-xl-5 mx-auto">
                                 <div id="found">
                                     <div class="w-100 d-flex justify-content-center mt-3">
-                                        {{-- <script>
+                                        <script>
                                         var rprAvmWidgetOptions = {
                                             Token: "{{ config('narrpr.vars.narrpr_key') }}",
                                             Query: "{{ $_POST['home_value_street_number'] }} {{ $_POST['home_value_street_name'] }}, {{ $_POST['home_value_unit'] }}, {{ $_POST['home_value_city'] }}, {{ $_POST['home_value_state'] }} {{ $_POST['home_value_zip'] }}",
@@ -98,7 +98,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                             ShowRprLinks: false
                                         }
                                         </script>
-                                        <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script> --}}
+                                        <script src="//www.narrpr.com/widgets/avm-widget/widget.ashx/script"></script>
                                     </div>
                                 </div>
                                 <div id="not_found" class="h-100">
