@@ -149,6 +149,59 @@ class PageController extends Controller {
 
             }
 
+            $first = substr($user -> name, 0, strpos($user -> name, ' '));
+            $last = substr($user -> name, strpos($user -> name, ' ') + 1);
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"RECRUITING - NEW Leads\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"Kyle Abrams\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+            $response = json_decode($response, true);
+
+            $contact_id = $response['data']['id'];
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$user -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+
         } else if($request -> type == 'to_agent') {
 
             $to_email = $request -> agent_email;
@@ -164,6 +217,8 @@ class PageController extends Controller {
             }
 
             $existing = Leads::where('l1_email', $request -> email) -> first();
+            $user_first = substr($user -> name, 0, strpos($user -> name, ' '));
+            $user_last = substr($user -> name, strpos($user -> name, ' '));
 
             if(!$existing) {
 
@@ -171,8 +226,8 @@ class PageController extends Controller {
                 $lead = new Leads();
                 $lead -> l_source = 'www.TaylorProperties.co';
                 $lead -> l1_email = $user -> email;
-                $lead -> l1_first = substr($user -> name, 0, strpos($user -> name, ' '));
-                $lead -> l1_last = substr($user -> name, strpos($user -> name, ' '));
+                $lead -> l1_first = $user_first;
+                $lead -> l1_last = $user_last;
                 $lead -> l1_phone = $user -> phone;
                 $lead -> l_status = 'Lead';
                 $lead -> l_type = 'Buy';
@@ -189,6 +244,55 @@ class PageController extends Controller {
                 $user -> lead_id = $lead_id;
 
             }
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{{\"tags\":[\"Source: Taylor Properties\"],\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"BuyerSellerRental - New Leads\"],\"tag_ids\":[\"Buyer\"],\"first_name\":\"".$user_first."\",\"last_name\":\"".$user_last."\",\"assigned_to_id\":\"Catharine Criss\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+            $response = json_decode($response, true);
+
+            $contact_id = $response['data']['id'];
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$request -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
 
         }
 
@@ -247,6 +351,34 @@ class PageController extends Controller {
         $lead -> street_number = $street_number;
         $lead -> street_name = $street_name;
         $lead -> unit = $unit;
+
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS =>"{\"data\":{{\"tags\":[\"Source: Taylor Properties\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"BuyerSellerRental - New Leads\"],\"tag_ids\":[\"Seller\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"Catharine Criss\",\"created_at\":\"".date("Y-m-d")."\"}}",
+        CURLOPT_HTTPHEADER => array(
+            "accept: application/json",
+            "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+            "content-type: application/json",
+            "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+
+        curl_close($curl);
+
 
         $to_email = Config::get('email_routing.home_value_request.email');
         \Notification::route('mail', $to_email) -> notify(new HomeValueRequest($lead));

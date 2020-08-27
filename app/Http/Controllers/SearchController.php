@@ -200,9 +200,9 @@ class SearchController extends Controller {
             -> get();
         //}
 
-        //dd(vsprintf(str_replace('?', '%s', $listings -> toSql()), collect($listings -> getBindings()) -> map(function($binding){
-        //return is_numeric($binding) ? $binding : "'{$binding}'";
-        // }) -> toArray()));
+        /* dd(vsprintf(str_replace('?', '%s', $listings -> toSql()), collect($listings -> getBindings()) -> map(function($binding){
+        return is_numeric($binding) ? $binding : "'{$binding}'";
+        }) -> toArray())); */
 
         return (['listings' => $listings]);
     }
