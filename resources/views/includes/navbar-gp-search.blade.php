@@ -12,9 +12,9 @@
 <div class="container">
     <div class="row">
     <!--Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top scrolling-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top scrolling-navbar main-nav">
         <a class="navbar-brand" href="/">
-            <img id="logo" src="{{ asset('images/logos/logo-horizantal-white.png') }}" alt="Taylor Properties" width="150">
+            <img id="logo" src="{{ asset('images/logos/logo-horizantal-white.png') }}" alt="Taylor Properties" width="110">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse" aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
