@@ -147,7 +147,7 @@
 <script type="text/javascript">
 let main_search_controller;
 let main_search_signal;
-$("#index_search").off().on('keyup', function() {
+$('#index_search').off().on('keyup input', function() {
     if (main_search_controller !== undefined) {
         main_search_controller.abort();
     }

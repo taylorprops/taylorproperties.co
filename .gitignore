@@ -11,6 +11,7 @@ _tests/*
 .editorconfig
 /.vscode
 .env
+twilio.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
