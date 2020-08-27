@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
     <!--Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top scrolling-navbar main-nav p-0 p-lg-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top scrolling-navbar">
         <a class="navbar-brand" href="/">
             <img id="logo" src="{{ asset('images/logos/logo-horizantal-white.png') }}" alt="Taylor Properties" width="150">
         </a>
@@ -61,7 +61,7 @@
                     <a  class="nav-link text-white" href="tel:8005900925"><i class="fas fa-phone"></i> 800-590-0925</a>
                 </li-->
                 <li>
-                    <div class="nav-login mt-2 ml-3" id="nav_logged">
+                    <div class="nav-login mt-2 ml-lg-3" id="nav_logged">
                         @if(Auth::check())
                         <div id="nav_logged_in">
                             <a href="/dashboard" class="mb-n2 text-white"><i class="fal fa-user-circle mr-2"></i> My Account</a><br>
