@@ -334,8 +334,8 @@ $(document).ready(function () {
 		});
     }
 
-    $('#contact_form').submit(function (e) {
-        $('#contact_form_submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
+    $('.contact-form').submit(function (e) {
+        $('.contact-form-submit').html('Sending <i class="fas fa-spinner fa-spin"></i>').prop('disabled', true)
         e.preventDefault();
 
         let form = $(this);
@@ -345,8 +345,8 @@ $(document).ready(function () {
         axios.post('/contact-submit', formData, axios_options)
         .then(function (response) {
             toastr['success']('Your message was successfully sent!');
-            $('#contact_form_submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
-            $('#contact_form').find('input, textarea').not('#type').val('');
+            $('.contact-form-submit').html('Send <i class="fal fa-share"></i>').prop('disabled', false);
+            $('.contact-form').find('input, textarea').not('[name="type"]').val('');
             $('label').removeClass('active');
             $('#email_agent_modal').modal('hide');
         })
