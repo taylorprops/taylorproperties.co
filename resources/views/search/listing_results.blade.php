@@ -1931,7 +1931,7 @@
             $('#search_sortby_order').val($(this).data('order'));
             $('#search_sortby').val($(this).data('value')).trigger('change');
         });
-        $("#results_location_search").off().on('keyup focus mousedown', function() {
+        $("#results_location_search").off().on('keyup input', function() {
 
             if (search_controller !== undefined) {
                 search_controller.abort();
@@ -1974,6 +1974,7 @@
                             } else {
                                 $('#search_city, #city').trigger('change');
                             }
+                            $('#search_options_nav').collapse('hide');
                         });
                         $(document).mouseup(function(e) {
                             var container = $('.search-results-div');
