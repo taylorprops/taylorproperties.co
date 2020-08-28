@@ -163,7 +163,6 @@ class PageController extends Controller {
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            //CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\"],\"email_addresses\":[{\"address\":\"bob@tes.com\"}],\"phone_numbers\":[{\"number\":\"555-555-5555\"}],\"bucket_ids\":[\"bucket_125445026\"],\"first_name\":\"Joe\",\"last_name\":\"Agent\",\"created_at\":\"2020-05-05\",\"assigned_to_id\":\"user_304135\"}}",
 
             CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\"],\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"bucket_125445026\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"user_304135\",\"created_at\":\"".date("Y-m-d")."\"}}",
             CURLOPT_HTTPHEADER => array(
@@ -269,6 +268,7 @@ class PageController extends Controller {
             ));
 
             $response = curl_exec($curl);
+
             $response = json_decode($response, true);
 
             $contact_id = $response['data']['id'];
