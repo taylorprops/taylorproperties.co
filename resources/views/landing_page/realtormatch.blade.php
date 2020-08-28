@@ -75,7 +75,7 @@ best real estate agent near me, realtors near me, real estate agents near me
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-md-3 mb-4">
+                    <div class="col-12 col-sm-6 col-xl-4 mb-4">
                         <!--Card-->
                         <div class="card">
                             <!--Card content-->
