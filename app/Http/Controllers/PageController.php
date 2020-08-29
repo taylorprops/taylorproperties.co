@@ -103,148 +103,203 @@ class PageController extends Controller {
         return view('agents.agent_profile_page', ['agent' => $agent]);
     }
 
-    public function save_home_value_request(Request $request) {
+    public function contactSubmit(Request $request) {
 
-        $full_address = $request -> full_address;
-        $street_number = $request -> street_number;
-        $unit = $request -> unit;
-        $street_name = $request -> street_name;
-        $city = $request -> city;
-        $county = $request -> county;
-        $state = $request -> state;
-        $zip = $request -> zip;
+        $user = new Messages();
 
-        $first_name = $request -> first_name;
-        $last_name = $request -> last_name;
-        $phone = $request -> phone;
-        $email = $request -> email;
-
-        // add to leads database if not in there already
-        $existing = Leads::where('l1_email', $email) -> first();
-
-        // add to leads
-        $lead = new Leads();
-        $lead -> l_source = 'Website - Home Value Request';
-        $lead -> l1_email = $email;
-        $lead -> l1_first = $first_name;
-        $lead -> l1_last = $last_name;
-        $lead -> l1_phone = $phone;
-        $lead -> l_status = 'Lead';
-        $lead -> l_type = 'Sell';
-        $lead -> p_type = 'Y';
-        $lead -> p_location = $county . ' - '.$state;
-        $lead -> l_street = $street_number.' '.$street_name. ($unit != '' ? ' '.$unit : '');
-        $lead -> l_city = $city;
-        $lead -> l_state = $state;
-        $lead -> l_zip = $zip;
-        $lead -> listing_street = $street_number.' '.$street_name. ($unit != '' ? ' '.$unit : '');
-        $lead -> listing_city = $city;
-        $lead -> listing_state = $state;
-        $lead -> listing_zip = $zip;
-        if(!$existing) {
-            $lead -> save();
-            $lead_id = $lead -> id;
-            $lead -> exists = 'no';
-        } else {
-            $lead_id = $existing -> id;
-            $lead -> exists = 'yes';
+        $user -> name     = $request -> name;
+        $user -> email    = $request -> email;
+        $user -> phone    = $request -> phone;
+        $user -> message  = $request -> message;
+        $user -> type     = $request -> type;
+        if($request -> agent_id) {
+            $user -> agent_id = $request -> agent_id;
+            $user -> agent_email = $request -> agent_email;
         }
-        $lead -> id = $lead_id;
-        $lead -> full_address = $full_address;
-        $lead -> street_number = $street_number;
-        $lead -> street_name = $street_name;
-        $lead -> unit = $unit;
+        $user -> save();
+
+        // type = from_agent | to_agent | buy_sell
+        if($request -> type == 'from_agent') {
+
+            $to_email = Config::get('email_routing.join_form.email');
+            $user -> subject = 'Agent Lead – Taylor Properties Website';
+
+            $existing = Prospects::where('p_email', $request -> email) -> first();
+
+            if(!$existing) {
+
+                // add to prospects
+                $prospect = new Prospects();
+                $prospect -> p_source = 'www.TaylorProperties.co';
+                $prospect -> p_email = $user -> email;
+                $prospect -> p_name = $user -> name;
+                $prospect -> p_phone = $user -> phone;
+                $prospect -> p_status = 'live';
+                $prospect -> save();
+                $prospect_id = $prospect -> id;
+
+                $user -> prospect_id = $prospect_id;
+
+                // add comments to notes
+                $notes = new ProspectNotes();
+                $notes -> notes = $user -> message;
+                $notes -> user = 'Client';
+                $notes -> prospect_id = $prospect_id;
+                $notes -> save();
+
+            }
+
+            $first = substr($user -> name, 0, strpos($user -> name, ' '));
+            $last = substr($user -> name, strpos($user -> name, ' ') + 1);
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\"],\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"bucket_125445026\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"user_304135\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            $response = json_decode($response, true);
+
+            $contact_id = $response['data']['id'];
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$user -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
 
 
+        } else if($request -> type == 'to_agent') {
 
-        $curl = curl_init();
+            $to_email = $request -> agent_email;
+            $user -> subject = 'Message From Client via www.taylorproperties.co';
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.contactually.com/v2/contacts",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Seller\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
-        CURLOPT_HTTPHEADER => array(
-            "accept: application/json",
-            "authorization: Bearer ".Config::get('contactually.contactually_key')."",
-            "content-type: application/json",
-            "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
-        ),
-        ));
+        } else if($request -> type == 'buy_sell' || $request -> type == 'realtor_match') {
 
-        $response = curl_exec($curl);
+            $to_email = Config::get('email_routing.contact_form.email');
+            if($request -> type == 'buy_sell') {
+                $user -> subject = 'Buyer/Seller Lead – Taylor Properties Website';
+            } else if($request -> type == 'realtor_match') {
+                $user -> subject = 'Buyer/Seller Lead – Realtor Match Request';
+            }
 
-        $address_url = urlencode($street_number.' '.$street_name . ($unit != '' ? ', ' . $unit : '') . ', '.$city.', '.$state.', '.$zip);
+            $existing = Leads::where('l1_email', $request -> email) -> first();
+            $user_first = substr($user -> name, 0, strpos($user -> name, ' '));
+            $user_last = substr($user -> name, strpos($user -> name, ' '));
 
-        $prop_links = '
-        <table>
-            <tr>
-                <th colspan="2">Property Links</th>
-            </tr>
-            <tr>
-                <td style="white-space: nowrap">Property / Listing Details</td>
-                <td>
-                    <a href="https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=PropertyDetails&DetailsTab=Summary" target="_blank">View</a>
-                </td>
-            </tr>
-            <tr>
-                <td style="white-space: nowrap">Reports</td>
-                <td>
-                    <a href="https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=Reports&ReportType=ResidentialPropertyReport" target="_blank">View</a>
-                </td>
-            </tr>
-            <tr>
-                <td style="white-space: nowrap">Neighborhoods</td>
-                <td>
-                    <a href="https://www.narrpr.com/find.aspx?Query='.urlencode($city.', '.$state).'&AppPropertyMode=Residential&Action=NeighborhoodDetails&DetailsTab=Summary" target="_blank">View</a>
-                </td>
-            </tr>
-            <tr>
-                <td style="white-space: nowrap">School Details</td>
-                <td>
-                    <a href="https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=SchoolDetails&DetailsTab=Summary" target="_blank">View</a>
-                </td>
-            </tr>
-        </table>';
+            if(!$existing) {
 
-        $response = json_decode($response, true);
+                // add to leads
+                $lead = new Leads();
+                $lead -> l_source = 'www.TaylorProperties.co';
+                $lead -> l1_email = $user -> email;
+                $lead -> l1_first = $user_first;
+                $lead -> l1_last = $user_last;
+                $lead -> l1_phone = $user -> phone;
+                $lead -> l_status = 'Lead';
+                $lead -> l_type = 'Buy';
+                $lead -> save();
+                $lead_id = $lead -> id;
 
-        $contact_id = $response['data']['id'];
+                // add comments to notes
+                $notes = new LeadsNotes();
+                $notes -> notes = $request -> message;
+                $notes -> user = 'Client';
+                $notes -> lead_id = $lead_id;
+                $notes -> save();
 
-        $curl = curl_init();
+                $user -> lead_id = $lead_id;
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.contactually.com/v2/notes",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$prop_links."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
-        CURLOPT_HTTPHEADER => array(
-            "accept: application/json",
-            "authorization: Bearer ".Config::get('contactually.contactually_key')."",
-            "content-type: application/json",
-            "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
-        ),
-        ));
+            }
 
-        $response = curl_exec($curl);
+            $curl = curl_init();
 
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Buyer\"],\"email_addresses\":[{\"address\":\"".$user -> email."\"}],\"phone_numbers\":[{\"number\":\"".$user -> phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$user_first."\",\"last_name\":\"".$user_last."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
 
-        curl_close($curl);
+            $response = curl_exec($curl);
 
+            $response = json_decode($response, true);
 
-        $to_email = Config::get('email_routing.home_value_request.email');
-        \Notification::route('mail', $to_email) -> notify(new HomeValueRequest($lead));
+            $contact_id = $response['data']['id'];
 
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$request -> message."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+
+        }
+
+        \Notification::route('mail', $to_email) -> notify(new ContactForm($user));
 
     }
 
@@ -314,6 +369,49 @@ class PageController extends Controller {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Seller\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
+        CURLOPT_HTTPHEADER => array(
+            "accept: application/json",
+            "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+            "content-type: application/json",
+            "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        $address_url = $street_number.' '.$street_name . ($unit != '' ? ', ' . $unit : '') . ', '.$city.', '.$state.', '.$zip;
+        $address_url = preg_replace('/[\'"]*/', '', $address_url);
+        $address_url = str_replace(' ', '%20', $address_url);
+
+        $prop_links = '
+        Property / Listing Details
+        https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=PropertyDetails&DetailsTab=Summary
+
+        Reports
+        https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=Reports&ReportType=ResidentialPropertyReport
+
+        Neighborhoods
+        https://www.narrpr.com/find.aspx?Query='.$city.',%20'.$state.'&AppPropertyMode=Residential&Action=NeighborhoodDetails&DetailsTab=Summary
+
+        School Details
+        https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=SchoolDetails&DetailsTab=Summary';
+
+        $response = json_decode($response, true);
+
+        $contact_id = $response['data']['id'];
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.contactually.com/v2/notes",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"".$prop_links."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
         CURLOPT_HTTPHEADER => array(
             "accept: application/json",
             "authorization: Bearer ".Config::get('contactually.contactually_key')."",
