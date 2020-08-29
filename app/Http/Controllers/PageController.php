@@ -149,8 +149,13 @@ class PageController extends Controller {
 
             }
 
-            $first = substr($user -> name, 0, strpos($user -> name, ' '));
-            $last = substr($user -> name, strpos($user -> name, ' ') + 1);
+            $name = $user -> name;
+            $first = $name;
+            $last = '';
+            if(stristr($name, ' ')) {
+                $first = substr($name, 0, strpos($name, ' '));
+                $last = substr($name, strpos($name, ' ') + 1);
+            }
 
             $curl = curl_init();
 

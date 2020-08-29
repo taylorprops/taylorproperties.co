@@ -125,6 +125,65 @@ class SearchController extends Controller {
         $info -> save();
 
 
+        $name = $request -> name;
+        $first = $name;
+        $last = '';
+        if(stristr($name, ' ')) {
+            $first = substr($name, 0, strpos($name, ' '));
+            $last = substr($name, strpos($name, ' ') + 1);
+        }
+
+        $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Buyer\"],\"email_addresses\":[{\"address\":\"".$request -> email."\"}],\"phone_numbers\":[{\"number\":\"".$request -> phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        $response = json_decode($response, true);
+
+        $contact_id = $response['data']['id'];
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"Client submitted an info request for ".$listing -> FullStreetAddress." ".$listing -> City.", ".$listing -> StateOrProvince." ".$listing -> PostalCode."\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+
         \Notification::route('mail', Config::get('email_routing.more_info_request.email')) -> notify(new MoreInfoRequest($info));
     }
 
@@ -390,6 +449,65 @@ class SearchController extends Controller {
             -> get()
             -> toArray();
         $showing['other_showings'] = $other_showings;
+
+
+        $name = $request -> name;
+        $first = $name;
+        $last = '';
+        if(stristr($name, ' ')) {
+            $first = substr($name, 0, strpos($name, ' '));
+            $last = substr($name, strpos($name, ' ') + 1);
+        }
+
+        $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Buyer\"],\"email_addresses\":[{\"address\":\"".$request -> email."\"}],\"phone_numbers\":[{\"number\":\"".$request -> phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first."\",\"last_name\":\"".$last."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        $response = json_decode($response, true);
+
+        $contact_id = $response['data']['id'];
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.contactually.com/v2/notes",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\"data\":{\"body\":\"Client submitted a showing request\",\"contact_id\":\"".$contact_id."\",\"timestamp\":\"".date("Y-m-d H:i:s")."\"}}",
+            CURLOPT_HTTPHEADER => array(
+                "accept: application/json",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
+                "content-type: application/json",
+                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
 
 
 
