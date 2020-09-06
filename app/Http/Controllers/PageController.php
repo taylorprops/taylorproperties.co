@@ -126,7 +126,7 @@ class PageController extends Controller {
 
             $existing = Prospects::where('p_email', $request -> email) -> first();
 
-            /* if(!$existing) {
+            if(!$existing) {
 
                 // add to prospects
                 $prospect = new Prospects();
@@ -147,7 +147,7 @@ class PageController extends Controller {
                 $notes -> prospect_id = $prospect_id;
                 $notes -> save();
 
-            } */
+            }
 
             $name = $user -> name;
             $first = $name;
