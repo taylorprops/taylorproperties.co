@@ -84,12 +84,12 @@ if (!function_exists('AddContactToContactually')) {
 
                     $response = curl_exec($curl);
                     $response = json_decode($response, true);
-                    $tag_id = $response['data']['id'];
+                    $new_tag_name = $response['data']['name'];
 
                 }
 
                 // set new bucket ids
-                $tags_array[] = $tag_id;
+                $tags_array[] = $new_tag_name;
             }
 
             $tags_array = '"'.implode('", "', $tags_array).'"';
@@ -106,7 +106,7 @@ if (!function_exists('AddContactToContactually')) {
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => "POST",
 
-                CURLOPT_POSTFIELDS =>"{\"data\":{\"tag_ids\":[$tags_array],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$contact_email."\"}],\"phone_numbers\":[{\"number\":\"".$contact_phone."\"}],\"bucket_ids\":[$bucket_ids_array],\"first_name\":\"".$contact_first_name."\",\"last_name\":\"".$contact_last_name."\",\"assigned_to_id\":\"".$assigned_to_id."\",\"created_at\":\"".date("Y-m-d")."\"}}",
+                CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[$tags_array],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$contact_email."\"}],\"phone_numbers\":[{\"number\":\"".$contact_phone."\"}],\"bucket_ids\":[$bucket_ids_array],\"first_name\":\"".$contact_first_name."\",\"last_name\":\"".$contact_last_name."\",\"assigned_to_id\":\"".$assigned_to_id."\",\"created_at\":\"".date("Y-m-d")."\"}}",
                 CURLOPT_HTTPHEADER => array(
                     "accept: application/json",
                     "authorization: Bearer ".Config::get('contactually.contactually_key')."",
