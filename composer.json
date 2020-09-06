@@ -45,6 +45,7 @@
     "autoload": {
         "files": [
             "app/Helpers/functions.php",
+            "app/Helpers/functions-contactually.php",
             "app/Helpers/simple_html_dom.php"
         ],
         "psr-4": {

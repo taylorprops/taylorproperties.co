@@ -5,17 +5,17 @@
             @php $id = rand(); @endphp
 			<div class="md-form">
 				<i class="fal fa-user prefix grey-text"></i>
-				<input type="text" name="name" id="name_{{ $id }}" class="form-control" required="required">
+				<input type="text" name="name" id="name_{{ $id }}" class="form-control" required>
 				<label for="name_{{ $id }}">Your name *</label>
 			</div>
 			<div class="md-form">
 				<i class="fal fa-envelope prefix grey-text"></i>
-				<input type="email" name="email" id="email_{{ $id }}" class="form-control" required="required">
+				<input type="email" name="email" id="email_{{ $id }}" class="form-control" required>
 				<label for="email_{{ $id }}"">Your email *</label>
 			</div>
 			<div class="md-form">
 				<i class="fal fa-phone prefix grey-text"></i>
-				<input type="tel" name="phone" id="phone_{{ $id }}" class="form-control phone" required="required">
+				<input type="tel" name="phone" id="phone_{{ $id }}" class="form-control phone" required>
 				<label for="phone_{{ $id }}">Your phone *</label>
 			</div>
 			<!--Textarea with icon prefix-->

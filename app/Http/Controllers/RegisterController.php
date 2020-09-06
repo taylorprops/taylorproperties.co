@@ -84,29 +84,8 @@ class RegisterController extends Controller {
             }
 
 
-            $curl = curl_init();
+            AddContactToContactually('user_304134', ['Source: Taylor Properties', 'Buyer'], $first_name, $last_name, $email, $phone, ['bucket_125452144'], '', '', '', '', '', '', 'Client registered an account on www.taylorproperties.co');
 
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.contactually.com/v2/contacts",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Buyer\"],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
-            CURLOPT_HTTPHEADER => array(
-                "accept: application/json",
-                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
-                "content-type: application/json",
-                "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
-            ),
-            ));
-
-            $response = curl_exec($curl);
-
-            curl_close($curl);
 
             // if successful login user
             if ($user_id) {

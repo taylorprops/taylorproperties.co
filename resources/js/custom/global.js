@@ -28,6 +28,21 @@ $(document).ready(function () {
         $('#agent_email').val(email);
     }
 
+    $('[type="email"]').on('keydown', function() {
+        $(this).next('.invalid-email').remove();
+        $(this).closest('form').find('[type="submit"]').prop('disabled', false);
+    });
+    $('[type="email"]').on('change', function() {
+        if(!emailIsValid($(this).val())) {
+            $(this).closest('form').find('[type="submit"]').prop('disabled', true);
+            $('<div class="ml-3 d-flex justify-content-start align-items-center text-danger small invalid-email"><i class="fa fa-exclamation-circle mr-2"></i><span>Invalid Email</span></div>').insertAfter($(this));
+        }
+    });
+
+    function emailIsValid (email) {
+        return /\S+@\S+\.\S+/.test(email)
+    }
+
 	/* Format Phone */
 	$('.phone').bind('keypress change blur', function () {
 		format_phone(this);
