@@ -47,7 +47,7 @@
 
                                     <!-- Card image -->
                                     <div class="view overlay">
-                                        <img class="card-img-top" src="{{ $slide -> ListPictureURL }}" alt="{{ $slide -> FullStreetAddress }}" style="height: 200px; object-fit: cover;">
+                                        <img class="card-img-top" src="{{ str_replace('http:', 'https:', $slide -> ListPictureURL) }}" alt="{{ $slide -> FullStreetAddress }}" style="height: 200px; object-fit: cover;">
                                         <a href="/search/listing_results?listing_id={{$slide -> ListingId}}&lat={{$slide -> Latitude}}&lon={{$slide -> Longitude }}&state={{$slide -> StateOrProvince}}">
                                             <div class="mask rgba-white-slight"></div>
                                         </a>

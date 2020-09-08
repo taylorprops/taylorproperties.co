@@ -9,7 +9,7 @@
         <div class="col-4">
             <div class="d-flex justify-content-around" id="details_options">
 
-                <a class="my-auto share-link-listing" href="javascript: void(0)" data-type="listing" data-heading="Share Listing" data-address="{{ $listings -> FullStreetAddress }} {{ $listings -> City }}, {{ $listings -> StateOrProvince }} {{ $listings -> PostalCode }}" data-image="{{ $listings -> ListPictureURL }}" data-price="{{ $listings -> ListPrice }}" data-beds="{{ $listings -> BedroomsTotal.' BR |'.$listings -> BathroomsTotalInteger.' BA' }}">
+                <a class="my-auto share-link-listing" href="javascript: void(0)" data-type="listing" data-heading="Share Listing" data-address="{{ $listings -> FullStreetAddress }} {{ $listings -> City }}, {{ $listings -> StateOrProvince }} {{ $listings -> PostalCode }}" data-image="{{ str_replace('http:', 'https:', $listings -> ListPictureURL) }}" data-price="{{ $listings -> ListPrice }}" data-beds="{{ $listings -> BedroomsTotal.' BR |'.$listings -> BathroomsTotalInteger.' BA' }}">
                     <i class="far fa-share fa-lg text-white"></i>
                 </a>
 

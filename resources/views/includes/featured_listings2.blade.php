@@ -14,7 +14,7 @@
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-multi" data-slide-to="0" class="active"></li>
-            <?php 
+            <?php
                 $count = $featuredListings->count();
                 $pages = $count;
 
@@ -29,7 +29,7 @@
             <div class="carousel-item">
                 <div class="col-12 col-md-3">
                     <div class="card mb-2">
-                        <img class="card-img-top" src="{{ $listing -> ListPictureURL }}" alt="{{ $listing->FullStreetAddress }}" style="height: 300px; object-fit: cover;">
+                        <img class="card-img-top" src="{{ str_replace('http:', 'https:', $listing -> ListPictureURL) }}" alt="{{ $listing->FullStreetAddress }}" style="height: 300px; object-fit: cover;">
                         <div class="card-body" style="margin: 0 auto;width: 100%;text-align: center;">
                             <h5 class="card-title font-weight-bold">${{ number_format($listing -> ListPrice, 0) }}</h5>
                             <?php

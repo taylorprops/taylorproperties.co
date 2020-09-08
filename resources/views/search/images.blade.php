@@ -38,9 +38,9 @@ if(count($results) > 0) {
         //print_r($listing);
         //echo '</pre>';
         if($listing['MediaCategory'] == 'Photo' || $listing['MediaCategory'] == 'Unbranded Virtual Tour') {
-            $images[$c]['large'] = $listing['MediaURLFull'];
-            $images[$c]['medium'] = $listing['MediaURL'];
-            $images[$c]['thumb'] = $listing['MediaURLMedium'];
+            $images[$c]['large'] = str_replace('http:', 'https:', $listing['MediaURLFull']);
+            $images[$c]['medium'] = str_replace('http:', 'https:', $listing['MediaURL']);
+            $images[$c]['thumb'] = str_replace('http:', 'https:', $listing['MediaURLMedium']);
             $images[$c]['order'] = $listing['MediaItemNumber'];
             $images[$c]['PreferredPhotoYN'] = $listing['PreferredPhotoYN'];
             $c += 1;

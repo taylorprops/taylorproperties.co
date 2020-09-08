@@ -147,7 +147,7 @@
 
                                                     <!-- Card image -->
                                                     <div class="view view-cascade overlay align-self-stretch">
-                                                        <img class="card-img-top img-fluid" src="{{ $slide -> ListPictureURL }}" alt="{{ $slide -> FullStreetAddress }}" alt="{{ $slide -> FullStreetAddress }}">
+                                                        <img class="card-img-top img-fluid" src="{{ str_replace('http:', 'https:', $slide -> ListPictureURL) }}" alt="{{ $slide -> FullStreetAddress }}" alt="{{ $slide -> FullStreetAddress }}">
                                                         <a href="#!">
                                                             <div class="mask rgba-white-slight"></div>
                                                         </a>

@@ -49,7 +49,7 @@ Welcome, {{Auth::user() -> name}}!
                                 <div class="col-12 col-md-6 col-lg-3 mb-5 mt-3">
                                     <div class="card card-cascade narrower {{ $class }}">
                                         <div class="view view-cascade overlay">
-                                            <img class="card-img-top" src="{{ $property -> ListPictureURL != '' ? $property -> ListPictureURL : '/images/search/no_photo.png' }}" alt="{{ucwords(strtolower($property -> FullStreetAddress))}}">
+                                            <img class="card-img-top" src="{{ $property -> ListPictureURL != '' ? str_replace('http:', 'https:', $property -> ListPictureURL) : '/images/search/no_photo.png' }}" alt="{{ucwords(strtolower($property -> FullStreetAddress))}}">
                                             <a href="/search/listing_results?listing_id={{$property -> ListingId}}&lat={{$property -> Latitude}}&lon={{$property -> Longitude }}&state={{$property -> StateOrProvince}}" target="_blank">
                                                 <div class="mask rgba-white-slight"></div>
                                             </a>

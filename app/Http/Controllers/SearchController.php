@@ -447,7 +447,7 @@ class SearchController extends Controller {
         $listings = $listings[0];
 
         $address = $listings['FullStreetAddress'] . ' ' . $listings['City'] . ' ' . $listings['StateOrProvince'] . ' ' . $listings['PostalCode'];
-        $image = $listings['ListPictureURL'];
+        $image = str_replace('http:', 'https:', $listings['ListPictureURL']);
 
         return view('search.listing_details_html', ['listings' => $listings, 'address' => $address, 'image' => $image, 'favorites' => $favorites]);
     }

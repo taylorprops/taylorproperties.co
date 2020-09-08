@@ -22,7 +22,7 @@
         <div class="card collection-card z-depth-1-half animated fadeIn listing-card" id="listing_{{ $listing -> ListingId }}">
 
             <div class="view overlay">
-                <img src="{{ $listing -> ListPictureURL != '' ? $listing -> ListPictureURL : '/images/search/no_photo.png' }}" class="img-fluid listing-side-image" alt="{{ $listing -> FullStreetAddress }}">
+                <img src="{{ $listing -> ListPictureURL != '' ? str_replace('http:', 'https:', $listing -> ListPictureURL) : '/images/search/no_photo.png' }}" class="img-fluid listing-side-image" alt="{{ $listing -> FullStreetAddress }}">
 
                 <div class="stripe stripe-options favorite-div">
                     <?php
