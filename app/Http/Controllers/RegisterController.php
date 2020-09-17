@@ -19,6 +19,8 @@ class RegisterController extends Controller {
         $email = $request -> email;
         $password = $request -> password;
         $name = $request -> name;
+        $first_name = substr($name, 0, strpos($name, ' '));
+        $last_name = substr($name, strpos($name, ' '));
         $phone = $request -> phone;
         $hash_password = bcrypt($password);
 
@@ -61,8 +63,6 @@ class RegisterController extends Controller {
 
             } else {
 
-                $first_name = substr($name, 0, strpos($name, ' '));
-                $last_name = substr($name, strpos($name, ' '));
                 // add to leads
                 $lead = new Leads();
                 $lead -> l_source = 'www.TaylorProperties.co';
@@ -79,7 +79,7 @@ class RegisterController extends Controller {
                 // email lead to office
                 $user -> lead_id = $lead_id;
                 //$user -> notify(new UserRegisteredNotification($user));
-                \Notification::route('mail', $email) -> notify(new UserRegisteredNotification($user));
+                \Notification::route('mail', Config::get('email_routing.client_register.email')) -> notify(new UserRegisteredNotification($user));
 
             }
 
