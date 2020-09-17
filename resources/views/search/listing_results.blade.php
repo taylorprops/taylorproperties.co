@@ -1152,7 +1152,7 @@
                     }
                     // Create popup
                     if(listing.ListPictureURL != '') {
-                        var image_src = listing.ListPictureURL;
+                        var image_src = listing.ListPictureURL.replace(/http:/, 'https:');
                     } else {
                         var image_src = '/images/search/no_photo.png';
                     }
