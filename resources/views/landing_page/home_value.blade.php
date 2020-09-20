@@ -52,34 +52,6 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                             <form method="post" id="home_value_form" action="home_value_results">
 
                                                 <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_first_name" name="home_value_first_name" class="form-control" required>
-                                                            <label for="home_value_first_name">First name</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_last_name" name="home_value_last_name" class="form-control" required>
-                                                            <label for="home_value_last_name">Last name</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="email" id="home_value_email" name="home_value_email" class="form-control" required>
-                                                            <label for="home_value_email">E-mail</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="md-form">
-                                                            <input type="text" id="home_value_phone" name="home_value_phone" class="form-control phone">
-                                                            <label for="home_value_phone">Phone number</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
                                                     <div class="col-sm-10">
                                                         <div class="md-form">
                                                             <input type="text" id="home_value_street_search" name="home_value_street_search" class="form-control clear" placeholder="" required>
@@ -104,6 +76,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                                         <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value</button>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" id="show_form" name="show_form" value="yes">
                                             </form>
 
                                         </div>
@@ -300,36 +273,6 @@ $(document).ready(function() {
 
     });
 
-
-    $('#home_value_form').submit(function(e) {
-        e.preventDefault();
-        if($('#home_value_street_number').val() != '' ) {
-            let formData = new FormData();
-            formData.append('full_address', $('#home_value_street_search').val());
-            formData.append('unit', $('#home_value_unit').val());
-            formData.append('street_number', $('#home_value_street_number').val());
-            formData.append('street_name', $('#home_value_street_name').val());
-            formData.append('city', $('#home_value_city').val());
-            formData.append('county', $('#home_value_county').val());
-            formData.append('state', $('#home_value_state').val());
-            formData.append('zip', $('#home_value_zip').val());
-            formData.append('first_name', $('#home_value_first_name').val());
-            formData.append('last_name', $('#home_value_last_name').val());
-            formData.append('phone', $('#home_value_phone').val());
-            formData.append('email', $('#home_value_email').val());
-
-            axios.post('/save_home_value_request', formData, axios_options)
-                .then(function (response) {
-                    document.getElementById('home_value_form').submit();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        } else {
-            e.preventDefault();
-            toastr['error']('Please select an address from the results');
-        }
-    });
 
 
 });

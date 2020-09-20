@@ -24,7 +24,7 @@ class SearchController extends Controller {
     public function get_user_data() {
         if (Auth::user()) {
             $user = Auth::user();
-            $lead = Leads::where('l_user_id', $user -> id) -> orWhere('l_email', $user -> email) -> first();
+            $lead = Leads::where('l_user_id', $user -> id) -> orWhere('l1_email', $user -> email) -> first();
             $lead_id = $lead -> id ?? null;
             $user_data = [
                 'status' => 'found',

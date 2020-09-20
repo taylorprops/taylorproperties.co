@@ -214,19 +214,19 @@ class PageController extends Controller {
 
     public function save_home_value_request(Request $request) {
 
-        $full_address = $request -> full_address;
-        $street_number = $request -> street_number;
-        $unit = $request -> unit;
-        $street_name = $request -> street_name;
-        $city = $request -> city;
-        $county = $request -> county;
-        $state = $request -> state;
-        $zip = $request -> zip;
+        $full_address = $request -> home_value_details_full_address;
+        $street_number = $request -> home_value_details_street_number;
+        $unit = $request -> home_value_details_unit;
+        $street_name = $request -> home_value_details_street_name;
+        $city = $request -> home_value_details_city;
+        $county = $request -> home_value_details_county;
+        $state = $request -> home_value_details_state;
+        $zip = $request -> home_value_details_zip;
 
-        $first_name = $request -> first_name;
-        $last_name = $request -> last_name;
-        $phone = $request -> phone;
-        $email = $request -> email;
+        $first_name = $request -> home_value_details_first_name;
+        $last_name = $request -> home_value_details_last_name;
+        $phone = $request -> home_value_details_phone;
+        $email = $request -> home_value_details_email;
 
         // add to leads database if not in there already
         $existing = Leads::where('l1_email', $email) -> first();
@@ -250,6 +250,7 @@ class PageController extends Controller {
         $lead -> listing_city = $city;
         $lead -> listing_state = $state;
         $lead -> listing_zip = $zip;
+
         if(!$existing) {
             $lead -> save();
             $lead_id = $lead -> id;
@@ -264,30 +265,6 @@ class PageController extends Controller {
         $lead -> street_name = $street_name;
         $lead -> unit = $unit;
 
-
-
-
-        /* $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.contactually.com/v2/contacts",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS =>"{\"data\":{\"tags\":[\"Source: Taylor Properties\", \"Seller\"],\"addresses\":[{\"street_1\":\"".$street_number.' '.$street_name." ".$unit."\",\"city\":\"".$city."\",\"state\":\"".$state."\",\"zip\":\"".$zip."\"}],\"email_addresses\":[{\"address\":\"".$email."\"}],\"phone_numbers\":[{\"number\":\"".$phone."\"}],\"bucket_ids\":[\"bucket_125452144\"],\"first_name\":\"".$first_name."\",\"last_name\":\"".$last_name."\",\"assigned_to_id\":\"user_304134\",\"created_at\":\"".date("Y-m-d")."\"}}",
-        CURLOPT_HTTPHEADER => array(
-            "accept: application/json",
-            "authorization: Bearer ".Config::get('contactually.contactually_key')."",
-            "content-type: application/json",
-            "Cookie: _enforcery_session_id_production=f881322cf6cabb55add2b4e3d8e850d6"
-        ),
-        ));
-
-        $response = curl_exec($curl); */
 
         $address_url = $street_number.' '.$street_name . ($unit != '' ? ', ' . $unit : '') . ', '.$city.', '.$state.', '.$zip;
         $address_url = preg_replace('/[\'"]*/', '', $address_url);
@@ -306,12 +283,13 @@ class PageController extends Controller {
         School Details
         https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=SchoolDetails&DetailsTab=Summary';
 
-        AddContactToContactually('user_304134', ['Source: Taylor Properties', 'Seller'], $first_name, $last_name, $email, $phone, ['bucket_125452144'], $street_number, $street_name, $unit, $city, $state, $zip, $notes);
+        /* AddContactToContactually('user_304134', ['Source: Taylor Properties', 'Seller'], $first_name, $last_name, $email, $phone, ['bucket_125452144'], $street_number, $street_name, $unit, $city, $state, $zip, $notes); */
 
 
         $to_email = Config::get('email_routing.home_value_request.email');
         \Notification::route('mail', $to_email) -> notify(new HomeValueRequest($lead));
 
+        return response() -> json(['success' => true]);
 
     }
 

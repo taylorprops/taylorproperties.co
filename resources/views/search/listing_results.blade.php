@@ -426,6 +426,7 @@
         </div><!-- ./ .row -->
     </div> <!-- ./ .details-div -->
 
+    <input type="hidden" id="properties_viewed" value="0">
 
     <div class="modal fade" id="addAliasModal" tabindex="-1" role="dialog" aria-labelledby="addAliasModalLabel" aria-hidden="true">
         <!-- Change class .modal-sm to change the size of the modal -->
@@ -778,7 +779,7 @@
 
 
     /* had to add this function to this file because it would not work in global.js */
-    function register_user() {
+    function register_user(listing_id, latitude, longitude, state) {
         $('#signup_button').html('Saving <i class="fas fa-spinner fa-spin"></i>');
         let formData = new FormData();
         formData.append('email', $('#register_email').val());
@@ -804,6 +805,8 @@
                     setTimeout(function() {
                         add_favorite(data.lead_id);
                     }, 500);
+                } else if ($('#active_service').val() == 'get_details') {
+                    get_details(listing_id, latitude, longitude, state);
                 }
             }
             $('#signup_button').html('Sign Up');
@@ -983,7 +986,7 @@
                     $('#active_service').val('save_favorite');
                     $('#register_form').off().on('submit', function (e) {
                         e.preventDefault();
-                        register_user();
+                        register_user('', '', '', '');
                     });
 
                     $('.open-login').unbind('click').bind('click', function () {
@@ -1012,7 +1015,7 @@
                     $('#active_service').val('save_search');
                     $('#register_form').off().on('submit', function(e) {
                         e.preventDefault();
-                        register_user();
+                        register_user('', '', '', '');
                     });
 
                     $('.open-login').unbind('click').bind('click', function() {
@@ -1088,8 +1091,8 @@
 
 
     var marker_layer = L.markerClusterGroup({
-        disableClusteringAtZoom: 18,
-        maxClusterRadius: 80,
+        disableClusteringAtZoom: 15,
+        maxClusterRadius: 50,
         chunkedLoading: true
     });
     //var drawnItems = L.featureGroup().addTo(map);
@@ -1450,10 +1453,45 @@
         //url = url.replace(/\.[a-zA-Z0-9]+\.email&/, '');
         url = url.replace(/[&]{2,}/, '&');
         ChangeUrl('page', url);
-        get_details(listing_id, latitude, longitude, state);
+
+        // force registration viewing second property
+        if($('#properties_viewed').val() == 1) {
+            // check if registered already
+            $.ajax({
+                type: 'get',
+                data: {
+                    _token: _token
+                },
+                url: '{{ route('search.user_data') }}',
+                success: function(response) {
+                    if (response.status == 'found') {
+                        get_details(listing_id, latitude, longitude, state);
+                    } else {
+                        $('#modalRegisterForm').modal();
+                        $('#active_service').val('get_details');
+                        $('.forced-registration').show();
+                        $('#register_form').off().on('submit', function (e) {
+                            e.preventDefault();
+                            register_user(listing_id, latitude, longitude, state);
+                        });
+
+                        $('.open-login').unbind('click').bind('click', function () {
+                            $('#modalRegisterForm').modal('hide');
+                            $('#modalSignInForm').modal();
+                        });
+                    }
+                }
+            });
+
+        } else {
+            get_details(listing_id, latitude, longitude, state);
+        }
+
+
     }
 
     function get_details(listing_id, latitude, longitude, state) {
+
         $('.details-div, .black-out').fadeIn();
         $.ajax({
             type: 'get',
@@ -1477,6 +1515,8 @@
                     accessToken: token
                 }).addTo(map_details);
                 var listing_marker = L.marker([latitude, longitude]).addTo(map_details);
+
+                $('#properties_viewed').val(parseInt($('#properties_viewed').val() + 1));
 
             }
         });

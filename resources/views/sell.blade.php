@@ -82,4 +82,42 @@
         </div>
     </section>
 </div>
+
+<div class="modal fade draggable" id="home_value_modal" tabindex="-1" role="dialog" aria-labelledby="home_value_modal_title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary draggable-handle">
+                <h4 class="modal-title text-white" id="home_value_modal_title"><i class="fad fa-house mr-2"></i> Instant Home Value Report </h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times mt-2"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="p-2 font-12 text-primary text-center">
+                            Thinking of selling or just curious to know your homes estimated value?
+                            <br><br>
+                            Get an Instant Home Value Report
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-around">
+                <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times mr-2"></i> No Thanks</a>
+                <a class="btn btn-success" href="/what-is-my-home-worth" target="_blank"><i class="fad fa-check mr-2"></i> Get Report</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#home_value_modal').modal();
+        }, 30000);
+    });
+</script>
 @endsection

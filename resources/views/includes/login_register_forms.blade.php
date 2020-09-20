@@ -7,6 +7,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <div class="d-flex justify-content-around align-items-center text-primary p-3 border-bottom forced-registration hidden">
+                <i class="fal fa-user fa-3x mr-2"></i>
+                <div class="font-9 ml-2">
+                    Please create an account to continue searching the latest available properties. Get email updates, save your favorites, searches and more!
+                </div>
+            </div>
             <form id="register_form" class="needs-validation container mb-0" novalidate>
                 @csrf
                 <div id="register_error">
@@ -41,7 +47,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button id="signup_button" class="btn btn-primary">Sign up</button>
+                    <button id="signup_button" class="btn btn-primary">Create Account</button>
                 </div>
             </form>
             <div class="modal-footer d-flex justify-content-center">
