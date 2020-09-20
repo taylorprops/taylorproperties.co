@@ -124,7 +124,6 @@
             }, 30000);
         }
 
-
     });
 
     function getCookieValue(name) {

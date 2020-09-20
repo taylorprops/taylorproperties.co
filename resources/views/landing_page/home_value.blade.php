@@ -73,7 +73,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                                 <input type="hidden" id="home_value_zip" name="home_value_zip" class="clear">
                                                 <div class="form-row">
                                                     <div class="col text-center">
-                                                        <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value</button>
+                                                        <button class="btn btn-primary waves-effect" id="submit_home_value_form">Get Value <i class="fad fa-arrow-circle-right fa-lg ml-2"></i></button>
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="show_form" name="show_form" value="yes">
