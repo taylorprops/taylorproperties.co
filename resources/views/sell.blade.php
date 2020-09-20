@@ -115,9 +115,21 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function() {
-        setTimeout(function() {
-            $('#home_value_modal').modal();
-        }, 30000);
+
+        let home_value_modal = getCookieValue('home_value_modal');
+        if(home_value_modal != 'set') {
+            setTimeout(function() {
+                $('#home_value_modal').modal();
+                document.cookie = 'home_value_modal=set';
+            }, 30000);
+        }
+
+
     });
+
+    function getCookieValue(name) {
+        let result = document.cookie.match("(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)")
+        return result ? result.pop() : ""
+    }
 </script>
 @endsection

@@ -39,6 +39,7 @@ Route::get('/about/our-staff', 'PageController@team');
 Route::get('/about/partners', 'PageController@partners');
 Route::get('/about/offices', 'PageController@offices');
 
+
 Route::get('/careers', function () {
     return view('about.careers');
 });
