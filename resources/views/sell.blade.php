@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Selling Your Home | Taylor Properties | Buying and Selling Real Estate in DC, MD, VA and PA')
+@section('css')
+<style>
+    .modal-close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+</style>
+@endsection
 @section('content')
 <div class="page-container page-sell">
     <div class="container-fluid header">
@@ -85,43 +94,36 @@
 
 <div class="modal fade draggable" id="home_value_modal" tabindex="-1" role="dialog" aria-labelledby="home_value_modal_title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
+
         <div class="modal-content">
-            <div class="modal-header bg-primary draggable-handle">
-                <h4 class="modal-title text-white" id="home_value_modal_title"><i class="fad fa-house mr-2"></i> Instant Home Value Report </h4>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <i class="fal fa-times mt-2"></i>
-                </button>
+            <div class="modal-close mt-2 mr-2">
+                <a href="javascript: void(0)" data-dismiss="modal"><i class="fa fa-times-circle text-white"></i></a>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="p-2 font-12 text-primary text-center">
-                            Thinking of selling or just curious to know your homes estimated value?
-                            <br><br>
-                            Get an Instant Home Value Report
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-around">
-                <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times mr-2"></i> No Thanks</a>
-                <a class="btn btn-success" href="/what-is-my-home-worth" target="_blank"><i class="fad fa-check mr-2"></i> Get Report</a>
-            </div>
+            <a href="/what-is-my-home-worth" target="_blank"><img class="img-fluid" src="{{ asset('/images/home_value_estimate.jpg') }}" alt="Home Value Request"></a>
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('js')
 <script type="text/javascript">
     $(document).ready(function() {
-
+        document.cookie = 'home_value_modal=no';
         let home_value_modal = getCookieValue('home_value_modal');
+
+        @if (App::environment(['local']) == true)
+            let timer = 100;
+        @else
+            let timer = 30000;
+        @endif
+        console.log(timer);
         if(home_value_modal != 'set') {
             setTimeout(function() {
                 $('#home_value_modal').modal();
+                $('.modal-backdrop.show').css({ opacity: '0.8' });
                 document.cookie = 'home_value_modal=set';
-            }, 30000);
+            }, timer);
         }
 
     });
