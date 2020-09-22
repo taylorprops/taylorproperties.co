@@ -65,10 +65,8 @@
                                         <ul class="list-unstyled list-inline font-small">
                                             <li class="list-inline-item pr-2 white-text"><i class="far fa-dollar-sign pr-1"></i>{{ number_format($slide -> ListPrice, 0) }}</li>
                                             <li class="list-inline-item pr-2"><i class="far fa-bed pr-1"></i>{{ $slide -> BedroomsTotal }}</li>
-                                            <?php
-                                            $BathroomsTotal = $slide -> BathroomsFull + ($slide -> BathroomsFull /2);
-                                            ?>
-                                            <li class="list-inline-item pr-2"><i class="far fa-toilet pr-1"> </i><?php echo $BathroomsTotal ?></li>
+
+                                            <li class="list-inline-item pr-2"><i class="far fa-toilet pr-1"> </i><?php echo $slide -> BathroomsTotal ?></li>
                                             <li class="list-inline-item">{{ number_format($slide -> LivingArea) }}&nbsp;sqft.</li>
                                         </ul>
                                         <a href="/search/listing_results?listing_id={{$slide -> ListingId}}&lat={{$slide -> Latitude}}&lon={{$slide -> Longitude }}&state={{$slide -> StateOrProvince}}" class="btn btn-orange mx-auto">View Details</a>
