@@ -52,105 +52,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
     }
 </style>
 @endsection
-@section('js')
-<script type="text/javascript">
-$(document).ready(function() {
 
-    @if(isset($_POST['show_form']))
-
-    $('#home_value_modal').modal();
-    $('#home_value_modal').on('hidden.bs.modal', function(e) {
-        let cont = true;
-        $('#home_value_details_first_name, #home_value_details_last_name, #home_value_details_phone, #home_value_details_email').each(function() {
-            if($(this).val() == '') {
-                cont = false;
-            }
-        });
-        if(cont == false) {
-            $('#home_value_modal').modal();
-        }
-    });
-
-    $('#home_value_details_form').submit(function(e) {
-
-        e.preventDefault();
-        $('#save_home_value_button').html('<i class="fa fa-spinner fa-spin mr-2"></i> Getting Results');
-        let form = $('#home_value_details_form');
-        let formData = new FormData(form[0]);
-
-        axios.post('/save_home_value_request', formData, axios_options)
-            .then(function (response) {
-                $('.blur').removeClass('blur');
-
-                $('#home_value_modal').modal('hide');
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-
-    @else
-
-    $('.blur').removeClass('blur');
-
-    @endif
-
-
-
-    //$('#found, #not_found').hide();
-    setTimeout(function() {
-        if($('#rprAvmWidget_1').html() == '') {
-            $('#not_found').show();
-        } else {
-            $('#found').show();
-        }
-    }, 1000);
-
-    $('label[for="home_value_street"]').bind('click focus', function() {
-        $(this).addClass('active').prev('input').focus();
-    });
-
-    $('#home_value_form').find('input.clear').val('');
-
-    let address_search_street = document.getElementById('home_value_street_search');
-    let places = new google.maps.places.Autocomplete(address_search_street);
-    google.maps.event.addListener(places, 'place_changed', function () {
-
-
-
-        let address_details = places.getPlace();
-
-        let street_number = street_name = city = county = state = zip = '';
-        address_details.address_components.forEach(function (address) {
-            if (address.types.includes('street_number')) {
-                street_number = address.long_name;
-                $('#home_value_street_number').val(street_number);
-            } else if (address.types.includes('route')) {
-                street_name = address.long_name;
-                $('#home_value_street_name').val(street_name);
-            } else if (address.types.includes('administrative_area_level_2')) {
-                county = address.long_name.replace(/'/, '');
-                county = county.replace(/\sCounty/, '');
-                $('#home_value_county').val(county);
-            } else if (address.types.includes('locality')) {
-                city = address.long_name;
-                $('#home_value_city').val(city);
-            } else if (address.types.includes('administrative_area_level_1')) {
-                state = address.short_name;
-                $('#home_value_state').val(state);
-            } else if (address.types.includes('postal_code')) {
-                zip = address.long_name;
-                $('#home_value_zip').val(zip);
-            }
-        });
-
-    });
-
-
-});
-</script>
-
-@endsection
 @section('content')
 
 <div class="page-container page-home-values blur">
@@ -456,3 +358,100 @@ $(document).ready(function() {
 
 @endsection
 
+@section('js')
+<script type="text/javascript">
+$(document).ready(function() {
+
+    @if(isset($_POST['show_form']))
+
+    $('#home_value_modal').modal();
+    $('#home_value_modal').on('hidden.bs.modal', function(e) {
+        let cont = true;
+        $('#home_value_details_first_name, #home_value_details_last_name, #home_value_details_phone, #home_value_details_email').each(function() {
+            if($(this).val() == '') {
+                cont = false;
+            }
+        });
+        if(cont == false) {
+            $('#home_value_modal').modal();
+        }
+    });
+
+    $('#home_value_details_form').submit(function(e) {
+        $('#home_value_modal').modal('hide');
+        e.preventDefault();
+        $('#save_home_value_button').html('<i class="fa fa-spinner fa-spin mr-2"></i> Getting Results');
+        let form = $('#home_value_details_form');
+        let formData = new FormData(form[0]);
+
+        axios.post('/save_home_value_request', formData, axios_options)
+            .then(function (response) {
+                $('.blur').removeClass('blur');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+
+    @else
+
+    $('.blur').removeClass('blur');
+
+    @endif
+
+
+
+    //$('#found, #not_found').hide();
+    setTimeout(function() {
+        if($('#rprAvmWidget_1').html() == '') {
+            $('#not_found').show();
+        } else {
+            $('#found').show();
+        }
+    }, 1000);
+
+    $('label[for="home_value_street"]').bind('click focus', function() {
+        $(this).addClass('active').prev('input').focus();
+    });
+
+    $('#home_value_form').find('input.clear').val('');
+
+    let address_search_street = document.getElementById('home_value_street_search');
+    let places = new google.maps.places.Autocomplete(address_search_street);
+    google.maps.event.addListener(places, 'place_changed', function () {
+
+
+
+        let address_details = places.getPlace();
+
+        let street_number = street_name = city = county = state = zip = '';
+        address_details.address_components.forEach(function (address) {
+            if (address.types.includes('street_number')) {
+                street_number = address.long_name;
+                $('#home_value_street_number').val(street_number);
+            } else if (address.types.includes('route')) {
+                street_name = address.long_name;
+                $('#home_value_street_name').val(street_name);
+            } else if (address.types.includes('administrative_area_level_2')) {
+                county = address.long_name.replace(/'/, '');
+                county = county.replace(/\sCounty/, '');
+                $('#home_value_county').val(county);
+            } else if (address.types.includes('locality')) {
+                city = address.long_name;
+                $('#home_value_city').val(city);
+            } else if (address.types.includes('administrative_area_level_1')) {
+                state = address.short_name;
+                $('#home_value_state').val(state);
+            } else if (address.types.includes('postal_code')) {
+                zip = address.long_name;
+                $('#home_value_zip').val(zip);
+            }
+        });
+
+    });
+
+
+});
+</script>
+
+@endsection
