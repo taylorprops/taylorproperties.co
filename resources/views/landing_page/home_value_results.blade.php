@@ -81,9 +81,7 @@ $(document).ready(function() {
         axios.post('/save_home_value_request', formData, axios_options)
             .then(function (response) {
                 $('.blur').removeClass('blur');
-                $('#home_value_modal').on('hidden.bs.modal', function(e) {
-                    return false;
-                });
+
                 $('#home_value_modal').modal('hide');
             })
             .catch(function (error) {
