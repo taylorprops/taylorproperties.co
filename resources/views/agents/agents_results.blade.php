@@ -37,7 +37,7 @@
                 <a class="show-agent-details" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-des="{{ $agent -> designations }}" href="/agents/{{ $agent -> agent_id }}/{{ $agent_name_url }}">
                     <div class="h5 card-title text-default">{!! $agent -> designations !!}</div>
                 </a>
-                <div class="card-text">{{ $agent -> cell }}</div>
+                <div class="card-text">@if($agent -> agent_id != '20000540'){{ $agent -> cell }}@endif</div>
                 <a href="javascript:void(0);" class="btn btn-sm btn-primary message-agent" data-id="{{ $agent -> agent_id }}" data-email="{{ $agent -> email }}" data-name="{{ $agent -> fullname }}" data-des="{{ $agent -> designations }}"><i class="fas fa-envelope pr-2"></i> Message Me</a>
                 <a href="/agents/{{ $agent -> agent_id }}/{{ $agent_name_url }}" class="btn btn-primary btn-sm show-agent-details-button button{{ $agent -> agent_id }}" data-name="{{ $agent -> fullname }}" data-id="{{ $agent -> agent_id }}" data-des="{{ $agent -> designations }}">View Agent Details</a>
             </div>
