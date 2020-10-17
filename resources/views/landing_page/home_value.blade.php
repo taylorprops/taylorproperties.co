@@ -49,7 +49,7 @@ top listing agents in maryland, listing agent near me, listing real estate agent
                                     <!--Card content-->
                                     <div class="card-body px-lg-5 pt-0">
                                         <div class="home-value-form-div">
-                                            <form method="post" id="home_value_form" action="home_value_results">
+                                            <form method="post" id="home_value_form" action="/home_value_results">
 
                                                 <div class="form-row">
                                                     <div class="col-sm-10">

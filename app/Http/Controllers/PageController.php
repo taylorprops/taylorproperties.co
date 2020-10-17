@@ -283,7 +283,7 @@ class PageController extends Controller {
         School Details
         https://www.narrpr.com/find.aspx?Query='.$address_url.'&AppPropertyMode=Residential&Action=SchoolDetails&DetailsTab=Summary';
 
-        /* AddContactToContactually('user_304134', ['Source: Taylor Properties', 'Seller'], $first_name, $last_name, $email, $phone, ['bucket_125452144'], $street_number, $street_name, $unit, $city, $state, $zip, $notes); */
+        AddContactToContactually('user_304134', ['Source: Taylor Properties', 'Seller'], $first_name, $last_name, $email, $phone, ['bucket_125452144'], $street_number, $street_name, $unit, $city, $state, $zip, $notes);
 
 
         $to_email = Config::get('email_routing.home_value_request.email');
