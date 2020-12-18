@@ -1,7 +1,7 @@
 <?php
 
 $rets_config = new \PHRETS\Configuration;
-$rets_config -> setLoginUrl('http://csrets.mris.com:6103/platinum/login')
+$rets_config -> setLoginUrl('http://bright-rets.brightmls.com:6103/cornerstone/login')
     -> setUsername(Config::get('rets.rets.username'))
     -> setPassword(Config::get('rets.rets.password'))
     -> setRetsVersion('RETS/1.8')

@@ -1,17 +1,17 @@
 <?php
 
 $rets_config = new \PHRETS\Configuration;
-$rets_config->setLoginUrl('http://csrets.mris.com:6103/platinum/login')
-    ->setUsername(Config::get('rets.rets.username'))
-    ->setPassword(Config::get('rets.rets.password'))
-    ->setRetsVersion('RETS/1.8')
-	->setUserAgent('Bright RETS Application/1.0')
-	->setHttpAuthenticationMethod('digest') // or 'basic' if required
-	->setOption('use_post_method', true)
-    ->setOption('disable_follow_location', false);
+$rets_config -> setLoginUrl('http://bright-rets.brightmls.com:6103/cornerstone/login')
+    -> setUsername(Config::get('rets.rets.username'))
+    -> setPassword(Config::get('rets.rets.password'))
+    -> setRetsVersion('RETS/1.8')
+	-> setUserAgent('Bright RETS Application/1.0')
+	-> setHttpAuthenticationMethod('digest') // or 'basic' if required
+	-> setOption('use_post_method', true)
+    -> setOption('disable_follow_location', false);
 
 $rets = new \PHRETS\Session($rets_config);
-$connect = $rets->Login();
+$connect = $rets -> Login();
 
 $ListingId = $_GET['id'];
 
@@ -19,7 +19,7 @@ $resource = 'Media';
 $class = 'PROP_MEDIA';
 $query = '(ListingId='.$ListingId.')';
 
-$results = $rets->Search(
+$results = $rets -> Search(
     $resource,
     $class,
     $query,
@@ -28,7 +28,7 @@ $results = $rets->Search(
     ]
 );
 
-$results = $results->toArray();
+$results = $results -> toArray();
 $images = array();
 
 $c = 0;
@@ -46,7 +46,7 @@ foreach($results as $listing) {
     }
 }
 
-$rets->Disconnect();
+$rets -> Disconnect();
 
 // sort by preferred photo and then by order
 $PreferredPhotoYN = array();
