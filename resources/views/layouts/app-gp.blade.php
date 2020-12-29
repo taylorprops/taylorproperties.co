@@ -1,4 +1,4 @@
-<!doctype html>
+{{ dd(Config::get('contactually.contactually_key')) }}<!doctype html>
 <html lang="{{ str_replace('_', '-', app() -> getLocale()) }}">
 
     <head>
@@ -43,6 +43,7 @@
             @include('includes.navbar-gp-search')
         <?php } else { ?>
             @include('includes.navbar-gp')
+
         <?php } ?>
 
         @yield('content')

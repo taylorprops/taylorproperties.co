@@ -19,7 +19,7 @@ if (!function_exists('AddContactToContactually')) {
             CURLOPT_POSTFIELDS =>"{\"data\":{\"q\":\"".$contact_email."\"}}",
             CURLOPT_HTTPHEADER => array(
                 "accept: application/json",
-                "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                "authorization: Bearer ".Config::get('contactually.contactually_key')."",
                 "content-type: application/json"
             ),
         ));
@@ -53,7 +53,7 @@ if (!function_exists('AddContactToContactually')) {
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
                         "accept: application/json",
-                        "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8"
+                        "authorization: Bearer ".Config::get('contactually.contactually_key').""
                     ),
                 ));
 
@@ -77,7 +77,7 @@ if (!function_exists('AddContactToContactually')) {
                         CURLOPT_POSTFIELDS =>"{\"data\":{\"name\":\"".$tag."\"}}",
                         CURLOPT_HTTPHEADER => array(
                             "accept: application/json",
-                            "authorization: Bearer uhZjzCU91JjLG5nTotKh8pf3J-VmXZhHBk5rmY8qIt8",
+                            "authorization: Bearer ".Config::get('contactually.contactually_key')."",
                             "content-type: application/json"
                         ),
                     ));
