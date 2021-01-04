@@ -15,9 +15,11 @@ use App\ProspectNotes;
 use App\Leads;
 use App\LeadsNotes;
 use App\User;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller {
     public function index() {
+
         $sliders        = array();
         $total          = 24;
         $slide_rows     = 4;
