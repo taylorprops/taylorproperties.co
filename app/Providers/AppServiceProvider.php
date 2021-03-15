@@ -29,5 +29,11 @@ class AppServiceProvider extends ServiceProvider
         }
         Schema::defaultStringLength(191);
 
+        if (class_exists('Swift_Preferences')) {
+            \Swift_Preferences::getInstance()->setTempDir('/var/www/tmp');
+        } else {
+            \Log::warning('Class Swift_Preferences does not exists');
+        }
+
     }
 }

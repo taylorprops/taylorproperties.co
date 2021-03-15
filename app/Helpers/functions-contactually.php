@@ -26,7 +26,7 @@ if (!function_exists('AddContactToContactually')) {
 
         $response = curl_exec($curl);
         $response = json_decode($response, true);
-        $contact_id = count($response['data']) > 0 ? $response['data']['id'] : null;
+        $contact_id = count($response['data']) > 0 ? $response['data'][0]['id'] : null;
 
         // add if not added already
         if(!$contact_id) {

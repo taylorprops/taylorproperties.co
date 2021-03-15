@@ -51,7 +51,7 @@ font-family: "Playfair Display", serif;
 		<div class="col-sm-4">
 			<div class="imagebox">
 				<img src="{{ asset('images/staff/delia-abrams.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Delia Abrams<br><i>VP of Operations</i></span>
+				<span class="imagebox-desc">Delia Abrams<br><i>Chief Operating Officer</i></span>
 			</div>
 		</div>
 		<div class="col-sm-4">
@@ -68,12 +68,6 @@ font-family: "Playfair Display", serif;
 		</div>
 		<div class="col-sm-4">
 			<div class="imagebox">
-				<img src="{{ asset('images/staff/catharine-criss.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Catharine Criss<br><i>Commission Analyst</i></span>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="imagebox">
 				<img src="{{ asset('images/staff/kayla-williams.jpg')}}" class="catdegory-banner img-responsive">
 				<span class="imagebox-desc">Kayla Williams<br><i>Contracts Processor</i></span>
 			</div>
@@ -86,14 +80,26 @@ font-family: "Playfair Display", serif;
 		</div>
 		<div class="col-sm-4">
 			<div class="imagebox">
-				<img src="{{ asset('images/staff/sylvie-vivens-2.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Sylvie Vivens<br><i>Talent Aquisition Administrator</i></span>
+				<img src="{{ asset('images/staff/sylvie-1x1-Low-Quality.jpg')}}" class="category-banner img-responsive">
+				<span class="imagebox-desc">Sylvie Vivens<br><i>Administrative Assisstant</i></span>
 			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="imagebox">
 				<img src="{{ asset('images/staff/lucia-martinez.jpg')}}" class="category-banner img-responsive">
-				<span class="imagebox-desc">Lucia Martinez<br><i>Accounting</i></span>
+				<span class="imagebox-desc">Lucia Martinez<br><i>Operations Manager</i></span>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="imagebox">
+				<img src="{{ asset('images/staff/lynne-1x1-Low-Quality.jpg')}}" class="category-banner img-responsive">
+				<span class="imagebox-desc">Lynne Rowland<br><i>Contracts Analyst</i></span>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="imagebox">
+				<img src="{{ asset('images/staff/andrea-1x1-Low-Quality.jpg')}}" class="category-banner img-responsive">
+				<span class="imagebox-desc">Andrea Gomez<br><i>Commissions Analyst</i></span>
 			</div>
 		</div>
 	</div>

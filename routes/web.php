@@ -131,8 +131,8 @@ Route::get('/agents/agent_profile', 'PageController@showAgent') -> name('agents.
 Route::get('/agents/agent_profile_page', function() {
     return view('agents.agent_profile_page');
 });
-Route::get('/agents/{id}/{fullname}', 'PageController@showAgentProfile');
-Route::get('/agents/{id}', 'PageController@showAgentProfile');
+Route::get('/agents/{id}/{fullname?}', 'PageController@showAgentProfile');
+//Route::get('/agents/{id}', 'PageController@showAgentProfile');
 //Route::get('/{id}', 'PageController@showAgentProfile');
 
 Route::post('/search-agents', 'PageController@searchAgents') -> name('agents.search_agents');
