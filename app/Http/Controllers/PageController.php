@@ -160,7 +160,7 @@ class PageController extends Controller {
             }
 
 
-            AddContactToContactually('user_304135', ['Source: Taylor Properties'], $first, $last, $user -> email, $user -> phone, ['bucket_125445026'], '', '', '', '', '', '', $user -> message);
+            AddContactToContactually('user_304135', ['Source: Taylor Properties'], $first, $last, $user -> email, $user -> phone, ['bucket_126253182'], '', '', '', '', '', '', $user -> message);
 
         } else if($request -> type == 'to_agent') {
 

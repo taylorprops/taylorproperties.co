@@ -231,7 +231,7 @@ class Listings extends Model
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.greatschools.org/schools/nearby?key=1a2572cc806dcc701097d7d8cad6b81c&state=".$state."&lat=".$lat."&lon=".$lon,
+            CURLOPT_URL => "https://api.greatschools.org/schools/nearby?key=".config('great_schools.great_schools_key')."&state=".$state."&lat=".$lat."&lon=".$lon,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -249,6 +249,28 @@ class Listings extends Model
                 "accept-encoding: gzip, deflate"
             ),
         ));
+
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => "https://api.greatschools.org/schools/nearby?key=".config('great_schools.great_schools_key')."&state=".$state."&lat=".$lat."&lon=".$lon,
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => "",
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 30,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => "GET",
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Accept: */*",
+        //         "Content-type: application/json",
+        //         "Cache-Control: no-cache",
+        //         "Connection: keep-alive",
+        //         "Host: api.greatschools.org",
+        //         "Postman-Token: e768ee75-03d0-4526-8ffc-e318e565b844,bab5a7e4-a0cf-42f8-9765-6078bf583ea7",
+        //         "User-Agent: PostmanRuntime/7.15.0",
+        //         "accept-encoding: gzip, deflate"
+        //     ),
+        // ));
+
+        // curl_setopt($ch, CURLOPT_HEADER, array("x-api-key: ".config('great_schools.great_schools_key')));
 
         $response = curl_exec($curl);
 
