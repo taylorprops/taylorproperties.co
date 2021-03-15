@@ -1,6 +1,6 @@
 @extends('layouts.landingpage')
 @section('title')
-Testimonaials | 100&#37; Commission Real Estate Brokerage | Taylor Properties
+Testimonials | 100&#37; Commission Real Estate Brokerage | Taylor Properties
 @endsection
 @section('meta-description')
 The best 100&#37; commission real estate brokerage licensed in Maryland, Washington DC, Virgina and Pennsylvania offering agents the best environment to earn and learn!

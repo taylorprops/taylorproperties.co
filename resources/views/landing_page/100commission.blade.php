@@ -33,7 +33,7 @@ The best 100&#37; commission real estate broker licensed in Maryland, Virgina, W
 
         <!-- Content -->
         <h1 class="my-4 py-2 text-white font-weight-bold">100&#37; Commission Real Estate Brokerage</h1>
-        <p class="mb-4 pb-2 px-md-5 mx-md-5 lead">Behind every great company, is great people. That is why, as an agent of Taylor Properties, you can count on a broker that will tap into your strengths, offer the training you need and give you all the tools to advance your career. We believe most people want more than a job in real estate; they want a rewarding career. Real estate offers you the flexibility to run your own business as you see fit with all the support you need from your broker, all while offering you an industry leading <strong>100% Commission</strong>.</p>
+        <p class="mb-4 pb-2 px-md-5 mx-md-5 lead">Great people are behind every great company. That is why, as an agent of Taylor Properties, you can count on a broker that will tap into your strengths, offer the training you need and give you all the tools to advance your career. We believe most people want more than a job in real estate; they want a rewarding career. Real estate offers you the flexibility to run your own business as you see fit with all the support you need from your broker, all while offering you an industry leading <strong>100% Commission</strong>.</p>
 
       </div>
     </div>
@@ -59,7 +59,7 @@ The best 100&#37; commission real estate broker licensed in Maryland, Virgina, W
 
             <i class="far fa-sack-dollar fa-3x green-text"></i>
             <h5 class="font-weight-bold my-4">Flexible Commission Plans</h5>
-            <p class="mb-md-0 mb-5">100% and 85% commission plans. Switch anytime at no cost. See what you get in each plan in the chart below.
+            <p class="mb-md-0 mb-5">100% and 85% commission plans. Flexible plans to suit your production. See what you get in each plan in the chart below.
             </p>
 
           </div>

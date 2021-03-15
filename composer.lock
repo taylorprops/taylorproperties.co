@@ -2387,6 +2387,7 @@
         },
         {
             "name": "spatie/db-dumper",
+<<<<<<< HEAD
             "version": "2.20.0",
             "source": {
                 "type": "git",
@@ -2397,6 +2398,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/db-dumper/zipball/6a9004885b6de8417c2a5e1aa9e3712b49c1c59d",
                 "reference": "6a9004885b6de8417c2a5e1aa9e3712b49c1c59d",
+=======
+            "version": "2.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/db-dumper.git",
+                "reference": "54150d138dfe5b8043c2a7c6c27a8b41a9e8f418"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/54150d138dfe5b8043c2a7c6c27a8b41a9e8f418",
+                "reference": "54150d138dfe5b8043c2a7c6c27a8b41a9e8f418",
+>>>>>>> e2357e26a8bb7650e0b204ea99ddd7d768d4d24c
                 "shasum": ""
             },
             "require": {
@@ -2435,7 +2448,11 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/db-dumper/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/spatie/db-dumper/tree/2.20.0"
+=======
+                "source": "https://github.com/spatie/db-dumper/tree/2.21.0"
+>>>>>>> e2357e26a8bb7650e0b204ea99ddd7d768d4d24c
             },
             "funding": [
                 {
@@ -2443,7 +2460,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2021-01-26T07:44:13+00:00"
+=======
+            "time": "2021-01-27T09:26:50+00:00"
+>>>>>>> e2357e26a8bb7650e0b204ea99ddd7d768d4d24c
         },
         {
             "name": "spatie/laravel-backup",
@@ -2521,6 +2542,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-backup/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/spatie/laravel-backup/tree/6.12.0"
             },
             "funding": [
@@ -2534,6 +2556,21 @@
                 }
             ],
             "time": "2020-11-19T14:35:13+00:00"
+=======
+                "source": "https://github.com/spatie/laravel-backup/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-06-18T09:59:06+00:00"
+>>>>>>> e2357e26a8bb7650e0b204ea99ddd7d768d4d24c
         },
         {
             "name": "spatie/laravel-tail",

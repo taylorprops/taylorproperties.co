@@ -9,11 +9,15 @@
                     <div class="card mb-2 mt-4">
                             <div class="row">
                                     <div class="col-12 mx-auto col-sm-4">
+
                                         <div class="agent-profile card-body contact">
+
+                                            <div class="h2 w-100 text-center text-primary">{{ $agent -> fullname }}</div>
+
                                             @if (empty($agent -> photo_url))
-                                            <img class="pb-4 profile-img-top" src="{{ asset('images/logos/TaylorProperties-1x1.jpg') }}" alt="{{$agent -> fullname}}" style="width: 100%;padding: 1em;">
+                                            <img class="pb-4 profile-img-top" src="{{ asset('images/logos/TaylorProperties-1x1.jpg') }}" alt="{{ $agent -> fullname }}" style="width: 100%;padding: 1em;">
                                             @else
-                                            <img class="pb-4 profile-img-top" src="{{ $agent -> photo_url }}" alt="{{$agent -> fullname}}" width="100%" style="max-height: 400px; width:100%;object-fit: cover; padding: 1em;">
+                                            <img class="pb-4 profile-img-top" src="{{ $agent -> photo_url }}" alt="{{ $agent -> fullname }}" width="100%" style="max-height: 400px; width:100%;object-fit: cover; padding: 1em;">
                                             @endif
                                             <ul class="text-lg-left list-unstyled ml-4">
                                                 <li>
