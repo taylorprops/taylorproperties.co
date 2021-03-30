@@ -171,7 +171,7 @@
     </div>
 
 
-    <div class="details-section p-3">
+    {{-- <div class="details-section p-3">
 
         <div class="section-header">School Information</div>
         <div class="text-default font-8"><i class="fal fa-info-circle mr-1"></i> Click map to zoom
@@ -192,7 +192,7 @@
         <div id="school_map"></div>
         <div id="school_info"></div>
 
-    </div>
+    </div> --}}
 </div>
 
 <div class="details-section p-3">

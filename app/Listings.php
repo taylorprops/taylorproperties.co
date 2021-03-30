@@ -228,27 +228,7 @@ class Listings extends Model
 
     public function scopeSchool($query, $state, $lat, $lon) {
 
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.greatschools.org/schools/nearby?key=".config('great_schools.great_schools_key')."&state=".$state."&lat=".$lat."&lon=".$lon,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Accept: */*",
-                "Content-type: application/json",
-                "Cache-Control: no-cache",
-                "Connection: keep-alive",
-                "Host: api.greatschools.org",
-                "Postman-Token: e768ee75-03d0-4526-8ffc-e318e565b844,bab5a7e4-a0cf-42f8-9765-6078bf583ea7",
-                "User-Agent: PostmanRuntime/7.15.0",
-                "accept-encoding: gzip, deflate"
-            ),
-        ));
+        // $curl = curl_init();
 
         // curl_setopt_array($curl, array(
         //     CURLOPT_URL => "https://api.greatschools.org/schools/nearby?key=".config('great_schools.great_schools_key')."&state=".$state."&lat=".$lat."&lon=".$lon,
@@ -270,16 +250,17 @@ class Listings extends Model
         //     ),
         // ));
 
+
         // curl_setopt($ch, CURLOPT_HEADER, array("x-api-key: ".config('great_schools.great_schools_key')));
 
-        $response = curl_exec($curl);
+        // $response = curl_exec($curl);
 
-        curl_close($curl);
-        // response is xml so convert to json
-        $xml = simplexml_load_string($response);
-        $json = json_encode($xml);
-        $results = json_decode($json, true);
-        return $results;
+        // curl_close($curl);
+        // // response is xml so convert to json
+        // $xml = simplexml_load_string($response);
+        // $json = json_encode($xml);
+        // $results = json_decode($json, true);
+        // return $results;
     }
 
 }

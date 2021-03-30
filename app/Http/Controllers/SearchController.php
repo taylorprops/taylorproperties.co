@@ -420,7 +420,7 @@ class SearchController extends Controller {
         \Notification::route('mail', Config::get('email_routing.showing_request.email')) -> notify(new ShowingRequest($showing));
     }
 
-    public function school_data(Request $request) {
+    /* public function school_data(Request $request) {
         $state = $request -> state;
         $lat = $request -> lat;
         $lon = $request -> lon;
@@ -430,7 +430,7 @@ class SearchController extends Controller {
             return (['schools' => $schools['school']]);
         }
         return '';
-    }
+    } */
 
     public function search_details(Request $request) {
         $favorites = [];

@@ -1574,78 +1574,78 @@
                         $('#listing_images_div, #listing_details_div').html('');
                         remove_listing_details_from_url();
                     });
-                var map_school = L.map('school_map', {
-                        scrollWheelZoom: false
-                    }).setView([latitude, longitude], 14);
-                map_school.on('click', function() {
-                    map_school.scrollWheelZoom.enable();
-                });
-                var token = '{{ Config::get('leaflet.leaflet.token') }}';
-                L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + token, {
-                    attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
-                    //maxZoom: 11,
-                    id: 'mapbox.streets',
-                    accessToken: token
-                }).addTo(map_school);
-                var school_center_marker = L.marker([latitude, longitude]).addTo(map_school);
-                $.ajax({
-                    type: 'get',
-                    url: '{{ route('search.school_data') }}',
-                    data: {
-                        lat: latitude,
-                        lon: longitude,
-                        state: state
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        var school_marker_layer = L.markerClusterGroup({
-                            disableClusteringAtZoom: 11,
-                            maxClusterRadius: 80
-                        });
-                        var publicOptions = {
-                            color: '#074266',
-                            opacity: '.8',
-                            radius: 6
-                        }
-                        var privateOptions = {
-                            color: '#b1493a',
-                            opacity: '.8',
-                            radius: 6
-                        }
-                        var charterOptions = {
-                            color: '#f5b22d',
-                            opacity: '.8',
-                            radius: 6
-                        }
-                        $.each(data.schools, function(index, school) {
-                            if (school.type == 'public') {
-                                var school_marker = L.circleMarker([school.lat, school.lon], publicOptions).on('click', show_school_details);
-                                var school_popup = L.popup({  offset: L.point(0, 10) });
-                                var popup_class = 'popup-public';
-                            } else if (school.type == 'private') {
-                                var school_marker = L.circleMarker([school.lat, school.lon], privateOptions).on('click', show_school_details);
-                                var school_popup = L.popup({ offset: L.point(0, 10) });
-                                var popup_class = 'popup-private';
-                            } else if (school.type == 'charter') {
-                                var school_marker = L.circleMarker([school.lat, school.lon], charterOptions).on('click', show_school_details);
-                                var school_popup = L.popup({ offset: L.point(0, 10) });
-                                var popup_class = 'popup-charter';
-                            }
-                            var schoolPopUpContent = '<div id="school_popup_container" class="school-popup-container ' + popup_class + ' z-depth-3"><a href="javascript: void(0)" class="school-link"><strong>' + school.name + '</a></div>';
+                // var map_school = L.map('school_map', {
+                //         scrollWheelZoom: false
+                //     }).setView([latitude, longitude], 14);
+                // map_school.on('click', function() {
+                //     map_school.scrollWheelZoom.enable();
+                // });
+                // var token = '{{ Config::get('leaflet.leaflet.token') }}';
+                // L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + token, {
+                //     attribution: 'Map data &copy; <a href="javascript: void(0)" href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="javascript: void(0)" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="javascript: void(0)" href="https://www.mapbox.com/">Mapbox</a>',
+                //     //maxZoom: 11,
+                //     id: 'mapbox.streets',
+                //     accessToken: token
+                // }).addTo(map_school);
+                // var school_center_marker = L.marker([latitude, longitude]).addTo(map_school);
+                // $.ajax({
+                //     type: 'get',
+                //     url: '{{ route('search.school_data') }}',
+                //     data: {
+                //         lat: latitude,
+                //         lon: longitude,
+                //         state: state
+                //     },
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         var school_marker_layer = L.markerClusterGroup({
+                //             disableClusteringAtZoom: 11,
+                //             maxClusterRadius: 80
+                //         });
+                //         var publicOptions = {
+                //             color: '#074266',
+                //             opacity: '.8',
+                //             radius: 6
+                //         }
+                //         var privateOptions = {
+                //             color: '#b1493a',
+                //             opacity: '.8',
+                //             radius: 6
+                //         }
+                //         var charterOptions = {
+                //             color: '#f5b22d',
+                //             opacity: '.8',
+                //             radius: 6
+                //         }
+                //         $.each(data.schools, function(index, school) {
+                //             if (school.type == 'public') {
+                //                 var school_marker = L.circleMarker([school.lat, school.lon], publicOptions).on('click', show_school_details);
+                //                 var school_popup = L.popup({  offset: L.point(0, 10) });
+                //                 var popup_class = 'popup-public';
+                //             } else if (school.type == 'private') {
+                //                 var school_marker = L.circleMarker([school.lat, school.lon], privateOptions).on('click', show_school_details);
+                //                 var school_popup = L.popup({ offset: L.point(0, 10) });
+                //                 var popup_class = 'popup-private';
+                //             } else if (school.type == 'charter') {
+                //                 var school_marker = L.circleMarker([school.lat, school.lon], charterOptions).on('click', show_school_details);
+                //                 var school_popup = L.popup({ offset: L.point(0, 10) });
+                //                 var popup_class = 'popup-charter';
+                //             }
+                //             var schoolPopUpContent = '<div id="school_popup_container" class="school-popup-container ' + popup_class + ' z-depth-3"><a href="javascript: void(0)" class="school-link"><strong>' + school.name + '</a></div>';
 
-                            function show_school_details() {
-                                var school_info = '<div class="school-info"><div class="school-info-name"><a href="' +school.overviewLink + '" target="_blank">' + school.name +'</a></div><div class="school-info-details">Type: ' +school.type.toUpperCase() + '<br>Enrollment: ' +school.enrollment + '<br>Grade Range: ' + school.gradeRange + '<br>Address: ' + school.address +'<br>Phone: ' + school.phone +'<br>Website: <a href="' + school.website +'" target="_blank">' + school.website +'</a><br><a href="' + school.ratingsLink +'" target="_blank">View Ratings Details</a><br><a href="' +school.reviewsLink +'" target="_blank">View School Reviews</a></div></div>';$('#school_info').fadeOut('fast').html('').fadeIn('slow').html(school_info);
-                                var scroll_to = ($('#listing_details_div').scrollTop() +$('#school_map').position().top) - 200;
-                                $('#listing_details_div').animate({scrollTop: scroll_to}, 'slow');
-                            }
-                            school_popup.setLatLng([school.lat, school.lon]).setContent(schoolPopUpContent);
-                            // bind popup and tooltip with price
-                            school_marker.bindPopup(school_popup);
-                            school_marker_layer.addLayer(school_marker);
-                        });
-                        map_school.addLayer(school_marker_layer);
-                    }
-                });
+                //             function show_school_details() {
+                //                 var school_info = '<div class="school-info"><div class="school-info-name"><a href="' +school.overviewLink + '" target="_blank">' + school.name +'</a></div><div class="school-info-details">Type: ' +school.type.toUpperCase() + '<br>Enrollment: ' +school.enrollment + '<br>Grade Range: ' + school.gradeRange + '<br>Address: ' + school.address +'<br>Phone: ' + school.phone +'<br>Website: <a href="' + school.website +'" target="_blank">' + school.website +'</a><br><a href="' + school.ratingsLink +'" target="_blank">View Ratings Details</a><br><a href="' +school.reviewsLink +'" target="_blank">View School Reviews</a></div></div>';$('#school_info').fadeOut('fast').html('').fadeIn('slow').html(school_info);
+                //                 var scroll_to = ($('#listing_details_div').scrollTop() +$('#school_map').position().top) - 200;
+                //                 $('#listing_details_div').animate({scrollTop: scroll_to}, 'slow');
+                //             }
+                //             school_popup.setLatLng([school.lat, school.lon]).setContent(schoolPopUpContent);
+                //             // bind popup and tooltip with price
+                //             school_marker.bindPopup(school_popup);
+                //             school_marker_layer.addLayer(school_marker);
+                //         });
+                //         map_school.addLayer(school_marker_layer);
+                //     }
+                // });
                 $('.favorite').off('click').on('click', add_to_favorites);
                 $('.remove-favorite').off('click').on('click', remove_favorite);
 
